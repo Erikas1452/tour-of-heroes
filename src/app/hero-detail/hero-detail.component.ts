@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../services/hero-service/hero.service';
 import { Observable } from 'rxjs';
+import { LoadingService } from '../services/loading-service/loading.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,15 +13,27 @@ import { Observable } from 'rxjs';
 })
 export class HeroDetailComponent implements OnInit {
   hero?: Hero;
+  showSpinner: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
-  ) {}
+    private location: Location,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.spinner$.subscribe((data: boolean) => {
+      setTimeout(() => {
+        this.showSpinner = data;
+      });
+    });
+  }
 
   ngOnInit(): void {
-    this.getHero().subscribe((hero) => (this.hero = hero));
+    this.loadingService.show();
+    this.getHero().subscribe((hero) => {
+      this.hero = hero;
+      this.loadingService.hide();
+    });
   }
 
   getHero(): Observable<Hero> {

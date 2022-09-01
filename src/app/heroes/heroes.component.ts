@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
-import { MessageService } from '../services/message-service/message.service';
+import { LoadingService } from '../services/loading-service/loading.service';
 
 @Component({
   selector: 'app-heroes',
@@ -12,14 +12,24 @@ import { MessageService } from '../services/message-service/message.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero?: Hero;
+  showSpinner: boolean = false;
 
   constructor(
     private heroService: HeroService,
-    private messageService: MessageService
-  ) {}
+    private loadingService: LoadingService) {
+      this.loadingService.spinner$.subscribe((data: boolean) => {
+        setTimeout(() => {
+          this.showSpinner = data;
+        });
+      });
+    }
 
   ngOnInit(): void {
-    this.getHeroes().subscribe((heroes) => (this.heroes = heroes));
+    this.loadingService.show();
+    this.getHeroes().subscribe((heroes) => {
+      this.heroes = heroes;
+      this.loadingService.hide();
+    });
   }
 
   getHeroes(): Observable<Hero[]> {
