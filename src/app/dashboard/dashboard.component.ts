@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { HeroService } from '../services/hero-service/hero.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
-    this.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    this.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
   }
 
   getHeroes(): Observable<Hero[]> {
