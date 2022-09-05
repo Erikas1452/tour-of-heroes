@@ -3,6 +3,9 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
 import { MessageService } from '../services/message-service/message.service';
+import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-heroes',
@@ -12,10 +15,18 @@ import { MessageService } from '../services/message-service/message.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero?: Hero;
+  hideRequiredControl: FormControl = new FormControl(false);
+  addOnBlur: boolean = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  hashtags: string[] = [];
+
+  hero : FormGroup = this._formBuilder.group({
+    hideRequired: this.hideRequiredControl,
+  });
 
   constructor(
     private heroService: HeroService,
-    private messageService: MessageService
+    private _formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +50,20 @@ export class HeroesComponent implements OnInit {
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter((h) => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();
+  }
+
+  addChip(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.hashtags.push(value);
+    }
+    event.chipInput!.clear();
+  }
+
+  remove(value: string): void {
+    const index = this.hashtags.indexOf(value);
+    if (index >= 0) {
+      this.hashtags.splice(index, 1);
+    }
   }
 }
