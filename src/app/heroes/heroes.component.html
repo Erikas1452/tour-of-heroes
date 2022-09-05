@@ -4,17 +4,17 @@
 <mat-card>
   <mat-card-title>Create new hero</mat-card-title>
   <mat-card-subtitle>
-    <form [formGroup]="hero" class="hero-form">
+    <form (ngSubmit)="add()" [formGroup]="addHeroGroup" class="hero-form">
       <!-- Name -->
       <mat-form-field appearance="fill">
         <mat-label>Hero name</mat-label>
-        <input matInput type="text" />
+        <input [formControl]="nameControl" matInput type="text" />
       </mat-form-field>
 
       <!-- Level -->
       <mat-form-field appearance="fill">
         <mat-label>Hero Level</mat-label>
-        <mat-select>
+        <mat-select [formControl]="levelControl">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
           <mat-option value="3">3</mat-option>
@@ -30,7 +30,7 @@
 
       <!-- Company -->
       <mat-label>Company</mat-label>
-      <mat-radio-group aria-label="Select an option">
+      <mat-radio-group [formControl]="companyControl" aria-label="Select an option">
         <mat-radio-button color="primary" class="radio" value="Marvel">Marvel</mat-radio-button>
         <mat-radio-button color="primary" class="radio" value="DC">DC</mat-radio-button>
       </mat-radio-group>
@@ -38,7 +38,7 @@
       <!-- Description -->
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea matInput></textarea>
+        <textarea [formControl] =" descriptionControl" matInput></textarea>
       </mat-form-field>
 
       <!-- Hashtags -->
@@ -47,7 +47,7 @@
         <mat-chip-list #chipList aria-label="Hashtags selection">
           <mat-chip
             *ngFor="let hashtag of hashtags"
-            (removed)="remove(hashtag)"
+            (removed)="removeChip(hashtag)"
           >
             {{ hashtag }}
             <button matChipRemove>
@@ -65,7 +65,7 @@
       </mat-form-field>
 
       <!-- Button -->
-      <button type="button" class="add-button">Add hero</button>
+      <button type="submit" [disabled]="!addHeroGroup.valid">Submit</button>
     </form>
   </mat-card-subtitle>
   <mat-card-actions> </mat-card-actions>
@@ -94,3 +94,7 @@
     </button>
   </li>
 </ul>
+
+<div>
+  {{addHeroGroup}}
+</div>

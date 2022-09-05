@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
-import { MessageService } from '../services/message-service/message.service';
-import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
@@ -14,14 +13,24 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
-  hideRequiredControl: FormControl = new FormControl(false);
+
   addOnBlur: boolean = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   hashtags: string[] = [];
 
-  hero : FormGroup = this._formBuilder.group({
-    hideRequired: this.hideRequiredControl,
+  nameControl: FormControl = new FormControl('');
+  levelControl: FormControl = new FormControl('');
+  companyControl: FormControl = new FormControl('');
+  descriptionControl: FormControl = new FormControl('');
+  hashtagControl: FormControl = new FormControl([]);
+  
+
+  addHeroGroup : FormGroup = this._formBuilder.group({
+    name: this.nameControl,
+    level: this.levelControl,
+    company: this.companyControl,
+    description: this.descriptionControl,
+    hashtags: this.hashtagControl
   });
 
   constructor(
@@ -37,14 +46,15 @@ export class HeroesComponent implements OnInit {
     return this.heroService.getHeroes();
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) {
-      return;
-    }
-    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-      this.heroes.push(hero);
-    });
+  add(): void {
+    console.log(this.addHeroGroup);
+    // name = name.trim();
+    // if (!name) {
+    //   return;
+    // }
+    // this.heroService.addHero({ name } as Hero).subscribe((hero) => {
+    //   this.heroes.push(hero);
+    // });
   }
 
   delete(hero: Hero): void {
@@ -56,14 +66,17 @@ export class HeroesComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       this.hashtags.push(value);
+      this.hashtagControl.setValue(this.hashtags);
     }
     event.chipInput!.clear();
+    
   }
 
-  remove(value: string): void {
+  removeChip(value: string): void {
     const index = this.hashtags.indexOf(value);
     if (index >= 0) {
       this.hashtags.splice(index, 1);
+      this.hashtagControl.setValue(this.hashtags);
     }
   }
 }
