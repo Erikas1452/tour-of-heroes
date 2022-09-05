@@ -84,7 +84,7 @@
   <mat-card-actions> </mat-card-actions>
 </mat-card>
 <br />
-
+<!-- Hero List -->
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{ hero.id }}">
@@ -105,9 +105,8 @@
     >
       x
     </button>
+    <mat-icon class="dialog-button" mat-button (click)="openDialog(hero.description)"
+      >description</mat-icon
+    >
   </li>
 </ul>
-
-<div>
-  {{ addHeroGroup }}
-</div>

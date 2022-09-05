@@ -104,3 +104,9 @@ button.delete:hover {
   margin-left: 1em;
   margin-right: 1em;
 }
+
+.dialog-button {
+  top: 6px;
+  left: 363px;
+  position: absolute;
+}

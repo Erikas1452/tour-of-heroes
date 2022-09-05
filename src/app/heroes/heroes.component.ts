@@ -11,6 +11,8 @@ import {
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DescriptionDialogComponent } from '../description-dialog/description-dialog.component';
 
 @Component({
   selector: 'app-heroes',
@@ -41,7 +43,8 @@ export class HeroesComponent implements OnInit {
   constructor(
     private heroService: HeroService,
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public _dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +63,6 @@ export class HeroesComponent implements OnInit {
   }
 
   add(): void {
-    console.log(this.addHeroGroup.value);
     if (this.addHeroGroup.valid) {
       this.heroService
         .addHero(this.addHeroGroup.value as Hero)
@@ -90,5 +92,12 @@ export class HeroesComponent implements OnInit {
       this.hashtags.splice(index, 1);
       this.hashtagControl.setValue(this.hashtags);
     }
+  }
+
+  openDialog(description: string){
+    const dialogRef = this._dialog.open(DescriptionDialogComponent, {
+      width: '450px',
+      data: {desc: description}
+    });
   }
 }
