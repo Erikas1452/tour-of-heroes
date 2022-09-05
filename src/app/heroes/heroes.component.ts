@@ -2,9 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-heroes',
@@ -18,28 +24,35 @@ export class HeroesComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   hashtags: string[] = [];
 
-  nameControl: FormControl = new FormControl('');
-  levelControl: FormControl = new FormControl('');
-  companyControl: FormControl = new FormControl('');
-  descriptionControl: FormControl = new FormControl('');
-  hashtagControl: FormControl = new FormControl([]);
-  
+  nameControl: FormControl = new FormControl('', [Validators.required]);
+  levelControl: FormControl = new FormControl('', [Validators.required]);
+  companyControl: FormControl = new FormControl('', [Validators.required]);
+  descriptionControl: FormControl = new FormControl('', [Validators.required]);
+  hashtagControl: FormControl = new FormControl([], []);
 
-  addHeroGroup : FormGroup = this._formBuilder.group({
+  addHeroGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
     level: this.levelControl,
     company: this.companyControl,
     description: this.descriptionControl,
-    hashtags: this.hashtagControl
+    hashtags: this.hashtagControl,
   });
 
   constructor(
     private heroService: HeroService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.getHeroes().subscribe((heroes) => (this.heroes = heroes));
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Form is not valid', 'Close', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 
   getHeroes(): Observable<Hero[]> {
@@ -47,14 +60,14 @@ export class HeroesComponent implements OnInit {
   }
 
   add(): void {
-    console.log(this.addHeroGroup);
-    // name = name.trim();
-    // if (!name) {
-    //   return;
-    // }
-    // this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-    //   this.heroes.push(hero);
-    // });
+    console.log(this.addHeroGroup.value);
+    if (this.addHeroGroup.valid) {
+      this.heroService
+        .addHero(this.addHeroGroup.value as Hero)
+        .subscribe((hero) => {
+          this.heroes.push(hero);
+        });
+    } else this.openSnackBar();
   }
 
   delete(hero: Hero): void {
@@ -69,7 +82,6 @@ export class HeroesComponent implements OnInit {
       this.hashtagControl.setValue(this.hashtags);
     }
     event.chipInput!.clear();
-    
   }
 
   removeChip(value: string): void {

@@ -1,6 +1,5 @@
 <h2>My Heroes</h2>
-
-<!-- Hero Form -->hero
+<!-- Hero Form -->
 <mat-card>
   <mat-card-title>Create new hero</mat-card-title>
   <mat-card-subtitle>
@@ -10,10 +9,10 @@
         <mat-label>Hero name</mat-label>
         <input [formControl]="nameControl" matInput type="text" />
       </mat-form-field>
-
+      <div *ngIf="nameControl.errors?.['required']">Name is required.</div>
       <!-- Level -->
       <mat-form-field appearance="fill">
-        <mat-label>Hero Level</mat-label>
+        <mat-label>Hero level</mat-label>
         <mat-select [formControl]="levelControl">
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
@@ -27,19 +26,33 @@
           <mat-option value="10">10</mat-option>
         </mat-select>
       </mat-form-field>
+      <div *ngIf="levelControl.errors?.['required']">Level is required.</div>
 
       <!-- Company -->
       <mat-label>Company</mat-label>
-      <mat-radio-group [formControl]="companyControl" aria-label="Select an option">
-        <mat-radio-button color="primary" class="radio" value="Marvel">Marvel</mat-radio-button>
-        <mat-radio-button color="primary" class="radio" value="DC">DC</mat-radio-button>
+      <mat-radio-group
+        [formControl]="companyControl"
+        aria-label="Select an option"
+      >
+        <mat-radio-button color="primary" class="radio" value="Marvel"
+          >Marvel</mat-radio-button
+        >
+        <mat-radio-button color="primary" class="radio" value="DC"
+          >DC</mat-radio-button
+        >
       </mat-radio-group>
+      <div *ngIf="companyControl.errors?.['required']">
+        Company is required.
+      </div>
 
       <!-- Description -->
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea [formControl] =" descriptionControl" matInput></textarea>
+        <textarea [formControl]="descriptionControl" matInput></textarea>
       </mat-form-field>
+      <div *ngIf="descriptionControl.errors?.['required']">
+        Description is required.
+      </div>
 
       <!-- Hashtags -->
       <mat-form-field class="example-chip-list" appearance="fill">
@@ -96,5 +109,5 @@
 </ul>
 
 <div>
-  {{addHeroGroup}}
+  {{ addHeroGroup }}
 </div>
