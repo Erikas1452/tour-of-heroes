@@ -22,7 +22,7 @@ export class InMemoryDataService implements InMemoryDbService {
         level: 9,
         companyType: 'DC',
         description: 'Dark knight',
-        hashtags: ['Good', 'Dark', 'DC'],
+        hashtags: ['Good', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC'],
       },
       {
         id: 14,

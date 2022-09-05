@@ -18,6 +18,10 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { InMemoryDataService } from './services/in-memory-database-api-service/in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//Material
+import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,10 +36,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatChipsModule,
+    MatFormFieldModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

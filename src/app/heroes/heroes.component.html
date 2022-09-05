@@ -2,7 +2,11 @@
 <div>
   <label for="new-hero">Hero name: </label>
   <input id="new-hero" #heroName />
-  <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+  <button
+    type="button"
+    class="add-button"
+    (click)="add(heroName.value); heroName.value = ''"
+  >
     Add hero
   </button>
 </div>
@@ -11,8 +15,20 @@
     <a routerLink="/detail/{{ hero.id }}">
       <span class="badge">{{ hero.id }}</span>
       <span class="name">{{ hero.name }}</span>
+      <span class="name"> Level: {{ hero.level }}</span>
+      <mat-chip-list aria-label="hashtags">
+        <mat-chip disabled *ngFor="let hashtag of hero.hashtags">
+          #{{hashtag}}
+        </mat-chip>
+      </mat-chip-list>
     </a>
-    <button type="button" class="delete" title="delete hero"
-    (click)="delete(hero)">x</button>
+    <button
+      type="button"
+      class="delete"
+      title="delete hero"
+      (click)="delete(hero)"
+    >
+      x
+    </button>
   </li>
 </ul>
