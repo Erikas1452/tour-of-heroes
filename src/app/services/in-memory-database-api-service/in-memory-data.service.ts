@@ -7,21 +7,38 @@ import { Hero } from '../../hero';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
-      { id: 12, name: 'Dr. Nice' },
-      { id: 13, name: 'Bombasto' },
-      { id: 14, name: 'Celeritas' },
-      { id: 15, name: 'Magneta' },
-      { id: 16, name: 'RubberMan' },
-      { id: 17, name: 'Dynama' },
-      { id: 18, name: 'Dr. IQ' },
-      { id: 19, name: 'Magma' },
-      { id: 20, name: 'Tornado' },
+    const heroes: Hero[] = [
+      {
+        id: 12,
+        name: 'Dr. Nice',
+        level: 6,
+        companyType: 'Marvel',
+        description: 'A nice hero',
+        hashtags: ['Nice', 'Hero', 'Marvel'],
+      },
+      {
+        id: 13,
+        name: 'Batman',
+        level: 9,
+        companyType: 'DC',
+        description: 'Dark knight',
+        hashtags: ['Good', 'Dark', 'DC'],
+      },
+      {
+        id: 14,
+        name: 'Spiderman',
+        level: 9,
+        companyType: 'marvel',
+        description: 'A nice hero',
+        hashtags: ['Spidey', 'Spider', 'Marvel'],
+      },
     ];
     return { heroes };
   }
 
   genId(heroes: Hero[]): number {
-    return heroes.length > 0 ? Math.max(...heroes.map((hero) => hero.id)) + 1 : 11;
+    return heroes.length > 0
+      ? Math.max(...heroes.map((hero) => hero.id)) + 1
+      : 11;
   }
 }
