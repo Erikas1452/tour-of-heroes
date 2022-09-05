@@ -3,9 +3,12 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -30,7 +33,7 @@ export class HeroesComponent implements OnInit {
   levelControl: FormControl = new FormControl('', [Validators.required]);
   companyControl: FormControl = new FormControl('', [Validators.required]);
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
-  hashtagControl: FormControl = new FormControl([], []);
+  hashtagControl: FormControl = new FormControl([], [this.identicalHash]);
 
   addHeroGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
@@ -100,4 +103,27 @@ export class HeroesComponent implements OnInit {
       data: {desc: description}
     });
   }
+
+  identicalHash(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = this.hasDuplicates(this.hashtagControl.value);
+      console.log(forbidden);
+      if(forbidden) return {identicalHash: {value: this.hashtagControl.value}};
+      else return null;
+    };
+  }
+
+  private hasDuplicates(array: string[]) {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in valuesSoFar) {
+            return true;
+        }
+        valuesSoFar[value] = true;
+    }
+    return false;
 }
+}
+
+//array.includes(item, fromIndex)
