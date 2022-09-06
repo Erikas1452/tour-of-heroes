@@ -9,15 +9,15 @@ import { HeroService } from '../services/hero-service/hero.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+  public heroes: Hero[] = [];
 
   constructor(private heroService: HeroService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
   }
 
-  getHeroes(): Observable<Hero[]> {
+  private getHeroes(): Observable<Hero[]> {
     return this.heroService.getHeroes();
   }
 }

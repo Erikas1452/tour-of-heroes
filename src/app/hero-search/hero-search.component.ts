@@ -10,16 +10,16 @@ import { HeroService } from '../services/hero-service/hero.service';
 })
 export class HeroSearchComponent implements OnInit {
 
-  heroes$!: Observable<Hero[]>;
+  public heroes$!: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private heroService: HeroService) { }
 
-  search(term: string): void {
+  public search(term: string): void {
     this.searchTerms.next(term);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.heroes$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
