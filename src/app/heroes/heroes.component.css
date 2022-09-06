@@ -89,22 +89,6 @@ button.delete:hover {
   color: white;
 }
 
-.hero-form {
-  display: inline-grid;
-  width: 70%;
-  margin-left: 15%;
-  margin-right: 15%;
-}
-
-.mat-radio-group {
-  margin: 1em;
-}
-
-.radio {
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
 .dialog-button {
   top: 6px;
   left: 363px;

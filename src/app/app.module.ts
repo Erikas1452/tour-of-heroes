@@ -29,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DescriptionDialogComponent } from './description-dialog/description-dialog.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { DescriptionDialogComponent } from './description-dialog/description-dia
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    DescriptionDialogComponent
+    DescriptionDialogComponent,
+    HeroFormComponent
   ],
   imports: [
     BrowserModule,
