@@ -33,7 +33,7 @@ export class HeroesComponent implements OnInit {
   levelControl: FormControl = new FormControl('', [Validators.required]);
   companyControl: FormControl = new FormControl('', [Validators.required]);
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
-  hashtagControl: FormControl = new FormControl([], [this.identicalHash]);
+  hashtagControl: FormControl = new FormControl([], [this.identicalHashValidator(this.hashtags)]);
 
   addHeroGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
@@ -104,15 +104,6 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-  identicalHash(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const forbidden = this.hasDuplicates(this.hashtagControl.value);
-      console.log(forbidden);
-      if(forbidden) return {identicalHash: {value: this.hashtagControl.value}};
-      else return null;
-    };
-  }
-
   private hasDuplicates(array: string[]) {
     var valuesSoFar = Object.create(null);
     for (var i = 0; i < array.length; ++i) {
@@ -123,7 +114,16 @@ export class HeroesComponent implements OnInit {
         valuesSoFar[value] = true;
     }
     return false;
-}
-}
+  }
+  
+  private identicalHashValidator(array: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = this.hasDuplicates(array);
+      if(forbidden) {
+        return { valuesDoMatch: true };
+      }
+      else return null;
+    }
+  }
 
-//array.includes(item, fromIndex)
+}

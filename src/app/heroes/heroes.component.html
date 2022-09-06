@@ -9,7 +9,7 @@
         <mat-label>Hero name</mat-label>
         <input [formControl]="nameControl" matInput type="text" />
       </mat-form-field>
-      <div *ngIf="nameControl.errors?.['required']">Name is required.</div>
+      <div class="error" *ngIf="nameControl.errors?.['required'] && nameControl.touched">Name is required.</div>
       <!-- Level -->
       <mat-form-field appearance="fill">
         <mat-label>Hero level</mat-label>
@@ -26,7 +26,7 @@
           <mat-option value="10">10</mat-option>
         </mat-select>
       </mat-form-field>
-      <div *ngIf="levelControl.errors?.['required']">Level is required.</div>
+      <div class="error" *ngIf="levelControl.errors?.['required']  && levelControl.touched">Level is required.</div>
 
       <!-- Company -->
       <mat-label>Company</mat-label>
@@ -41,7 +41,7 @@
           >DC</mat-radio-button
         >
       </mat-radio-group>
-      <div *ngIf="companyControl.errors?.['required']">
+      <div class="error" *ngIf="companyControl.errors?.['required'] && companyControl.touched">
         Company is required.
       </div>
 
@@ -50,7 +50,7 @@
         <mat-label>Description</mat-label>
         <textarea [formControl]="descriptionControl" matInput></textarea>
       </mat-form-field>
-      <div *ngIf="descriptionControl.errors?.['required']">
+      <div class="error" *ngIf="descriptionControl.errors?.['required'] && descriptionControl.touched">
         Description is required.
       </div>
 
@@ -76,6 +76,9 @@
           />
         </mat-chip-list>
       </mat-form-field>
+      <div class="error" *ngIf="hashtagControl.errors?.['valuesDoMatch']">
+        Cant use same hashtags
+      </div>
 
       <!-- Button -->
       <button type="submit" [disabled]="!addHeroGroup.valid">Submit</button>
