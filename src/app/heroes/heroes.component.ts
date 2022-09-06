@@ -38,7 +38,7 @@ export class HeroesComponent implements OnInit {
   addHeroGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
     level: this.levelControl,
-    company: this.companyControl,
+    companyType: this.companyControl,
     description: this.descriptionControl,
     hashtags: this.hashtagControl,
   });

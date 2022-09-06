@@ -28,7 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
         id: 14,
         name: 'Spiderman',
         level: 9,
-        companyType: 'marvel',
+        companyType: 'Marvel',
         description: 'A nice hero',
         hashtags: ['Spidey', 'Spider', 'Marvel'],
       },
