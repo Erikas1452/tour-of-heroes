@@ -8,6 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -39,7 +40,7 @@ export class HeroFormComponent implements OnInit {
   public descriptionControl: FormControl = new FormControl('', [Validators.required]);
   public hashtagControl: FormControl = new FormControl([],[identicalHashValidator(this.hashtags)]);
 
-  public HeroFormGroup: FormGroup = this._formBuilder.group({
+  public heroFormGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
     level: this.levelControl,
     companyType: this.companyControl,
@@ -72,10 +73,25 @@ export class HeroFormComponent implements OnInit {
   public ngOnInit(): void {}
 
   public sendForm(): void {
-    if (this.HeroFormGroup.valid)
-      this.onFormSubmit.emit(this.HeroFormGroup.value);
+    if (this.heroFormGroup.valid){
+      this.onFormSubmit.emit(this.heroFormGroup.value);
+      // this.heroFormGroup.reset();
+      // this.heroFormGroup.markAsPristine();
+      // this.heroFormGroup.markAsUntouched();
+      // this.resetForm(this.heroFormGroup);
+    }
     else this.openSnackBar();
   }
+
+  // private resetForm(formGroup: FormGroup) {
+  //   let control!: AbstractControl;
+  //   formGroup.reset();
+  //   formGroup.markAsUntouched();
+  //   Object.keys(formGroup.controls).forEach((name) => {
+  //     control = formGroup.controls[name];
+  //     control.setErrors(null);
+  //   });
+  // }
 
   private openSnackBar(): void {
     this._snackBar.open('Form is not valid', 'Close', {

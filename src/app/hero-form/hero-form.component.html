@@ -4,7 +4,7 @@
   </mat-card-title>
 
   <mat-card-subtitle>
-    <form (ngSubmit)="sendForm()" [formGroup]="HeroFormGroup" class="hero-form">
+    <form (ngSubmit)="sendForm()" [formGroup]="heroFormGroup" class="hero-form">
       <!-- Name -->
       <mat-form-field appearance="fill">
         <mat-label>Hero name</mat-label>
@@ -102,7 +102,7 @@
       </div>
 
       <!-- Button -->
-      <button type="submit" [disabled]="!HeroFormGroup.valid">
+      <button type="submit" [disabled]="!heroFormGroup.valid">
         {{ buttonText }}
       </button>
     </form>
