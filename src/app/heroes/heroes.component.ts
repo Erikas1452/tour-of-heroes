@@ -3,12 +3,9 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -16,6 +13,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DescriptionDialogComponent } from '../description-dialog/description-dialog.component';
+import { identicalHashValidator } from '../common/functions';
 
 @Component({
   selector: 'app-heroes',
@@ -33,7 +31,7 @@ export class HeroesComponent implements OnInit {
   levelControl: FormControl = new FormControl('', [Validators.required]);
   companyControl: FormControl = new FormControl('', [Validators.required]);
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
-  hashtagControl: FormControl = new FormControl([], [this.identicalHashValidator(this.hashtags)]);
+  hashtagControl: FormControl = new FormControl([], [identicalHashValidator(this.hashtags)]);
 
   addHeroGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
@@ -65,7 +63,7 @@ export class HeroesComponent implements OnInit {
     return this.heroService.getHeroes();
   }
 
-  add(): void {
+  addHero(): void {
     if (this.addHeroGroup.valid) {
       this.heroService
         .addHero(this.addHeroGroup.value as Hero)
@@ -102,28 +100,6 @@ export class HeroesComponent implements OnInit {
       width: '450px',
       data: {desc: description}
     });
-  }
-
-  private hasDuplicates(array: string[]) {
-    var valuesSoFar = Object.create(null);
-    for (var i = 0; i < array.length; ++i) {
-        var value = array[i];
-        if (value in valuesSoFar) {
-            return true;
-        }
-        valuesSoFar[value] = true;
-    }
-    return false;
-  }
-  
-  private identicalHashValidator(array: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const forbidden = this.hasDuplicates(array);
-      if(forbidden) {
-        return { valuesDoMatch: true };
-      }
-      else return null;
-    }
   }
 
 }

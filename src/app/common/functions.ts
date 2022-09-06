@@ -1,0 +1,23 @@
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+
+export function hasDuplicates(array: string[]) {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in valuesSoFar) {
+            return true;
+        }
+        valuesSoFar[value] = true;
+    }
+    return false;
+  }
+
+ export function identicalHashValidator(array: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const forbidden = hasDuplicates(array);
+      if(forbidden) {
+        return { valuesDoMatch: true };
+      }
+      else return null;
+    }
+  }

@@ -18,6 +18,14 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 13,
+        name: 'Dr. Strange',
+        level: 6,
+        companyType: 'Marvel',
+        description: 'A strange hero',
+        hashtags: ['Doctor', 'Strange', 'Marvel'],
+      },
+      {
+        id: 14,
         name: 'Batman',
         level: 9,
         companyType: 'DC',
@@ -25,12 +33,20 @@ export class InMemoryDataService implements InMemoryDbService {
         hashtags: ['Good', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC', 'Dark', 'DC'],
       },
       {
-        id: 14,
+        id: 15,
         name: 'Spiderman',
         level: 9,
         companyType: 'Marvel',
         description: 'A nice hero',
         hashtags: ['Spidey', 'Spider', 'Marvel'],
+      },
+      {
+        id: 16,
+        name: 'Little spooder',
+        level: 4,
+        companyType: 'Marvel',
+        description: 'A nice spooder',
+        hashtags: ['Spidey', 'Marvel'],
       },
     ];
     return { heroes };

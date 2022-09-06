@@ -18,7 +18,7 @@
     </mat-card-title>
 
     <mat-card-subtitle>
-      <form (ngSubmit)="save()" [formGroup]="editHeroGroup" class="hero-form">
+      <form (ngSubmit)="editHero()" [formGroup]="editHeroGroup" class="hero-form">
         <!-- Name -->
         <mat-form-field appearance="fill">
           <mat-label>Hero name</mat-label>
@@ -88,7 +88,7 @@
         <!-- Hashtags -->
         <mat-form-field class="example-chip-list" appearance="fill">
           <mat-label>Hashtags</mat-label>
-          <mat-chip-list #chipList aria-label="Hashtags selection">
+          <mat-chip-list #chipList [formControl]="hashtagControl" aria-label="Hashtags selection">
             <mat-chip
               *ngFor="let hashtag of hashtags"
               (removed)="removeChip(hashtag)"
@@ -113,6 +113,7 @@
 
         <!-- Button -->
         <button type="submit" [disabled]="!editHeroGroup.valid">Save</button>
+        <button type="button" (click)="goBack()">Back</button>
       </form>
     </mat-card-subtitle>
     <mat-card-actions> </mat-card-actions>
