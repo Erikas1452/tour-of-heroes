@@ -8,7 +8,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -36,8 +35,8 @@ export class HeroFormComponent implements OnInit {
 
   public nameControl: FormControl = new FormControl('', [Validators.required]);
   public levelControl: FormControl = new FormControl('', [Validators.required]);
-  public companyControl: FormControl = new FormControl('', [Validators.required]);
-  public descriptionControl: FormControl = new FormControl('', [Validators.required]);
+  public companyControl: FormControl = new FormControl('', [Validators.required,]);
+  public descriptionControl: FormControl = new FormControl('', [Validators.required,]);
   public hashtagControl: FormControl = new FormControl([],[identicalHashValidator(this.hashtags)]);
 
   public heroFormGroup: FormGroup = this._formBuilder.group({
@@ -58,40 +57,29 @@ export class HeroFormComponent implements OnInit {
       this.nameControl.setValue(changes['hero'].currentValue.name);
       this.levelControl.setValue(changes['hero'].currentValue.level);
       this.companyControl.setValue(changes['hero'].currentValue.companyType);
-      this.descriptionControl.setValue(
-        changes['hero'].currentValue.description
-      );
+      this.descriptionControl.setValue(changes['hero'].currentValue.description);
       this.hashtagControl.setValue(changes['hero'].currentValue.hashtags);
-      if (changes['hero'].currentValue.hashtags)
-        this.hashtags = changes['hero'].currentValue.hashtags;
-      this.hashtagControl.setValidators([
-        identicalHashValidator(this.hashtags),
-      ]);
+      if (changes['hero'].currentValue.hashtags) this.hashtags = changes['hero'].currentValue.hashtags;
+      this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
     }
   }
 
   public ngOnInit(): void {}
 
   public sendForm(): void {
-    if (this.heroFormGroup.valid){
+    if (this.heroFormGroup.valid) {
       this.onFormSubmit.emit(this.heroFormGroup.value);
-      // this.heroFormGroup.reset();
-      // this.heroFormGroup.markAsPristine();
-      // this.heroFormGroup.markAsUntouched();
-      // this.resetForm(this.heroFormGroup);
-    }
-    else this.openSnackBar();
+      if(!this.hero){
+        this.heroFormGroup.reset();
+        this.hashtags = [];
+        this.nameControl.clearValidators();
+        this.levelControl.clearValidators();
+        this.companyControl.clearValidators();
+        this.descriptionControl.clearValidators();
+        this.hashtagControl.clearValidators();
+        }
+    } else this.openSnackBar();
   }
-
-  // private resetForm(formGroup: FormGroup) {
-  //   let control!: AbstractControl;
-  //   formGroup.reset();
-  //   formGroup.markAsUntouched();
-  //   Object.keys(formGroup.controls).forEach((name) => {
-  //     control = formGroup.controls[name];
-  //     control.setErrors(null);
-  //   });
-  // }
 
   private openSnackBar(): void {
     this._snackBar.open('Form is not valid', 'Close', {
