@@ -6,6 +6,7 @@ import {
   Output,
   Input,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -32,6 +33,7 @@ export class HeroFormComponent implements OnInit {
   public addOnBlur: boolean = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
   public hashtags: string[] = [];
+  @ViewChild('heroForm') heroForm:any;
 
   public nameControl: FormControl = new FormControl('', [Validators.required]);
   public levelControl: FormControl = new FormControl('', [Validators.required]);
@@ -72,11 +74,7 @@ export class HeroFormComponent implements OnInit {
       if(!this.hero){
         this.heroFormGroup.reset();
         this.hashtags = [];
-        this.nameControl.clearValidators();
-        this.levelControl.clearValidators();
-        this.companyControl.clearValidators();
-        this.descriptionControl.clearValidators();
-        this.hashtagControl.clearValidators();
+        this.heroForm.resetForm();
         }
     } else this.openSnackBar();
   }

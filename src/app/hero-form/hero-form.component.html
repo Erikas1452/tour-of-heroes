@@ -4,7 +4,7 @@
   </mat-card-title>
 
   <mat-card-subtitle>
-    <form (ngSubmit)="sendForm()" [formGroup]="heroFormGroup" class="hero-form">
+    <form (ngSubmit)="sendForm()" [formGroup]="heroFormGroup" class="hero-form" #heroform="ngForm">
       <!-- Name -->
       <mat-form-field appearance="fill">
         <mat-label>Hero name</mat-label>
