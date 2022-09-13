@@ -26,7 +26,6 @@ export class HeroDetailComponent implements OnInit {
   ) {
     this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
       this.hero = hero;
-      console.log(hero);
     });
   }
 
@@ -42,7 +41,6 @@ export class HeroDetailComponent implements OnInit {
   editHero(event: any): void {
     const hero = {...event, id: this.hero?.id};
     this.store.dispatch(new EditHero(hero));
-    console.log("HELLO");
 
     // this.heroService
     //   .updateHero(hero)

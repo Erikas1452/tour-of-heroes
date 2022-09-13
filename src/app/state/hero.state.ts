@@ -14,7 +14,7 @@ import {
 import { Hero } from '../hero';
 
 @State<HeroStateModel>({
-  name: 'HeroesState',
+  name: 'HeroesPageState',
   defaults: {
     heroes: [],
     messages: [],
@@ -38,7 +38,6 @@ export class HeroState {
   @Action(EditHero)
   editHero(ctx: StateContext<HeroStateModel>, action: EditHero) {
     const state = ctx.getState();
-    console.log(action.hero);
     return this.heroService.updateHero(action.hero).pipe(
       tap(() => {
         ctx.setState(
