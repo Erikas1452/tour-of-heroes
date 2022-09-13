@@ -30,6 +30,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DescriptionDialogComponent } from './description-dialog/description-dialog.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
+import { NgxsModule } from '@ngxs/store';
+import { HeroState } from './state/hero.state';
+import { environment } from 'src/environments/environment';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 
 @NgModule({
@@ -59,6 +63,10 @@ import { HeroFormComponent } from './hero-form/hero-form.component';
     MatCardModule,
     MatSnackBarModule,
     MatDialogModule,
+    NgxsModule.forRoot([HeroState], {
+      developmentMode: !environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),

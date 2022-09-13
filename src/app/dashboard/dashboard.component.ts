@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
+import { GetHeroes } from '../state/hero.actions';
+import { HeroState } from '../state/hero.state';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +13,27 @@ import { HeroService } from '../services/hero-service/hero.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  public heroes: Hero[] = [];
+  
+  @Select(HeroState.selectHeroes) heroes$!: Observable<Hero[]>
+  public topHeroes: Hero[] = [];
+  private heroSubscriber: Subscription;
 
-  constructor(private heroService: HeroService) {}
+  constructor(private store: Store) {
+    this.heroSubscriber = this.heroes$.subscribe((heroes: Hero[]) => {
+      this.topHeroes = heroes.slice(1,5);
+    })
+  }
+
+  ngOnDestroy(){
+    this.heroSubscriber.unsubscribe();
+  }
 
   public ngOnInit(): void {
-    this.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
+    this.store.dispatch(new GetHeroes());
+    // this.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
   }
 
-  private getHeroes(): Observable<Hero[]> {
-    return this.heroService.getHeroes();
-  }
+  // private getHeroes(): Observable<Hero[]> {
+  //   return this.heroService.getHeroes();
+  // }
 }
