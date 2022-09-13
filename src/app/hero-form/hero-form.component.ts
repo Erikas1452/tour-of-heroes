@@ -16,8 +16,13 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
+import { AddHashTag, GetHero } from '../state/hero.actions';
+import { HeroState } from '../state/hero.state';
 
 @Component({
   selector: 'app-hero-form',
@@ -26,20 +31,31 @@ import { Hero } from '../hero';
 })
 export class HeroFormComponent implements OnInit {
   @Output() private onFormSubmit = new EventEmitter();
-  @Input() public hero?: Hero;
+
+  @Select(HeroState.selectHero) hero$!: Observable<Hero>;
+  public hero!: Hero;
+  private heroSubscriber: Subscription;
+
   @Input() public buttonText!: string;
   @Input() public title?: string;
 
   public addOnBlur: boolean = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
   public hashtags: string[] = [];
-  @ViewChild('heroForm') heroForm:any;
+
+  @ViewChild('heroForm') heroForm: any;
 
   public nameControl: FormControl = new FormControl('', [Validators.required]);
   public levelControl: FormControl = new FormControl('', [Validators.required]);
-  public companyControl: FormControl = new FormControl('', [Validators.required,]);
-  public descriptionControl: FormControl = new FormControl('', [Validators.required,]);
-  public hashtagControl: FormControl = new FormControl([],[identicalHashValidator(this.hashtags)]);
+  public companyControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public descriptionControl: FormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  public hashtagControl: FormControl = new FormControl('', [
+    identicalHashValidator(this.hashtags),
+  ]);
 
   public heroFormGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
@@ -51,31 +67,40 @@ export class HeroFormComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
-  ) {}
-
-  public ngOnChanges(changes: SimpleChanges) {
-    if (changes['hero']) {
-      this.nameControl.setValue(changes['hero'].currentValue.name);
-      this.levelControl.setValue(changes['hero'].currentValue.level);
-      this.companyControl.setValue(changes['hero'].currentValue.companyType);
-      this.descriptionControl.setValue(changes['hero'].currentValue.description);
-      this.hashtagControl.setValue(changes['hero'].currentValue.hashtags);
-      if (changes['hero'].currentValue.hashtags) this.hashtags = changes['hero'].currentValue.hashtags;
-      this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
-    }
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private store: Store
+  ) {
+    this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
+      this.hero = hero;
+      this.nameControl.setValue(hero.name);
+      this.levelControl.setValue(hero.level);
+      this.companyControl.setValue(hero.companyType);
+      this.descriptionControl.setValue(hero.description);
+      this.hashtagControl.setValue(hero.hashtags);
+      if (hero.hashtags) {
+        this.hashtags = hero.hashtags;
+      }
+    });
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.store.dispatch(new GetHero(id));
+  }
+
+  public ngOnDestroy() {
+    this.heroSubscriber.unsubscribe();
+  }
 
   public sendForm(): void {
     if (this.heroFormGroup.valid) {
       this.onFormSubmit.emit(this.heroFormGroup.value);
-      if(!this.hero){
+      if (!this.hero) {
         this.heroFormGroup.reset();
         this.hashtags = [];
         this.heroForm.resetForm();
-        }
+      }
     } else this.openSnackBar();
   }
 
@@ -87,12 +112,10 @@ export class HeroFormComponent implements OnInit {
   }
 
   public addChip(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.hashtags.push(value);
-      this.hashtagControl.setValue(this.hashtags);
+    if(event.value){
+      this.store.dispatch(new AddHashTag(event.value.trim()));
+      event.chipInput!.clear();
     }
-    event.chipInput!.clear();
   }
 
   public removeChip(value: string): void {

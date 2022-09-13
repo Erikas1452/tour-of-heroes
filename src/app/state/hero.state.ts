@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
 import { HeroService } from '../services/hero-service/hero.service';
-import { AddHero, EditHero, GetHero, GetHeroes } from './hero.actions';
+import {
+  AddHashTag,
+  AddHero,
+  DeleteHashTag,
+  EditHero,
+  GetHero,
+  GetHeroes,
+} from './hero.actions';
 import { HeroStateModel } from './heroState.model';
 import {
   patch,
@@ -12,6 +19,7 @@ import {
   updateItem,
 } from '@ngxs/store/operators';
 import { Hero } from '../hero';
+import { E } from '@angular/cdk/keycodes';
 
 @State<HeroStateModel>({
   name: 'HeroesPageState',
@@ -51,6 +59,36 @@ export class HeroState {
       })
     );
   }
+
+  @Action(AddHashTag)
+  addHashTag(ctx: StateContext<HeroStateModel>, action: AddHashTag) {
+    const state = ctx.getState();
+    if(state.selectedHero?.hashtags !== undefined) return ctx.setState(
+      patch<HeroStateModel>({
+        selectedHero: patch<HeroStateModel['selectedHero']>({
+          hashtags: [...state.selectedHero.hashtags, action.tag]
+        }),
+      })
+    );
+    else {
+      return ctx.setState(
+        patch<HeroStateModel>({
+          selectedHero: patch<HeroStateModel['selectedHero']>({
+            hashtags: [action.tag]
+          }),
+        })
+      );
+    }
+  }
+
+  // @Action(DeleteHashTag)
+  // deleteHashTag(ctx: StateContext<HeroStateModel>, action: DeleteHashTag) {
+  //   const state = ctx.getState();
+  //   return ctx.setState({
+  //     ...state,
+  //     heroes: [...state.heroes, action.tag],
+  //   });
+  // }
 
   @Action(AddHero)
   addHero(ctx: StateContext<HeroStateModel>, action: AddHero) {
