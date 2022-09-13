@@ -3,7 +3,10 @@ import { Hero } from '../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../services/hero-service/hero.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { EditHero, GetHero } from '../state/hero.actions';
+import { HeroState } from '../state/hero.state';
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,30 +14,39 @@ import { Observable } from 'rxjs';
   styleUrls: ['./hero-detail.component.css'],
 })
 export class HeroDetailComponent implements OnInit {
-  hero?: Hero;
+  @Select(HeroState.selectHero) hero$!: Observable<Hero>
+  public hero!: Hero;
+  private heroSubscriber: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
-  ) {}
-
-  ngOnInit(): void {
-    this.getHero().subscribe((hero) => {
+    private location: Location,
+    private store: Store,
+  ) {
+    this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
       this.hero = hero;
+      console.log(hero);
     });
   }
 
-  getHero(): Observable<Hero> {
+  ngOnDestroy(){
+    this.heroSubscriber.unsubscribe();
+  }
+
+  ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    return this.heroService.getHero(id);
+    this.store.dispatch(new GetHero(id));
   }
 
   editHero(event: any): void {
     const hero = {...event, id: this.hero?.id};
-    this.heroService
-      .updateHero(hero)
-      .subscribe(() => this.goBack());
+    this.store.dispatch(new EditHero(hero));
+    console.log("HELLO");
+
+    // this.heroService
+    //   .updateHero(hero)
+    //   .subscribe(() => this.goBack());
   }
 
   goBack(): void {

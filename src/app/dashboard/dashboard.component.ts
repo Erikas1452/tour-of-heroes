@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   constructor(private store: Store) {
     this.heroSubscriber = this.heroes$.subscribe((heroes: Hero[]) => {
       this.topHeroes = heroes.slice(1,5);
-    })
+    });
   }
 
   ngOnDestroy(){
@@ -30,10 +30,5 @@ export class DashboardComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(new GetHeroes());
-    // this.getHeroes().subscribe((heroes) => (this.heroes = heroes.slice(1, 5)));
   }
-
-  // private getHeroes(): Observable<Hero[]> {
-  //   return this.heroService.getHeroes();
-  // }
 }
