@@ -115,6 +115,7 @@ export class HeroFormComponent implements OnInit {
     if(event.value){
       this.store.dispatch(new AddHashTag(event.value.trim()));
       event.chipInput!.clear();
+      
     }
   }
 

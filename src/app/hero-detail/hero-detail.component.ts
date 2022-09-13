@@ -40,10 +40,7 @@ export class HeroDetailComponent implements OnInit {
   editHero(event: any): void {
     const hero = {...event, id: this.hero?.id};
     this.store.dispatch(new EditHero(hero));
-
-    // this.heroService
-    //   .updateHero(hero)
-    //   .subscribe(() => this.goBack());
+    this.goBack();
   }
 
   goBack(): void {
