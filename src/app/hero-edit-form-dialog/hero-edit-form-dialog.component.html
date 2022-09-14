@@ -4,7 +4,8 @@
     [title]="'Edit: ' + data.name + '\n' + ' ID: ' + data.id"
     [buttonText]="'Save'"
     [editEnabled]="true"
-    (onFormSubmit)="closeDialog($event)"
+    [heroId]="data.id"
+    (onFormSubmit)="Save($event)"
     ></app-hero-form>
 </div>
 <div mat-dialog-actions>

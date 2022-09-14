@@ -39,7 +39,7 @@ export class HeroDetailComponent implements OnInit {
 
   openDialog(){
     const dialogRef = this.dialog.open(HeroEditFormDialogComponent, {
-      width: '400px',
+      width: '700px',
       data: {id: this.hero.id, name: this.hero.name}
     });
 

@@ -15,7 +15,7 @@ export class HeroEditFormDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closeDialog(event: any){
+  Save(event: any){
     this.dialogRef.close(event);
   }
 

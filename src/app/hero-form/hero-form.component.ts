@@ -39,6 +39,7 @@ export class HeroFormComponent implements OnInit {
   @Input() public buttonText!: string;
   @Input() public title?: string;
   @Input() public editEnabled: boolean = false;
+  @Input() public heroId!: number;
 
   public addOnBlur: boolean = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -63,15 +64,12 @@ export class HeroFormComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private route: ActivatedRoute,
     private store: Store
   ) {}
 
   public ngOnInit(): void {
     if(this.editEnabled){
-      // const id = Number(this.route.snapshot.paramMap.get('id'));
-      const id = 13;
-      this.store.dispatch(new GetHero(id));
+      this.store.dispatch(new GetHero(this.heroId));
       this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
         this.hero = hero;
         this.nameControl.setValue(hero.name);
