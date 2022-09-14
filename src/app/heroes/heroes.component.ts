@@ -29,10 +29,8 @@ export class HeroesComponent implements OnInit {
     this.heroSubscriber.unsubscribe();
   }
 
-  public ngOnInit(): void {
-    this.store.dispatch(new GetHeroes());
-  }
-
+  public ngOnInit(): void {}
+  
   public addHero(event: Hero): void {
     this.store.dispatch(new AddHero(event as Hero))
   }

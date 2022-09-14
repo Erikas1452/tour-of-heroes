@@ -69,7 +69,8 @@ export class HeroFormComponent implements OnInit {
 
   public ngOnInit(): void {
     if(this.editEnabled){
-      const id = Number(this.route.snapshot.paramMap.get('id'));
+      // const id = Number(this.route.snapshot.paramMap.get('id'));
+      const id = 13;
       this.store.dispatch(new GetHero(id));
       this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
         this.hero = hero;

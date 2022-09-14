@@ -1,10 +1,5 @@
 <!-- Hero Form -->
 <div *ngIf="hero">
   <button type="button" (click)="goBack()">Back</button>
-  <app-hero-form
-  [title]="'Edit: ' + hero.name + '\n' + ' ID: ' + hero.id"
-  [buttonText]="'Save'"
-  (onFormSubmit)="editHero($event)"
-  [editEnabled]="true"
-  ></app-hero-form>
+  <button mat-button (click)="openDialog()">Edit</button>
 </div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { GetHeroes } from './state/hero.actions';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'Tour of Heroes';
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(new GetHeroes());
+  }
 }

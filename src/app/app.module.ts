@@ -34,6 +34,7 @@ import { NgxsModule } from '@ngxs/store';
 import { HeroState } from './state/hero.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { HeroEditFormDialogComponent } from './hero-edit-form-dialog/hero-edit-form-dialog.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
     DashboardComponent,
     HeroSearchComponent,
     DescriptionDialogComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    HeroEditFormDialogComponent
   ],
   imports: [
     BrowserModule,

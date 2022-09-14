@@ -3,8 +3,6 @@ import { Select, Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
-import { HeroService } from '../services/hero-service/hero.service';
-import { GetHeroes } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 
 @Component({
@@ -28,7 +26,5 @@ export class DashboardComponent implements OnInit {
     this.heroSubscriber.unsubscribe();
   }
 
-  public ngOnInit(): void {
-    this.store.dispatch(new GetHeroes());
-  }
+  public ngOnInit(): void {}
 }

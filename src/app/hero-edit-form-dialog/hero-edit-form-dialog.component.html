@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Dialog with elements</h1>
+<div mat-dialog-content>
+    <app-hero-form
+    [title]="'Edit: ' + data.name + '\n' + ' ID: ' + data.id"
+    [buttonText]="'Save'"
+    [editEnabled]="true"
+    (onFormSubmit)="closeDialog($event)"
+    ></app-hero-form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
