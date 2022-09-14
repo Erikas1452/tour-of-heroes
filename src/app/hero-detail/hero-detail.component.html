@@ -1,5 +1,14 @@
 <!-- Hero Form -->
 <div *ngIf="hero">
+  <div>
+    <h2>{{hero.name}}</h2>
+  </div>
+  <div>
+    <h3>{{hero.level}}</h3>
+  </div>
+  <div>
+    <h5 *ngFor="let tag of hero.hashtags">{{tag}}</h5>
+  </div>
   <button type="button" (click)="goBack()">Back</button>
   <button mat-button (click)="openDialog()">Edit</button>
 </div>
