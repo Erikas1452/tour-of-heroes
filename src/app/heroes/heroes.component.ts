@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DescriptionDialogComponent } from '../description-dialog/description-dialog.component';
+import { DescriptionDialogComponent } from '../pop-up-dialogs/description-dialog/description-dialog.component';
 import { Select, Store } from '@ngxs/store';
 import { AddHero, DeleteHero, GetHeroes } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
@@ -25,7 +25,7 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
+  public ngOnDestroy(){
     this.heroSubscriber.unsubscribe();
   }
 

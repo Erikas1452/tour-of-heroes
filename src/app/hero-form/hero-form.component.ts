@@ -5,7 +5,6 @@ import {
   OnInit,
   Output,
   Input,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import {
@@ -16,12 +15,11 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
-import { AddHashTag, DeleteHashTag, GetHero } from '../state/hero.actions';
+import { GetHero } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 
 @Component({

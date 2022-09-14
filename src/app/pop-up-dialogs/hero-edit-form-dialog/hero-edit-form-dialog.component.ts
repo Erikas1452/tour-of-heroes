@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, HeroDetailComponent } from '../hero-detail/hero-detail.component';
+import { DialogData, HeroDetailComponent } from '../../hero-detail/hero-detail.component';
 
 @Component({
   selector: 'app-hero-edit-form-dialog',
@@ -12,14 +12,14 @@ export class HeroEditFormDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<HeroDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  Save(event: any){
+  public Save(event: any){
     this.dialogRef.close(event);
   }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 }

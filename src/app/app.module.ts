@@ -28,13 +28,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DescriptionDialogComponent } from './description-dialog/description-dialog.component';
+import { DescriptionDialogComponent } from './pop-up-dialogs/description-dialog/description-dialog.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { NgxsModule } from '@ngxs/store';
 import { HeroState } from './state/hero.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { HeroEditFormDialogComponent } from './hero-edit-form-dialog/hero-edit-form-dialog.component';
+import { HeroEditFormDialogComponent } from './pop-up-dialogs/hero-edit-form-dialog/hero-edit-form-dialog.component';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 

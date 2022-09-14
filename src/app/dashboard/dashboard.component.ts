@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(){
+ public ngOnDestroy(){
     this.heroSubscriber.unsubscribe();
   }
 
