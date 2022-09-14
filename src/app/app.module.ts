@@ -35,6 +35,7 @@ import { HeroState } from './state/hero.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { HeroEditFormDialogComponent } from './hero-edit-form-dialog/hero-edit-form-dialog.component';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { HeroEditFormDialogComponent } from './hero-edit-form-dialog/hero-edit-f
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
