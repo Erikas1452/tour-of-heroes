@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
 import { HeroService } from '../services/hero-service/hero.service';
 import {
-  AddHashTag,
   AddHero,
-  DeleteHashTag,
   DeleteHero,
   EditHero,
   GetHero,
   GetHeroes,
+  SearchHeroes,
 } from './hero.actions';
 import { HeroStateModel } from './heroState.model';
 import {
@@ -26,6 +25,7 @@ import { Hero } from '../hero';
   defaults: {
     heroes: [],
     messages: [],
+    searchResults: [],
   },
 })
 
@@ -43,6 +43,11 @@ export class HeroState {
     return state.heroes;
   }
 
+  @Selector()
+  static selectSearchResults(state: HeroStateModel){
+    return state.searchResults;
+  }
+
   @Action(GetHero)
   getHero(ctx: StateContext<HeroStateModel>, action: GetHero) {
     const state = ctx.getState();
@@ -52,6 +57,19 @@ export class HeroState {
           ...state,
           selectedHero: response,
         });
+      })
+    );
+  }
+
+  @Action(SearchHeroes)
+  searchHeroes(ctx: StateContext<HeroStateModel>, action: SearchHeroes){
+    const state = ctx.getState();
+    return this.heroService.searchHeroes(action.term).pipe(
+      tap((results) => {
+        ctx.setState({
+          ...state,
+          searchResults: results
+        })
       })
     );
   }

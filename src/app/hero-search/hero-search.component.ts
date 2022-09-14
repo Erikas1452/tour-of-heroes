@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { Observable, Subscription } from 'rxjs';
 import { Hero } from '../hero';
-import { HeroService } from '../services/hero-service/hero.service';
+import { SearchHeroes } from '../state/hero.actions';
+import { HeroState } from '../state/hero.state';
 
 @Component({
   selector: 'app-hero-search',
@@ -10,21 +12,25 @@ import { HeroService } from '../services/hero-service/hero.service';
 })
 export class HeroSearchComponent implements OnInit {
 
-  public heroes$!: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
+  @Select(HeroState.selectSearchResults) heroes$!: Observable<Hero>;
+  public heroes: Hero[] = [];
+  private heroSubscriber: Subscription;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private store: Store) {
+    this.heroSubscriber = this.heroes$.subscribe((heroes: any) => {
+      this.heroes = heroes;
+    });
+  }
+
+  ngOnDestroy(){
+    this.heroSubscriber.unsubscribe();
+  }
 
   public search(term: string): void {
-    this.searchTerms.next(term);
+    this.store.dispatch(new SearchHeroes(term));
   }
 
   public ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
-    );
   }
 
 }

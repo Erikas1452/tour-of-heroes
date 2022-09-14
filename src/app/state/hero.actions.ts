@@ -9,6 +9,11 @@ export class GetHero {
     constructor(public heroId: number){}
 }
 
+export class SearchHeroes {
+    static readonly type = '[Hero API] Get Hero by Term';
+    constructor(public term: string){}
+}
+
 export class EditHero {
     static readonly type = '[Hero API] Edit Hero';
     constructor(public hero: Hero){}
@@ -22,14 +27,4 @@ export class AddHero {
 export class DeleteHero {
     static readonly type = '[Hero] Delete Hero';
     constructor(public heroId: number){}
-}
-
-export class AddHashTag {
-    static readonly type = '[Hero] Add Hash Tag';
-    constructor(public tag: string){}
-}
-
-export class DeleteHashTag {
-    static readonly type = '[Hero] Delete Hash Tag';
-    constructor(public tag: string){}
 }
