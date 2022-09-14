@@ -34,10 +34,11 @@ export class HeroFormComponent implements OnInit {
 
   @Select(HeroState.selectHero) hero$!: Observable<Hero>;
   public hero!: Hero;
-  private heroSubscriber: Subscription;
+  private heroSubscriber!: Subscription;
 
   @Input() public buttonText!: string;
   @Input() public title?: string;
+  @Input() public formType!: string;
 
   public addOnBlur: boolean = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -47,15 +48,9 @@ export class HeroFormComponent implements OnInit {
 
   public nameControl: FormControl = new FormControl('', [Validators.required]);
   public levelControl: FormControl = new FormControl('', [Validators.required]);
-  public companyControl: FormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  public descriptionControl: FormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  public hashtagControl: FormControl = new FormControl('', [
-    identicalHashValidator(this.hashtags),
-  ]);
+  public companyControl: FormControl = new FormControl('', [Validators.required,]);
+  public descriptionControl: FormControl = new FormControl('', [Validators.required,]);
+  public hashtagControl: FormControl = new FormControl('', [identicalHashValidator(this.hashtags),]);
 
   public heroFormGroup: FormGroup = this._formBuilder.group({
     name: this.nameControl,
@@ -70,27 +65,36 @@ export class HeroFormComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private store: Store
-  ) {
-    this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
-      this.hero = hero;
-      this.nameControl.setValue(hero.name);
-      this.levelControl.setValue(hero.level);
-      this.companyControl.setValue(hero.companyType);
-      this.descriptionControl.setValue(hero.description);
-      this.hashtagControl.setValue(hero.hashtags);
-      if (hero.hashtags) {
-        this.hashtags = hero.hashtags;
-      }
-    });
-  }
+  ) {}
 
   public ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.store.dispatch(new GetHero(id));
+
+    if(this.formType === 'add'){
+
+    }
+
+    if(this.formType === 'edit'){
+      const id = Number(this.route.snapshot.paramMap.get('id'));
+      this.store.dispatch(new GetHero(id));
+      this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
+        this.hero = hero;
+        this.nameControl.setValue(hero.name);
+        this.levelControl.setValue(hero.level);
+        this.companyControl.setValue(hero.companyType);
+        this.descriptionControl.setValue(hero.description);
+        if (hero.hashtags) {
+          this.hashtags = hero.hashtags;
+          this.hashtagControl.setValue(this.hero.hashtags);
+          this.hashtagControl.setValidators([identicalHashValidator(this.hashtags),]);
+        }
+      });
+    }
   }
 
   public ngOnDestroy() {
-    this.heroSubscriber.unsubscribe();
+    if(this.formType === 'edit') {
+      this.heroSubscriber.unsubscribe();
+    }
   }
 
   public sendForm(): void {
@@ -115,7 +119,6 @@ export class HeroFormComponent implements OnInit {
     if(event.value){
       this.store.dispatch(new AddHashTag(event.value.trim()));
       event.chipInput!.clear();
-      
     }
   }
 

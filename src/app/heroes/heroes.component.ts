@@ -4,6 +4,10 @@ import { Hero } from '../hero';
 import { HeroService } from '../services/hero-service/hero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DescriptionDialogComponent } from '../description-dialog/description-dialog.component';
+import { Select, Store } from '@ngxs/store';
+import { AddHero, DeleteHero, GetHeroes } from '../state/hero.actions';
+import { HeroState } from '../state/hero.state';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -12,27 +16,29 @@ import { DescriptionDialogComponent } from '../description-dialog/description-di
 })
 export class HeroesComponent implements OnInit {
   public heroes: Hero[] = [];
+  @Select(HeroState.selectHeroes) heroes$!: Observable<Hero[]>
+  private heroSubscriber: Subscription;
 
-  constructor(private heroService: HeroService, public _dialog: MatDialog) {}
-
-  public ngOnInit(): void {
-    this.getHeroes().subscribe((heroes) => (this.heroes = heroes));
-  }
-
-  private getHeroes(): Observable<Hero[]> {
-    return this.heroService.getHeroes();
-  }
-
-  public addHero(event: Hero): void {
-    console.log(typeof(event));
-    this.heroService.addHero(event as Hero).subscribe((hero) => {
-      this.heroes.push(hero);
+  constructor(private heroService: HeroService, public _dialog: MatDialog, private store: Store) {
+    this.heroSubscriber = this.heroes$.subscribe((heroes: Hero[]) => {
+      this.heroes = heroes;
     });
   }
 
+  ngOnDestroy(){
+    this.heroSubscriber.unsubscribe();
+  }
+
+  public ngOnInit(): void {
+    this.store.dispatch(new GetHeroes());
+  }
+
+  public addHero(event: Hero): void {
+    this.store.dispatch(new AddHero(event as Hero))
+  }
+
   public delete(hero: Hero): void {
-    this.heroes = this.heroes.filter((h) => h !== hero);
-    this.heroService.deleteHero(hero.id).subscribe();
+    this.store.dispatch(new DeleteHero(hero.id))
   }
 
   public openDialog(description: string): void {

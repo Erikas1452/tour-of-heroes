@@ -6,6 +6,7 @@ import {
   AddHashTag,
   AddHero,
   DeleteHashTag,
+  DeleteHero,
   EditHero,
   GetHero,
   GetHeroes,
@@ -19,16 +20,15 @@ import {
   updateItem,
 } from '@ngxs/store/operators';
 import { Hero } from '../hero';
-import { E } from '@angular/cdk/keycodes';
 
 @State<HeroStateModel>({
   name: 'HeroesPageState',
   defaults: {
     heroes: [],
     messages: [],
-    selectedHero: undefined,
   },
 })
+
 @Injectable()
 export class HeroState {
   constructor(private heroService: HeroService) {}
@@ -94,13 +94,32 @@ export class HeroState {
     );
   }
 
+  @Action(DeleteHero)
+  deleteHero(ctx: StateContext<HeroStateModel>, action: DeleteHero){
+    const state = ctx.getState();
+    return this.heroService.deleteHero(action.heroId).pipe(
+      tap((_) => {
+          ctx.setState(
+            patch<HeroStateModel>({
+            heroes: removeItem<Hero>((hero) => hero?.id === action.heroId),
+          })
+        );
+      })
+    );
+  }
+
   @Action(AddHero)
   addHero(ctx: StateContext<HeroStateModel>, action: AddHero) {
     const state = ctx.getState();
-    ctx.setState({
-      ...state,
-      heroes: [...state.heroes, action.hero],
-    });
+    return this.heroService.addHero(action.hero).pipe(
+      tap((response) => {
+        console.log(response);
+          ctx.setState({
+          ...state,
+          heroes: [...state.heroes, response],
+        })
+      })
+    );
   }
 
   @Action(GetHero)
