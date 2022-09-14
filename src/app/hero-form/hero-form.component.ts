@@ -38,7 +38,7 @@ export class HeroFormComponent implements OnInit {
 
   @Input() public buttonText!: string;
   @Input() public title?: string;
-  @Input() public formType!: string;
+  @Input() public editEnabled: boolean = false;
 
   public addOnBlur: boolean = true;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
@@ -68,12 +68,7 @@ export class HeroFormComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-
-    if(this.formType === 'add'){
-
-    }
-
-    if(this.formType === 'edit'){
+    if(this.editEnabled){
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.store.dispatch(new GetHero(id));
       this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
@@ -84,15 +79,15 @@ export class HeroFormComponent implements OnInit {
         this.descriptionControl.setValue(hero.description);
         if (hero.hashtags) {
           this.hashtags = hero.hashtags;
-          this.hashtagControl.setValue(this.hero.hashtags);
-          this.hashtagControl.setValidators([identicalHashValidator(this.hashtags),]);
+          this.hashtagControl.setValue(this.hashtags);
+          this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
         }
       });
     }
   }
 
   public ngOnDestroy() {
-    if(this.formType === 'edit') {
+    if(this.editEnabled) {
       this.heroSubscriber.unsubscribe();
     }
   }
@@ -116,14 +111,25 @@ export class HeroFormComponent implements OnInit {
   }
 
   public addChip(event: MatChipInputEvent): void {
-    if(event.value){
-      this.store.dispatch(new AddHashTag(event.value.trim()));
-      event.chipInput!.clear();
+    const value = (event.value || '').trim();
+    if (value) {
+      this.hashtags = Object.assign([], this.hashtags);
+      this.hashtags.push(value);
+
+      this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
+      this.hashtagControl.setValue(this.hashtags);
     }
+    event.chipInput!.clear();
   }
 
   public removeChip(value: string): void {
-    this.store.dispatch(new DeleteHashTag(value));
-    this.hashtagControl.setValue(this.hashtags);
+    const index = this.hashtags.indexOf(value);
+    if (index >= 0) {
+      this.hashtags = Object.assign([], this.hashtags);
+      this.hashtags.splice(index, 1);
+
+      this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
+      this.hashtagControl.setValue(this.hashtags);
+    }
   }
 }

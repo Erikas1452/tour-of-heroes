@@ -43,87 +43,8 @@ export class HeroState {
     return state.heroes;
   }
 
-  @Action(EditHero)
-  editHero(ctx: StateContext<HeroStateModel>, action: EditHero) {
-    const state = ctx.getState();
-    return this.heroService.updateHero(action.hero).pipe(
-      tap(() => {
-        ctx.setState(
-          patch<HeroStateModel>({
-            heroes: updateItem<Hero>(
-              (hero) => hero?.id === action.hero.id,
-              action.hero
-            ),
-          })
-        );
-      })
-    );
-  }
-
-  @Action(AddHashTag)
-  addHashTag(ctx: StateContext<HeroStateModel>, action: AddHashTag) {
-    const state = ctx.getState();
-    if (state.selectedHero?.hashtags !== undefined)
-      return ctx.setState(
-        patch<HeroStateModel>({
-          selectedHero: patch<HeroStateModel['selectedHero']>({
-            hashtags: [...state.selectedHero.hashtags, action.tag],
-          }),
-        })
-      );
-    else {
-      return ctx.setState(
-        patch<HeroStateModel>({
-          selectedHero: patch<HeroStateModel['selectedHero']>({
-            hashtags: [action.tag],
-          }),
-        })
-      );
-    }
-  }
-
-  @Action(DeleteHashTag)
-  deleteHashTag(ctx: StateContext<HeroStateModel>, action: DeleteHashTag) {
-    const state = ctx.getState();
-    return ctx.setState(
-      patch<HeroStateModel>({
-        selectedHero: patch<HeroStateModel['selectedHero']>({
-          hashtags: removeItem<string>((tag) => tag === action.tag),
-        }),
-      })
-    );
-  }
-
-  @Action(DeleteHero)
-  deleteHero(ctx: StateContext<HeroStateModel>, action: DeleteHero){
-    const state = ctx.getState();
-    return this.heroService.deleteHero(action.heroId).pipe(
-      tap((_) => {
-          ctx.setState(
-            patch<HeroStateModel>({
-            heroes: removeItem<Hero>((hero) => hero?.id === action.heroId),
-          })
-        );
-      })
-    );
-  }
-
-  @Action(AddHero)
-  addHero(ctx: StateContext<HeroStateModel>, action: AddHero) {
-    const state = ctx.getState();
-    return this.heroService.addHero(action.hero).pipe(
-      tap((response) => {
-        console.log(response);
-          ctx.setState({
-          ...state,
-          heroes: [...state.heroes, response],
-        })
-      })
-    );
-  }
-
   @Action(GetHero)
-  getHeroes(ctx: StateContext<HeroStateModel>, action: GetHero) {
+  getHero(ctx: StateContext<HeroStateModel>, action: GetHero) {
     const state = ctx.getState();
     return this.heroService.getHero(action.heroId).pipe(
       tap((response: any) => {
@@ -144,6 +65,52 @@ export class HeroState {
           ...state,
           heroes: response,
         });
+      })
+    );
+  }
+
+  @Action(AddHero)
+  addHero(ctx: StateContext<HeroStateModel>, action: AddHero) {
+    const state = ctx.getState();
+    return this.heroService.addHero(action.hero).pipe(
+      tap((response) => {
+        console.log(response);
+          ctx.setState({
+          ...state,
+          heroes: [...state.heroes, response],
+        })
+      })
+    );
+  }
+
+  @Action(DeleteHero)
+  deleteHero(ctx: StateContext<HeroStateModel>, action: DeleteHero){
+    const state = ctx.getState();
+    return this.heroService.deleteHero(action.heroId).pipe(
+      tap((_) => {
+          ctx.setState(
+            patch<HeroStateModel>({
+            heroes: removeItem<Hero>((hero) => hero?.id === action.heroId),
+          })
+        );
+      })
+    );
+  }
+
+  @Action(EditHero)
+  editHero(ctx: StateContext<HeroStateModel>, action: EditHero) {
+    const state = ctx.getState();
+    return this.heroService.updateHero(action.hero).pipe(
+      tap(() => {
+        ctx.setState(
+          patch<HeroStateModel>({
+            heroes: updateItem<Hero>(
+              (hero) => hero?.id === action.hero.id,
+              action.hero
+            ),
+            selectedHero: undefined
+          })
+        );
       })
     );
   }
