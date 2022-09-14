@@ -63,32 +63,36 @@ export class HeroState {
   @Action(AddHashTag)
   addHashTag(ctx: StateContext<HeroStateModel>, action: AddHashTag) {
     const state = ctx.getState();
-    if(state.selectedHero?.hashtags !== undefined) return ctx.setState(
-      patch<HeroStateModel>({
-        selectedHero: patch<HeroStateModel['selectedHero']>({
-          hashtags: [...state.selectedHero.hashtags, action.tag]
-        }),
-      })
-    );
+    if (state.selectedHero?.hashtags !== undefined)
+      return ctx.setState(
+        patch<HeroStateModel>({
+          selectedHero: patch<HeroStateModel['selectedHero']>({
+            hashtags: [...state.selectedHero.hashtags, action.tag],
+          }),
+        })
+      );
     else {
       return ctx.setState(
         patch<HeroStateModel>({
           selectedHero: patch<HeroStateModel['selectedHero']>({
-            hashtags: [action.tag]
+            hashtags: [action.tag],
           }),
         })
       );
     }
   }
 
-  // @Action(DeleteHashTag)
-  // deleteHashTag(ctx: StateContext<HeroStateModel>, action: DeleteHashTag) {
-  //   const state = ctx.getState();
-  //   return ctx.setState({
-  //     ...state,
-  //     heroes: [...state.heroes, action.tag],
-  //   });
-  // }
+  @Action(DeleteHashTag)
+  deleteHashTag(ctx: StateContext<HeroStateModel>, action: DeleteHashTag) {
+    const state = ctx.getState();
+    return ctx.setState(
+      patch<HeroStateModel>({
+        selectedHero: patch<HeroStateModel['selectedHero']>({
+          hashtags: removeItem<string>((tag) => tag === action.tag),
+        }),
+      })
+    );
+  }
 
   @Action(AddHero)
   addHero(ctx: StateContext<HeroStateModel>, action: AddHero) {

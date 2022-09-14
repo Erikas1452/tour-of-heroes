@@ -21,7 +21,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
-import { AddHashTag, GetHero } from '../state/hero.actions';
+import { AddHashTag, DeleteHashTag, GetHero } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 
 @Component({
@@ -120,10 +120,7 @@ export class HeroFormComponent implements OnInit {
   }
 
   public removeChip(value: string): void {
-    const index = this.hashtags.indexOf(value);
-    if (index >= 0) {
-      this.hashtags.splice(index, 1);
-      this.hashtagControl.setValue(this.hashtags);
-    }
+    this.store.dispatch(new DeleteHashTag(value));
+    this.hashtagControl.setValue(this.hashtags);
   }
 }
