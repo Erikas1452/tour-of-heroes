@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { debounceTime, distinctUntilChanged, Observable, Subscription } from 'rxjs';
 import { Hero } from '../hero';
-import { RemoveSearchResults, SearchHeroes } from '../state/hero.actions';
-import { HeroState } from '../state/hero.state';
+import { RemoveSearchResults, SearchHeroes } from '../state/hero-page-state/hero.actions';
+import { HeroState } from '../state/hero-page-state/hero.state';
 
 @Component({
   selector: 'app-hero-search',
@@ -34,7 +34,6 @@ export class HeroSearchComponent implements OnInit {
     this.store.dispatch(new SearchHeroes(term));
   }
 
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 
 }

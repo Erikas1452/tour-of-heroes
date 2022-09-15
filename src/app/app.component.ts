@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { GetHeroes } from './state/hero.actions';
+import { GetHeroes } from './state/hero-page-state/hero.actions';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
-import { HeroService } from '../services/hero-service/hero.service';
+import { HeroService } from 'src/app/services/hero-service/hero.service';
 import {
   AddHero,
   DeleteHero,
@@ -20,7 +20,7 @@ import {
   insertItem,
   updateItem,
 } from '@ngxs/store/operators';
-import { Hero } from '../hero';
+import { Hero } from 'src/app/hero';
 
 @State<HeroStateModel>({
   name: 'HeroesPageState',
@@ -112,7 +112,6 @@ export class HeroState {
     const state = ctx.getState();
     return this.heroService.addHero(action.hero).pipe(
       tap((response) => {
-        console.log(response);
           ctx.setState({
           ...state,
           heroes: [...state.heroes, response],

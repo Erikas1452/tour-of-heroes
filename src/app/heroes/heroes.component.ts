@@ -5,8 +5,8 @@ import { HeroService } from '../services/hero-service/hero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DescriptionDialogComponent } from '../pop-up-dialogs/description-dialog/description-dialog.component';
 import { Select, Store } from '@ngxs/store';
-import { AddHero, DeleteHero } from '../state/hero.actions';
-import { HeroState } from '../state/hero.state';
+import { AddHero, DeleteHero } from '../state/hero-page-state/hero.actions';
+import { HeroState } from '../state/hero-page-state/hero.state';
 import { Subscription } from 'rxjs';
 
 @Component({

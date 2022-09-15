@@ -19,8 +19,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
-import { SelectHero } from '../state/hero.actions';
-import { HeroState } from '../state/hero.state';
+import { SelectHero } from '../state/hero-page-state/hero.actions';
+import { HeroState } from '../state/hero-page-state/hero.state';
 
 @Component({
   selector: 'app-hero-form',
@@ -112,7 +112,6 @@ export class HeroFormComponent implements OnInit {
     if (value) {
       this.hashtags = Object.assign([], this.hashtags);
       this.hashtags.push(value);
-
       this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
       this.hashtagControl.setValue(this.hashtags);
     }
@@ -124,7 +123,6 @@ export class HeroFormComponent implements OnInit {
     if (index >= 0) {
       this.hashtags = Object.assign([], this.hashtags);
       this.hashtags.splice(index, 1);
-
       this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
       this.hashtagControl.setValue(this.hashtags);
     }

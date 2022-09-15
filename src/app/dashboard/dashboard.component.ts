@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from '../hero';
-import { HeroState } from '../state/hero.state';
+import { HeroState } from '../state/hero-page-state/hero.state';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,11 +22,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
- public ngOnDestroy(){
+  public ngOnDestroy(){
     this.heroSubscriber.unsubscribe();
   }
 
-  public ngOnInit(): void {
-
-  }
+  public ngOnInit(): void {}
 }
