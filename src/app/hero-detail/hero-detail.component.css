@@ -1,23 +1,70 @@
 label {
-    color: #435960;
-    font-weight: bold;
-  }
-  input {
-    font-size: 1em;
-    padding: .5rem;
-  }
-  button {
-    margin-top: 20px;
-    background-color: #eee;
-    padding: 1rem;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  button:hover {
-    background-color: #cfd8dc;
-  }
-  button:disabled {
-    background-color: #eee;
-    color: #ccc;
-    cursor: auto;
-  }
+  color: #435960;
+  font-weight: bold;
+}
+input {
+  font-size: 1em;
+  padding: 0.5rem;
+}
+button {
+  margin-top: 20px;
+  background-color: #eee;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+button:hover {
+  background-color: #cfd8dc;
+}
+button:disabled {
+  background-color: #eee;
+  color: #ccc;
+  cursor: auto;
+}
+.mat-card {
+  max-width: 500px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.mat-card-title {
+  border: double;
+  padding: 1em 1em 1em 0em;
+  text-align: center;
+}
+.container {
+  display: flex;
+}
+.container h5 {
+  padding-right: 2em;
+}
+
+.mat-card-actions {
+  display: flex;
+}
+
+.mat-card-actions button {
+  width: 100%;
+}
+
+.description {
+  padding: 1rem;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+.description::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+.description::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.description::-webkit-scrollbar
+{
+  border: 5px solid transparent;
+  border-radius: 100px;
+  background-clip: content-box;
+}
