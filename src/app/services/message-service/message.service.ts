@@ -9,7 +9,7 @@ export class MessageService {
   constructor() {}
 
   public add(message: string): void {
-    this.messages.push(message);
+    this.messages = [...this.messages, message]
   }
 
   public clear() {

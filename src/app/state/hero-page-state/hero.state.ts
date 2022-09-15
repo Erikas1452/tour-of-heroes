@@ -11,6 +11,7 @@ import {
   RemoveSearchResults,
   SearchHeroes,
   RemoveSelectedHero,
+  ClearMessages,
 } from './hero.actions';
 import { HeroStateModel } from './heroState.model';
 import {
@@ -21,6 +22,7 @@ import {
   updateItem,
 } from '@ngxs/store/operators';
 import { Hero } from 'src/app/hero';
+import { MessageService } from 'src/app/services/message-service/message.service';
 
 @State<HeroStateModel>({
   name: 'HeroesPageState',
@@ -33,7 +35,7 @@ import { Hero } from 'src/app/hero';
 
 @Injectable()
 export class HeroState {
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, private messageService: MessageService) {}
 
   @Selector()
   static selectHero(state: HeroStateModel) {
@@ -50,6 +52,11 @@ export class HeroState {
     return state.searchResults;
   }
 
+  @Selector()
+  static selectMessages(state: HeroStateModel){
+    return state.messages;
+  }
+
   @Action(SelectHero)
   selectHero(ctx: StateContext<HeroStateModel>, action: SelectHero) {
     const state = ctx.getState();
@@ -58,6 +65,7 @@ export class HeroState {
         ctx.setState({
           ...state,
           selectedHero: response,
+          messages: this.messageService.messages,
         });
       })
     );
@@ -79,6 +87,7 @@ export class HeroState {
       tap((results) => {
         ctx.setState({
           ...state,
+          messages: this.messageService.messages,
           searchResults: results
         })
       })
@@ -102,6 +111,7 @@ export class HeroState {
         ctx.setState({
           ...state,
           heroes: response,
+          messages: this.messageService.messages,
         });
       })
     );
@@ -115,6 +125,7 @@ export class HeroState {
           ctx.setState({
           ...state,
           heroes: [...state.heroes, response],
+          messages: this.messageService.messages,
         })
       })
     );
@@ -128,10 +139,21 @@ export class HeroState {
           ctx.setState(
             patch<HeroStateModel>({
             heroes: removeItem<Hero>((hero) => hero?.id === action.heroId),
+            messages: this.messageService.messages,
           })
         );
       })
     );
+  }
+
+  @Action(ClearMessages)
+  clearMessages(ctx: StateContext<HeroStateModel>){
+    const state = ctx.getState();
+    this.messageService.clear();
+    return ctx.setState({
+      ...state,
+      messages: this.messageService.messages
+    });
   }
 
   @Action(EditHero)
@@ -141,6 +163,7 @@ export class HeroState {
       tap(() => {
         ctx.setState(
           patch<HeroStateModel>({
+            messages: this.messageService.messages,
             heroes: updateItem<Hero>(
               (hero) => hero?.id === action.hero.id,
               action.hero

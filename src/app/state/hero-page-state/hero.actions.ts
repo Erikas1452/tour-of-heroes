@@ -18,6 +18,11 @@ export class SearchHeroes {
     constructor(public term: string){}
 }
 
+
+export class ClearMessages {
+    static readonly type = '[Hero] Clear Messages'
+}
+
 export class RemoveSearchResults {
     static readonly type = '[Hero] Remove Search Rresults';
 }
