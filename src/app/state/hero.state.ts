@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { HeroService } from '../services/hero-service/hero.service';
 import {
   AddHero,
   DeleteHero,
   EditHero,
-  GetHero,
+  SelectHero,
   GetHeroes,
+  RemoveSearchResults,
   SearchHeroes,
+  RemoveSelectedHero,
 } from './hero.actions';
 import { HeroStateModel } from './heroState.model';
 import {
@@ -48,8 +50,8 @@ export class HeroState {
     return state.searchResults;
   }
 
-  @Action(GetHero)
-  getHero(ctx: StateContext<HeroStateModel>, action: GetHero) {
+  @Action(SelectHero)
+  selectHero(ctx: StateContext<HeroStateModel>, action: SelectHero) {
     const state = ctx.getState();
     return this.heroService.getHero(action.heroId).pipe(
       tap((response: any) => {
@@ -59,6 +61,15 @@ export class HeroState {
         });
       })
     );
+  }
+
+  @Action(RemoveSelectedHero)
+  removeSelectedHero(ctx: StateContext<HeroStateModel>, action: SelectHero){
+    const state = ctx.getState();
+    return ctx.setState({
+      ...state,
+      selectedHero: undefined,
+    });
   }
 
   @Action(SearchHeroes)
@@ -72,6 +83,15 @@ export class HeroState {
         })
       })
     );
+  }
+
+  @Action(RemoveSearchResults)
+  removeSearcgResults(ctx: StateContext<HeroStateModel>){
+    const state = ctx.getState();
+    return ctx.setState({
+      ...state,
+      searchResults: [],
+    })
   }
 
   @Action(GetHeroes)

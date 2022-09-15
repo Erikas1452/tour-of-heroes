@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { EditHero, GetHero } from '../state/hero.actions';
+import { EditHero, RemoveSelectedHero, SelectHero } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 import { MatDialog } from '@angular/material/dialog';
 import { HeroEditFormDialogComponent } from '../pop-up-dialogs/hero-edit-form-dialog/hero-edit-form-dialog.component';
@@ -49,12 +49,13 @@ export class HeroDetailComponent implements OnInit {
   }
 
   public ngOnDestroy(){
+    this.store.dispatch(new RemoveSelectedHero());
     this.heroSubscriber.unsubscribe();
   }
 
   public ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.store.dispatch(new GetHero(id));
+    this.store.dispatch(new SelectHero(id));
   }
 
   editHero(event: any): void {

@@ -19,7 +19,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
-import { GetHero } from '../state/hero.actions';
+import { SelectHero } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 
 @Component({
@@ -67,7 +67,7 @@ export class HeroFormComponent implements OnInit {
 
   public ngOnInit(): void {
     if(this.editEnabled){
-      this.store.dispatch(new GetHero(this.heroId));
+      this.store.dispatch(new SelectHero(this.heroId));
       this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
         this.hero = hero;
         this.nameControl.setValue(hero.name);

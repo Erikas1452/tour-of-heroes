@@ -26,5 +26,7 @@ export class DashboardComponent implements OnInit {
     this.heroSubscriber.unsubscribe();
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, Subscription } from 'rxjs';
 import { Hero } from '../hero';
-import { SearchHeroes } from '../state/hero.actions';
+import { RemoveSearchResults, SearchHeroes } from '../state/hero.actions';
 import { HeroState } from '../state/hero.state';
 
 @Component({
@@ -17,12 +17,16 @@ export class HeroSearchComponent implements OnInit {
   private heroSubscriber: Subscription;
 
   constructor(private store: Store) {
-    this.heroSubscriber = this.heroes$.subscribe((heroes: any) => {
+    this.heroSubscriber = this.heroes$.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe((heroes: any) => {
       this.heroes = heroes;
     });
   }
 
   ngOnDestroy(){
+    this.store.dispatch(new RemoveSearchResults());
     this.heroSubscriber.unsubscribe();
   }
 
