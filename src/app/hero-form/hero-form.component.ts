@@ -3,7 +3,6 @@ import {Component,EventEmitter,OnInit,Output,Input,ViewChild} from '@angular/cor
 import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Store } from '@ngxs/store';
 import { identicalHashValidator } from '../common/functions';
 import { Hero } from '../hero';
 
@@ -35,7 +34,6 @@ export class HeroFormComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private store: Store
   ) {}
 
   public ngOnInit(): void {
