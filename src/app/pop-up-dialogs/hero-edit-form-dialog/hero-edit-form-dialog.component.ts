@@ -10,7 +10,7 @@ import { DialogData, HeroDetailComponent } from '../../hero-detail/hero-detail.c
 export class HeroEditFormDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<HeroDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   public ngOnInit(): void {}
 

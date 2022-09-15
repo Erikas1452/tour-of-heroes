@@ -3,7 +3,7 @@
     <app-hero-form
     [title]="'Edit: ' + data.name + '\n' + ' ID: ' + data.id"
     [buttonText]="'Save'"
-    [editEnabled]="true"
+    [hero]="data.hero"
     [heroId]="data.id"
     (onFormSubmit)="Save($event)"
     ></app-hero-form>

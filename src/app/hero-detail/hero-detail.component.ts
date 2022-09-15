@@ -12,6 +12,7 @@ import { HeroEditFormDialogComponent } from '../pop-up-dialogs/hero-edit-form-di
 export interface DialogData {
   id: number;
   name: string;
+  hero: Hero;
 }
 @Component({
   selector: 'app-hero-detail',
@@ -38,7 +39,7 @@ export class HeroDetailComponent implements OnInit {
   public openDialog(){
     const dialogRef = this.dialog.open(HeroEditFormDialogComponent, {
       width: '700px',
-      data: {id: this.hero.id, name: this.hero.name}
+      data: {id: this.hero.id, name: this.hero.name, hero: this.hero}
     });
 
     dialogRef.afterClosed().subscribe(result => {

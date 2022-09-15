@@ -21,7 +21,16 @@ export class InMemoryDataService implements InMemoryDbService {
         name: 'Dr. Strange',
         level: 6,
         companyType: 'Marvel',
-        description: 'A strange hero',
+        description: `A strange hero A strange heroA strange heroA strange 
+          heroA strangeheroA strange heroA strange heroA strange
+          heroA strange heroA strange heroA strange heroA strange
+          heroA strange heroA strange hero A strange hero A strange heroA strange heroA strange 
+          heroA strangeheroA strange heroA strange heroA strange
+          heroA strange heroA strange heroA strange heroA strange
+          heroA strange heroA strange hero A strange hero A strange heroA strange heroA strange 
+          heroA strangeheroA strange heroA strange heroA strange
+          heroA strange heroA strange heroA strange heroA strange
+          heroA strange heroA strange hero`,
         hashtags: ['Doctor', 'Strange', 'Marvel'],
       },
       {
