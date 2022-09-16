@@ -1,3 +1,4 @@
+import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {Component,EventEmitter,OnInit,Output,Input,ViewChild} from '@angular/core';
 import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
@@ -86,8 +87,7 @@ export class HeroFormComponent implements OnInit {
   public addChip(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
-      this.hashtags = Object.assign([], this.hashtags);
-      this.hashtags.push(value);
+      this.hashtags = [...this.hashtags, value]
       this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
       this.hashtagControl.setValue(this.hashtags);
     }
@@ -97,7 +97,7 @@ export class HeroFormComponent implements OnInit {
   public removeChip(value: string): void {
     const index = this.hashtags.indexOf(value);
     if (index >= 0) {
-      this.hashtags = Object.assign([], this.hashtags);
+      this.hashtags = [...this.hashtags];
       this.hashtags.splice(index, 1);
       this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
       this.hashtagControl.setValue(this.hashtags);
