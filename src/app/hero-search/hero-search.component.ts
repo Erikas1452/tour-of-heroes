@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Actions, Select, Store } from '@ngxs/store';
-import {
-  BehaviorSubject,
-  debounceTime,
-  Observable,
-  tap,
-} from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { BehaviorSubject, debounceTime, Observable, tap} from 'rxjs';
 import { Hero } from '../hero';
-import {
-  RemoveSearchResults,
-  SearchHeroes,
-} from '../state/hero-page-state/hero.actions';
+import { RemoveSearchResults, SearchHeroes} from '../state/hero-page-state/hero.actions';
 import { HeroState } from '../state/hero-page-state/hero.state';
 
 @Component({
@@ -22,7 +14,7 @@ export class HeroSearchComponent implements OnInit {
   @Select(HeroState.selectSearchResults) heroes$!: Observable<Hero[]>;
   searchFilter$ = new BehaviorSubject<string>('');
 
-  constructor(private store: Store, actions$: Actions) {}
+  constructor(private store: Store) {}
 
   public ngOnInit(): void {
     this.searchFilter$
