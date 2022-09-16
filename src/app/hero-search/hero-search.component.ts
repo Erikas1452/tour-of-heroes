@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Actions, ofActionDispatched, Select, Store } from '@ngxs/store';
+import { Actions, Select, Store } from '@ngxs/store';
 import {
   BehaviorSubject,
   debounceTime,
-  distinctUntilChanged,
   Observable,
-  Subscription,
   tap,
 } from 'rxjs';
 import { Hero } from '../hero';
@@ -21,16 +19,10 @@ import { HeroState } from '../state/hero-page-state/hero.state';
   styleUrls: ['./hero-search.component.css'],
 })
 export class HeroSearchComponent implements OnInit {
-  @Select(HeroState.selectSearchResults) heroes$!: Observable<Hero>;
-  public heroes: Hero[] = [];
-  private heroSubscriber!: Subscription;
+  @Select(HeroState.selectSearchResults) heroes$!: Observable<Hero[]>;
   searchFilter$ = new BehaviorSubject<string>('');
 
-  constructor(private store: Store, actions$: Actions) {
-    this.heroSubscriber = this.heroes$.subscribe((heroes: any) => {
-      this.heroes = heroes;
-    });
-  }
+  constructor(private store: Store, actions$: Actions) {}
 
   public ngOnInit(): void {
     this.searchFilter$

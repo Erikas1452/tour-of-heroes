@@ -17,17 +17,8 @@ import { Subscription } from 'rxjs';
 export class HeroesComponent implements OnInit {
   public heroes: Hero[] = [];
   @Select(HeroState.selectHeroes) heroes$!: Observable<Hero[]>
-  private heroSubscriber: Subscription;
 
-  constructor(private heroService: HeroService, public _dialog: MatDialog, private store: Store) {
-    this.heroSubscriber = this.heroes$.subscribe((heroes: Hero[]) => {
-      this.heroes = heroes;
-    });
-  }
-
-  public ngOnDestroy(){
-    this.heroSubscriber.unsubscribe();
-  }
+  constructor(private heroService: HeroService, public _dialog: MatDialog, private store: Store) {}
 
   public ngOnInit(): void {}
   
