@@ -87,7 +87,7 @@ export class HeroFormComponent implements OnInit {
   public addChip(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
-      this.hashtags = [...this.hashtags, value]
+      this.hashtags = [...this.hashtags, value];
       this.hashtagControl.setValidators([identicalHashValidator(this.hashtags)]);
       this.hashtagControl.setValue(this.hashtags);
     }
