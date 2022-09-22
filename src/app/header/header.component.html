@@ -1,0 +1,30 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <div>
+      <h1 routerLink="/dashboard">{{ title }}</h1>
+    </div>
+    <div>
+      <ul class="navigation-items">
+        <li>
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/heroes">Heroes</a>
+        </li>
+      </ul>
+    </div>
+    <div class="left-menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>brush</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onThemeSelect('theme-light')">
+          Light Mode
+        </button>
+        <button mat-menu-item (click)="onThemeSelect('theme-dark')">
+          Dark Mode
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>

@@ -8,10 +8,15 @@ import { GetHeroes } from './state/hero-page-state/hero.actions';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title: string = 'Tour of Heroes';
+
+  public theme:string = "theme-light";
   constructor(private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(new GetHeroes());
+  }
+
+  changeTheme(e: any){
+    this.theme = e;
   }
 }

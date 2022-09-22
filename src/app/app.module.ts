@@ -21,6 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
   import {MatCardModule} from '@angular/material/card';
   import {MatSnackBarModule} from '@angular/material/snack-bar';
   import {MatDialogModule} from '@angular/material/dialog';
+  import {MatToolbarModule} from '@angular/material/toolbar';
+  import {MatMenuModule} from '@angular/material/menu';
 //Components
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -34,6 +36,7 @@ import { HeroEditFormDialogComponent } from './pop-up-dialogs/hero-edit-form-dia
 //Services
 import { InMemoryDataService } from './services/in-memory-database-api-service/in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeroSearchComponent,
     DescriptionDialogComponent,
     HeroFormComponent,
-    HeroEditFormDialogComponent
+    HeroEditFormDialogComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     MatChipsModule,
+    MatMenuModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
@@ -63,6 +68,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatToolbarModule,
     NgxsModule.forRoot([HeroState], {
       developmentMode: !environment.production,
     }),

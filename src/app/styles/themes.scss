@@ -1,0 +1,20 @@
+/*
+ * Theme definitions
+ */
+ 
+ $themes: (
+  light: (
+    backgroundColor: #fcf9f9,
+    textColor: #ffffff,
+    headerColor: #ddc474,
+    selectedColor: #e4e4e4,
+    headerTextColor: #ffffff,
+  ),
+  dark: (
+    backgroundColor: #121212,
+    textColor: #f88d00,
+    headerColor: #242424,
+    selectedColor: #a05b00,
+    headerTextColor:#f88d00,
+  ),
+);
