@@ -21,8 +21,8 @@ export interface DialogData {
 })
 
 export class HeroDetailComponent implements OnInit {
-  @Select(HeroState.selectHero) hero$!: Observable<Hero>
-  public hero!: Hero;
+  public hero$: Observable<Hero | undefined> = this.store.select(HeroState.selectHero);
+  public hero!: Hero | undefined;
   private heroSubscriber: Subscription;
 
   constructor(
@@ -31,7 +31,7 @@ export class HeroDetailComponent implements OnInit {
     private store: Store,
     public dialog: MatDialog,
   ) {
-    this.heroSubscriber = this.hero$.subscribe((hero: Hero) => {
+    this.heroSubscriber = this.hero$.subscribe((hero: Hero | undefined) => {
       this.hero = hero;
     });
   }
@@ -39,7 +39,7 @@ export class HeroDetailComponent implements OnInit {
   public openDialog(){
     const dialogRef = this.dialog.open(HeroEditFormDialogComponent, {
       width: '700px',
-      data: {id: this.hero.id, name: this.hero.name, hero: this.hero}
+      data: {id: this.hero?.id, name: this.hero?.name, hero: this.hero}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -60,7 +60,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   private editHero(event: any): void {
-    const hero = {...event, id: this.hero.id};
+    const hero = {...event, id: this.hero?.id};
     this.store.dispatch(new EditHero(hero));
     this.goBack();
   }

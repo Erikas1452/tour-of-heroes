@@ -9,7 +9,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
   styleUrls: ['./messages.component.css'],
 })
 export class MessagesComponent implements OnInit {
-  @Select(HeroState.selectMessages) messages$!: Observable<string[]>;
+  public messages$: Observable<String[]> = this.store.select(HeroState.selectMessages);
 
   constructor(private store: Store) {}
 

@@ -13,9 +13,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  public heroes: Hero[] = [];
-  @Select(HeroState.selectHeroes) heroes$!: Observable<Hero[]>
-
+  public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectHeroes);
 
   constructor(public _dialog: MatDialog, private store: Store) {}
 

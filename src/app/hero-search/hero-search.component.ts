@@ -11,7 +11,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
   styleUrls: ['./hero-search.component.css'],
 })
 export class HeroSearchComponent implements OnInit {
-  @Select(HeroState.selectSearchResults) heroes$!: Observable<Hero[]>;
+  public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectSearchResults);
   searchFilter$ = new BehaviorSubject<string>('');
 
   constructor(private store: Store) {}

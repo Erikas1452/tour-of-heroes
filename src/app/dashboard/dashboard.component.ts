@@ -12,7 +12,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
 })
 export class DashboardComponent implements OnInit {
   
-  @Select(HeroState.selectHeroes) heroes$!: Observable<Hero[]>
+  public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectHeroes);
   public topHeroes: Hero[] = [];
   private heroSubscriber: Subscription;
 
