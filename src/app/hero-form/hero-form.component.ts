@@ -9,7 +9,7 @@ import { Hero } from '../hero';
 @Component({
   selector: 'app-hero-form',
   templateUrl: './hero-form.component.html',
-  styleUrls: ['./hero-form.component.css'],
+  styleUrls: ['./hero-form.component.scss'],
 })
 export class HeroFormComponent implements OnInit {
   @Output() private onFormSubmit = new EventEmitter();

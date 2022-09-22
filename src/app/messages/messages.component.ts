@@ -6,7 +6,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css'],
+  styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
   public messages$: Observable<String[]> = this.store.select(HeroState.selectMessages);

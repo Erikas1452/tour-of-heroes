@@ -5,7 +5,7 @@ import { DialogData, HeroDetailComponent } from '../../hero-detail/hero-detail.c
 @Component({
   selector: 'app-hero-edit-form-dialog',
   templateUrl: './hero-edit-form-dialog.component.html',
-  styleUrls: ['./hero-edit-form-dialog.component.css']
+  styleUrls: ['./hero-edit-form-dialog.component.scss']
 })
 export class HeroEditFormDialogComponent implements OnInit {
 

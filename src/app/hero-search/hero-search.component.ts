@@ -8,7 +8,7 @@ import { HeroState } from '../state/hero-page-state/hero.state';
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
-  styleUrls: ['./hero-search.component.css'],
+  styleUrls: ['./hero-search.component.scss'],
 })
 export class HeroSearchComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectSearchResults);
