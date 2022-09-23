@@ -1,22 +1,18 @@
-/*
- * Theme definitions
- */
- 
- $themes: (
+$themes: (
   light: (
-    backgroundColor: #fcf9f9,
-    textColor: #ffffff,
-    alternativeTextColor: #000000,
-    headerColor: #ddc474,
-    selectedColor: #e4e4e4,
-    headerTextColor: #ffffff,
+    background: #fcf9f9,
+    text: #ffffff,
+    alternative-text: #000000,
+    primary: #ddc474,
+    selected: #e4e4e4,
+    secondary: #ffffff,
   ),
   dark: (
-    backgroundColor: #121212,
-    textColor: #f88d00,
-    alternativeTextColor: #fcf9f9,
-    headerColor: #242424,
-    selectedColor: #a05b00,
-    headerTextColor:#f88d00,
+    background: #121212,
+    text: #f88d00,
+    alternative-text: #fcf9f9,
+    primary: #242424,
+    selected: #a05b00,
+    secondary:#f88d00,
   ),
 );
