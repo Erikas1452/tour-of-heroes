@@ -84,7 +84,8 @@ body {
   @include themify($themes) {
     background: themed("backgroundColor");
   }
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
 // Header
@@ -99,27 +100,22 @@ app-header {
       @include themify($themes) {
         color: themed("headerTextColor");
       }
-      font-weight: bold;
-      font-size: 100%;
-
       &:hover {
         @include themify($themes) {
           color: themed("selectedColor");
         }
-        cursor: pointer;
+      }
+    }
+    button {
+      @include themify($themes) {
+        color: themed("headerTextColor");
       }
     }
     .navigation-items {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: inline-flex;
       li {
-        margin-left: 3em;
         a {
-          text-decoration: none;
           @include themify($themes) {
-            color: themed("textColor");
+            color: themed("headerTextColor");
           }
           &:hover,
           &:active {
@@ -130,65 +126,100 @@ app-header {
         }
       }
     }
-    .left-menu {
-      margin-left: auto;
-      button {
-        background-color: transparent;
-      }
-    }
   }
 }
 
 //Dashboard
 app-dashboard {
-  height: calc(100vh);
   h2 {
-    text-align: center;
+    @include themify($themes) {
+      color: themed("textColor");
+      background-color: themed("headerColor");
+    }
   }
-
   .heroes-menu {
-    padding: 0;
-    margin: auto;
-    max-width: 1000px;
-
-    /* flexbox */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: flex-start;
-    align-items: flex-start;
     a {
       @include themify($themes) {
         background-color: themed("headerColor");
       }
-      border-radius: 2px;
-      padding: 1rem;
-      font-size: 1.2rem;
-      text-decoration: none;
-      display: inline-block;
-      color: #fff;
-      text-align: center;
-      width: 100%;
-      min-width: 70px;
-      margin: 0.5rem auto;
-      box-sizing: border-box;
-
-      /* flexbox */
-      order: 0;
-      flex: 0 1 auto;
-      align-self: auto;
-
+      @include themify($themes) {
+        color: themed("textColor");
+      }
       &:hover {
         @include themify($themes) {
           background-color: themed("selectedColor");
         }
       }
     }
-    @media (min-width: 600px) {
-      a {
-        width: 18%;
-        box-sizing: content-box;
+  }
+}
+
+//heroes component
+app-heroes {
+  .heroes {
+    a {
+      @include themify($themes) {
+        background-color: themed("headerColor");
+        color: themed("headerTextColor");
+      }
+      &:hover {
+        @include themify($themes) {
+          background-color: themed("selectedColor");
+        }
+      }
+    }
+    .badge {
+      @include themify($themes) {
+        color: themed("alternativeTextColor");
+        background-color: themed("headerTextColor");
+      }
+    }
+  }
+  mat-icon {
+    @include themify($themes) {
+      color: themed("textColor");
+    }
+  }
+  button.delete {
+    @include themify($themes) {
+      background-color: themed("textColor");
+    }
+    &:hover {
+      @include themify($themes) {
+        background-color: themed("selectedColor");
+      }
+    }
+  }
+}
+//Messages
+
+app-messages {
+  h2{
+    @include themify($themes) {
+      color: themed("textColor");
+    }
+  }
+
+  button{
+    @include themify($themes) {
+      background-color: themed("headerColor");
+      color: themed("textColor");
+    }
+
+    &:hover{
+      @include themify($themes) {
+      background-color: themed("selectedColor");
+      }
+    }
+  }
+
+  div {
+    @include themify($themes) {
+      background-color: themed("backgroundColor");
+    }
+    .message-text{
+      @include themify($themes) {
+        color: themed("alternativeTextColor");
       }
     }
   }
