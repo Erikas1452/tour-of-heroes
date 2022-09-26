@@ -31,6 +31,7 @@ export class HeroesComponent implements OnInit {
     const dialogRef = this._dialog.open(DescriptionDialogComponent, {
       width: '450px',
       data: { desc: description },
+      panelClass: 'themed-dialog',
     });
   }
 }

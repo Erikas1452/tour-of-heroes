@@ -57,6 +57,22 @@ export class InMemoryDataService implements InMemoryDbService {
         description: 'A nice spooder',
         hashtags: ['Spidey', 'Marvel'],
       },
+      {
+        id: 17,
+        name: 'Dr. Nice',
+        level: 6,
+        companyType: 'Marvel',
+        description: 'A nice hero',
+        hashtags: ['Nice', 'Hero', 'Marvel'],
+      },
+      {
+        id: 18,
+        name: 'Dr. Nice',
+        level: 6,
+        companyType: 'Marvel',
+        description: 'A nice hero',
+        hashtags: ['Nice', 'Hero', 'Marvel'],
+      },
     ];
     return { heroes };
   }

@@ -39,7 +39,8 @@ export class HeroDetailComponent implements OnInit {
   public openDialog(){
     const dialogRef = this.dialog.open(HeroEditFormDialogComponent, {
       width: '700px',
-      data: {id: this.hero?.id, name: this.hero?.name, hero: this.hero}
+      data: {id: this.hero?.id, name: this.hero?.name, hero: this.hero},
+      panelClass: 'themed-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

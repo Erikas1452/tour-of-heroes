@@ -17,10 +17,17 @@
           )
         ) !global;
       }
+      @include set-body-background(themed("background"));
       @include set-material-style(themed("primary"), themed("secondary"));
       @content;
       $theme-map: null !global;
     }
+  }
+}
+
+@mixin set-body-background($color){
+  body{
+    background-color: $color;
   }
 }
 

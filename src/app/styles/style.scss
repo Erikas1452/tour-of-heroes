@@ -1,76 +1,5 @@
 @import "themes";
 @import "mixins";
-
-//DEFAULTS------------------
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-
-h2,
-h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-}
-
-body,
-input[type="text"],
-button {
-  color: #333;
-  font-family: Cambria, Georgia, serif;
-}
-
-button {
-  background-color: #eee;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: black;
-  font-size: 1.2rem;
-  padding: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-button:hover {
-  background-color: black;
-  color: white;
-}
-
-button:disabled {
-  background-color: #eee;
-  color: #aaa;
-  cursor: auto;
-}
-
-/* everywhere else */
-
-* {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 2em;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.error {
-  color: red;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 // @include themify($themes) {
 //   color: themed('textColor');
 //   background-color: themed('backgroundColor');
@@ -85,14 +14,13 @@ body {
   $alternative-text: themed("alternative-text");
   $card-background: themed("card-background");
 
-  html {
-    background-color: $background;
+  body{
+    background-color: red;
   }
 
-  .content-container {
-    background: $background;
+  .app-wrapper{
     height: 100%;
-    width: 100%;
+    background-color: $background;
   }
 
   // Header
@@ -143,6 +71,9 @@ body {
 
   //heroes component
   app-heroes {
+    .heroes-list{
+      background-color: $background;
+    }
     .heroes {
       a {
         background-color: $card-background;
@@ -259,5 +190,10 @@ body {
         color: $secondary;
       }
     }
+  }
+
+  //Dialog windows
+  .themed-dialog .mat-dialog-container {
+    background-color: $primary;
   }
 }
