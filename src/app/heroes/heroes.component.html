@@ -6,8 +6,10 @@
     [buttonText]="'Add Hero'"
     (onFormSubmit)="addHero($event)"
   ></app-hero-form>
+</div>
 
   <!-- Hero List -->
+  <div>
   <ul class="heroes">
     <li *ngFor="let hero of heroes$ | async">
       <a routerLink="/detail/{{ hero.id }}">

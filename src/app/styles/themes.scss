@@ -3,9 +3,10 @@ $themes: (
     background: #fcf9f9,
     text: #ffffff,
     alternative-text: #000000,
-    primary: #ddc474,
+    primary: #D3B34B,
     selected: #e4e4e4,
     secondary: #ffffff,
+    card-background: #DDC474,
   ),
   dark: (
     background: #121212,
@@ -14,5 +15,6 @@ $themes: (
     primary: #242424,
     selected: #a05b00,
     secondary:#f88d00,
+    card-background: #44444480,
   ),
 );

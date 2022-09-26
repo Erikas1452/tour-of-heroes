@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@include mat.core();
 
 /*
    * Implementation of themes
@@ -24,19 +25,18 @@
 }
 
 @mixin set-material-style($primary, $secondary) {
-  @include mat.core();
 
   $custom-palette: (
-    50: #c5cae9,
+    50: #ffffff,
     100: $primary,
-    200: #9fa8da,
+    200: #ffffff,
     300: $secondary,
-    400: #0a3d62,
-    500: #0a3d62,
-    600: #09375a,
-    700: #072f50,
-    800: #052746,
-    900: #031a34,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
     contrast: (
       50: rgba(black, 0.87),
       100: rgba(black, 0.87),

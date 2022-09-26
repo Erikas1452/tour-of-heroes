@@ -8,7 +8,7 @@
       <!-- Name -->
       <mat-form-field appearance="fill">
         <mat-label>Hero name</mat-label>
-        <input [formControl]="nameControl" matInput type="text" />
+        <input color="accent" [formControl]="nameControl" matInput type="text" />
       </mat-form-field>
       <div
         class="error"
@@ -19,7 +19,7 @@
       <!-- Level -->
       <mat-form-field appearance="fill">
         <mat-label>Hero level</mat-label>
-        <mat-select [formControl]="levelControl">
+        <mat-select color="accent" [formControl]="levelControl">
           <mat-option [value]="1">1</mat-option>
           <mat-option [value]="2">2</mat-option>
           <mat-option [value]="3">3</mat-option>
@@ -45,10 +45,10 @@
         [formControl]="companyControl"
         aria-label="Select an option"
       >
-        <mat-radio-button color="primary" class="radio" value="Marvel"
+        <mat-radio-button color="accent" class="radio" value="Marvel"
           >Marvel</mat-radio-button
         >
-        <mat-radio-button color="primary" class="radio" value="DC"
+        <mat-radio-button color="accent" class="radio" value="DC"
           >DC</mat-radio-button
         >
       </mat-radio-group>
@@ -74,7 +74,7 @@
       <!-- Hashtags -->
       <mat-form-field class="example-chip-list" appearance="fill">
         <mat-label>Hashtags</mat-label>
-        <mat-chip-list
+        <mat-chip-list color="accent"
           #chipList
           [formControl]="hashtagControl"
           aria-label="Hashtags selection"

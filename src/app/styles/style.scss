@@ -51,6 +51,7 @@ button:disabled {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 html,
 body {
   height: 100%;
@@ -63,11 +64,6 @@ body {
 
 .error {
   color: red;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 body {
@@ -87,6 +83,11 @@ body {
   $background: themed("background");
   $text: themed("text");
   $alternative-text: themed("alternative-text");
+  $card-background: themed("card-background");
+
+  html {
+    background-color: $background;
+  }
 
   .content-container {
     background: $background;
@@ -144,7 +145,7 @@ body {
   app-heroes {
     .heroes {
       a {
-        background-color: $primary;
+        background-color: $card-background;
         color: $secondary;
         &:hover {
           background-color: $selected;
@@ -186,22 +187,76 @@ body {
     }
   }
 
+  //Hero Form
   app-hero-form {
     .mat-card {
-      background-color: $background;
+      background-color: $card-background;
       color: $text;
-      .hero-form {
-        display: inline-grid;
-        width: 70%;
-        margin-left: 15%;
-        margin-right: 15%;
+      label {
+        color: $secondary;
       }
-      .mat-radio-group {
-        margin: 1em;
+
+      mat-label {
+        color: $secondary;
       }
-      .radio {
-        margin-left: 1em;
-        margin-right: 1em;
+
+      input {
+        color: $secondary;
+      }
+
+      mat-select {
+        div {
+          div {
+            span {
+              span {
+                color: $secondary;
+              }
+            }
+          }
+        }
+      }
+
+      button {
+        color: $secondary;
+        background-color: $primary;
+        &:disabled {
+          color: rgba($secondary, 0.7);
+          background-color: rgba($primary, 0.7);
+        }
+      }
+
+      .mat-chip.mat-standard-chip {
+        color: $secondary;
+        background-color: $primary;
+      }
+
+      textarea {
+        color: $secondary;
+      }
+    }
+  }
+
+  //Hero details page
+  app-hero-detail {
+    .mat-card {
+      background-color: $card-background;
+      color: $text;
+      label {
+        color: $secondary;
+      }
+      button {
+        background-color: $secondary;
+        &:hover {
+          background-color: $selected;
+        }
+      }
+
+      h1 {
+        color: $secondary;
+      }
+
+      h2 {
+        color: $secondary;
       }
     }
   }
