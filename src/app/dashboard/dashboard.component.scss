@@ -1,8 +1,8 @@
 //Dashboard
 h2 {
   text-align: center;
-  width: 20%;
-  margin: 1em auto 1em auto;
+  width: 50%;
+  margin: 1em auto;
   border-radius: 2em;
 }
 
@@ -10,10 +10,10 @@ h2 {
   padding: 0;
   margin: auto;
   max-width: 1000px;
-
-  /* flexbox */
   display: flex;
   flex-direction: row;
+
+  /* flexbox */
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: flex-start;
@@ -22,10 +22,10 @@ h2 {
     border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
+    width: 18%;
     text-decoration: none;
     display: inline-block;
     text-align: center;
-    width: 100%;
     min-width: 70px;
     margin: 0.5rem auto;
     box-sizing: border-box;
@@ -35,9 +35,35 @@ h2 {
     flex: 0 1 auto;
     align-self: auto;
   }
-  @media (min-width: 600px) {
+
+  @media (min-width: 1024px) {
+    .heroes-menu {
+      display: flex;
+      flex-direction: rowa;
+    }
+  }
+  
+  /* For Tablets */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .heroes-menu {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
     a {
-      width: 18%;
+      width: 90%;
+      box-sizing: content-box;
+    }
+  }
+  /* For Mobile */
+  @media (max-width: 768px) {
+    .heroes-menu {
+      display: inline-grid;
+      width: 90%;
+    }
+    a {
+      width: 90%;
+      margin: 1 auto;
       box-sizing: content-box;
     }
   }

@@ -23,6 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
   import {MatDialogModule} from '@angular/material/dialog';
   import {MatToolbarModule} from '@angular/material/toolbar';
   import {MatMenuModule} from '@angular/material/menu';
+  import {MatSidenavModule} from '@angular/material/sidenav';
+  import {MatListModule} from '@angular/material/list';
 //Components
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -53,7 +55,9 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    MatSidenavModule,
     AppRoutingModule,
+    MatListModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

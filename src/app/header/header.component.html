@@ -28,3 +28,30 @@
     </div>
   </mat-toolbar>
 </div>
+
+<div class="mobile-header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #mobileMenu="matMenu">
+        <button mat-menu-item routerLink="/dashboard">
+          Dashboard
+        </button>
+        <button mat-menu-item routerLink="/heroes">
+          Heroes
+        </button>
+        <button mat-menu-item (click)="onThemeSelect('theme-light')">
+          Light Mode
+        </button>
+        <button mat-menu-item (click)="onThemeSelect('theme-dark')">
+          Dark Mode
+        </button>
+      </mat-menu>
+      <div>
+        <h1 routerLink="/dashboard">{{ title }}</h1>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

@@ -25,7 +25,7 @@
 
   // Header
   app-header {
-    .header {
+    .header, .mobile-header {
       mat-toolbar {
         background-color: $primary;
       }
@@ -37,6 +37,7 @@
       }
       button {
         color: $secondary;
+        background-color: $primary;
       }
       .navigation-items {
         li {

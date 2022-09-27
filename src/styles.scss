@@ -4,6 +4,10 @@
   background-color: #121212;
 }
 
+mat-toolbar{
+  width: 80%
+}
+
 .theme-light{
   background-color: #fffdf6 ;
 }
@@ -15,14 +19,12 @@ body {
 }
 
 h1 {
-  color: #369;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
 
 h2,
 h3 {
-  color: #444;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
@@ -41,7 +43,6 @@ button {
   cursor: pointer;
   color: black;
   font-size: 1.2rem;
-  padding: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
