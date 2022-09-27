@@ -1,4 +1,4 @@
-mat-card{
+mat-card {
   width: 100%;
   max-height: 515px;
   @media (min-width: 768px) and (max-width: 1024px) {
@@ -10,7 +10,23 @@ mat-card{
     width: 80%;
     margin: 0 auto;
   }
+
+ 
 }
+ .mat-chip-list-wrapper {
+    max-height: 40px;
+    overflow-y: auto;
+  }
+
+  div.mat-chip-list-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  
+    .mat-chip {
+      flex: 0 0 auto;
+    }
+  }
 
 .mat-card {
   .hero-form {
@@ -27,4 +43,3 @@ mat-card{
     margin-right: 1em;
   }
 }
-

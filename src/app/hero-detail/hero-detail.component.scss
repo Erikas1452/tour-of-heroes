@@ -1,7 +1,16 @@
+.hero-details{
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  height: 60%;
+}
+
 .mat-card {
-  max-width: 500px;
   margin-top: 2em;
-  margin-bottom: 2em;
+  padding: 16px 16px 0 16px;
+  h3{
+    margin: 0;
+  }
   label {
     font-weight: bold;
   }
@@ -10,10 +19,10 @@
     padding: 0.5rem;
   }
   button {
-    margin-top: 20px;
-    padding: 1rem;
+    margin: 0 1h 1vh 0;
+    padding: 1vh;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 2vh;
 
     &:disabled {
       background-color: #eee;
@@ -24,7 +33,6 @@
 
   .mat-card-title {
     border: double;
-    padding: 1em 1em 1em 0em;
     text-align: center;
   }
   .container {
@@ -32,6 +40,10 @@
   }
   .container h5 {
     padding-right: 2em;
+  }
+
+  .mat-card-content{
+    margin: 0;
   }
 
   .mat-card-actions {
@@ -44,7 +56,8 @@
 
   .description {
     padding: 1rem;
-    max-height: 220px;
+    font-size: 2vh;
+    max-height: 16vh;
     overflow-y: auto;
     scrollbar-gutter: stable;
   }

@@ -1,17 +1,17 @@
 <!-- Hero Form -->
-<div *ngIf="hero">
+<div class="hero-details" *ngIf="hero">
   <mat-card class="example-card">
     <mat-card-title>{{ hero.name }}</mat-card-title>
     <mat-card-content>
       <div class="container">
-        <h1>Level:</h1>
+        <h3>Level:</h3>
         <div>
-          <h2>{{ hero.level }}</h2>
+          <h3>{{ hero.level }}</h3>
         </div>
       </div>
-      <h1>Description:</h1>
+      <h3>Description:</h3>
       <div class="description">
-        <h2>{{ hero.description }}</h2>
+        <p>{{ hero.description }}</p>
       </div>
       <h1>Hashtags:</h1>
       <div class="container">

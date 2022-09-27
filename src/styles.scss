@@ -4,8 +4,9 @@
   background-color: #121212;
 }
 
-mat-toolbar{
-  width: 80%
+.mat-chip-list-wrapper {
+  max-height: 40px;
+  overflow-y: auto;
 }
 
 .theme-light{

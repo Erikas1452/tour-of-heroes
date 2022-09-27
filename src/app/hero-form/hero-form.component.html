@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title *ngIf="title">
-    {{ title }}
+    <h3>{{ title }}</h3>
   </mat-card-title>
 
   <mat-card-subtitle>
@@ -72,7 +72,7 @@
       </div>
 
       <!-- Hashtags -->
-      <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-form-field class="chip-list" appearance="fill">
         <mat-label>Hashtags</mat-label>
         <mat-chip-list color="accent"
           #chipList
