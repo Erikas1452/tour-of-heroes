@@ -28,25 +28,8 @@
     }
   }
 
- .mat-drawer {
-    min-width: 200px;
-  }
-
-  .container .mat-drawer li {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-
-  .spacer {
-    flex: 1 1 auto;
-  }
-
   @media (max-width: 768px) {
     display: block;
-    h1{
-      
-    }
   }
 }
 

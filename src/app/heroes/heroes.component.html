@@ -1,41 +1,43 @@
 <h2>My Heroes</h2>
-<!-- Hero Form -->
-<div>
-  <app-hero-form
-    [title]="'Create new Hero'"
-    [buttonText]="'Add Hero'"
-    (onFormSubmit)="addHero($event)"
-  ></app-hero-form>
-</div>
 
+<div class="hero-page-container">
+  <!-- Hero Form -->
+  <div class="hero-form">
+    <app-hero-form
+      [title]="'Create new Hero'"
+      [buttonText]="'Add Hero'"
+      (onFormSubmit)="addHero($event)"
+    ></app-hero-form>
+  </div>
   <!-- Hero List -->
   <div class="heroes-list">
-  <ul class="heroes">
-    <li *ngFor="let hero of heroes$ | async">
-      <a routerLink="/detail/{{ hero.id }}">
-        <span class="badge">{{ hero.id }}</span>
-        <span class="name">{{ hero.name }}</span>
-        <span class="name"> Level: {{ hero.level }}</span>
-        <mat-chip-list aria-label="hashtags">
-          <mat-chip disabled *ngFor="let hashtag of hero.hashtags">
-            #{{ hashtag }}
-          </mat-chip>
-        </mat-chip-list>
-      </a>
-      <button
-        type="button"
-        class="delete"
-        title="delete hero"
-        (click)="delete(hero)"
-      >
-        x
-      </button>
-      <mat-icon
-        class="dialog-button"
-        mat-button
-        (click)="openDialog(hero.description)"
-        >description</mat-icon
-      >
-    </li>
-  </ul>
+    <ul class="heroes">
+      <li *ngFor="let hero of heroes$ | async">
+        <a routerLink="/detail/{{ hero.id }}">
+          <span class="badge">{{ hero.id }}</span>
+          <span class="name">{{ hero.name }}</span>
+          <span class="name"> Level: {{ hero.level }}</span>
+          <mat-chip-list aria-label="hashtags">
+            <mat-chip disabled *ngFor="let hashtag of hero.hashtags">
+              #{{ hashtag }}
+            </mat-chip>
+          </mat-chip-list>
+        </a>
+        <button
+          type="button"
+          class="delete"
+          title="delete hero"
+          (click)="delete(hero)"
+        >
+          x
+        </button>
+        <mat-icon
+          class="dialog-button"
+          mat-button
+          (click)="openDialog(hero.description)"
+          >description</mat-icon
+        >
+      </li>
+    </ul>
+  </div>
 </div>

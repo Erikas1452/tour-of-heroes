@@ -1,18 +1,59 @@
-.heroes-list{
-  display: grid;
+.hero-page-container{
+  display: flex;
+  width: 100%;
+  max-height: 515px;
+  .hero-form{
+    width: 45%;
+    margin: 0 auto;
+  }
+  .heroes-list {
+    display: grid;
+    margin: 0 auto;
+    width: 45%;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    max-height: none;
+    display: block;
+    .heroes-list{
+      width: 90%;
+    }
+    .hero-form{
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  /* For Mobile */
+  @media (max-width: 768px) {
+    max-height: none;
+    display: block;
+    .heroes-list{
+      width: 90%;
+    }
+    .hero-form{
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
 }
+
+
 .heroes {
   margin: 0;
   list-style-type: none;
   padding: 0;
-  width: 30em;
-  li {
-    position: relative;
-    cursor: pointer;
-    &:hover {
-      left: 0.1em;
-    }
-  }
+  width: 85%;
+  margin: 0 auto;
+    
+    li {
+      position: relative;
+      cursor: pointer;
+      &:hover {
+        left: 0.1em;
+      }
+    } 
+  
   a {
     text-decoration: none;
     margin: 0.5em;
@@ -20,7 +61,7 @@
     border-radius: 4px;
     display: block;
     min-height: 3.8em;
-    width: 100%;
+    width: 95%;
     max-height: 10.8em;
     &:active {
       background-color: #525252;
@@ -45,16 +86,16 @@
 
 button.delete {
   position: absolute;
-  left: 390px;
+  left: 84%;
   top: 5px;
   color: #525252;
   font-size: 1.1rem;
   margin: 0;
-  padding: 1px 10px 3px 10px;
+  padding: 1px 10px 3px 10px; /* For Tablets */
 }
 
 .dialog-button {
   top: 6px;
-  left: 363px;
+  left: 76%;
   position: absolute;
 }
