@@ -35,15 +35,12 @@ h2 {
     flex: 0 1 auto;
     align-self: auto;
   }
-
   @media (min-width: 1024px) {
     .heroes-menu {
       display: flex;
       flex-direction: rowa;
     }
   }
-  
-  /* For Tablets */
   @media (min-width: 768px) and (max-width: 1024px) {
     .heroes-menu {
       display: flex;
@@ -55,7 +52,6 @@ h2 {
       box-sizing: content-box;
     }
   }
-  /* For Mobile */
   @media (max-width: 768px) {
     .heroes-menu {
       display: inline-grid;

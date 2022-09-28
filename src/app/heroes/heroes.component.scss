@@ -24,7 +24,6 @@
       margin: 0 auto;
     }
   }
-  /* For Mobile */
   @media (max-width: 768px) {
     max-height: none;
     display: block;
@@ -91,7 +90,7 @@ button.delete {
   color: #525252;
   font-size: 1.1rem;
   margin: 0;
-  padding: 1px 10px 3px 10px; /* For Tablets */
+  padding: 1px 10px 3px 10px;
 }
 
 .dialog-button {

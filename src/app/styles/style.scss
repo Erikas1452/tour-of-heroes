@@ -1,9 +1,5 @@
 @import "themes";
 @import "mixins";
-// @include themify($themes) {
-//   color: themed('textColor');
-//   background-color: themed('backgroundColor');
-// }
 
 @include themify($themes) {
   $primary: themed("primary");
@@ -14,18 +10,14 @@
   $alternative-text: themed("alternative-text");
   $card-background: themed("card-background");
 
-  body{
-    background-color: red;
-  }
-
-  .app-wrapper{
+  .app-wrapper {
     height: 100%;
     background-color: $background;
   }
-
   // Header
   app-header {
-    .header, .mobile-header {
+    .header,
+    .mobile-header {
       mat-toolbar {
         background-color: $primary;
       }
@@ -52,7 +44,6 @@
       }
     }
   }
-
   //Dashboard
   app-dashboard {
     h2 {
@@ -69,10 +60,29 @@
       }
     }
   }
-
+  //Search component
+  app-hero-search {
+    .search-component {
+      .search-result {
+        li {
+          a {
+            border-bottom: 1px solid $secondary;
+            border-left: 1px solid $secondary;
+            border-right: 1px solid $secondary;
+            color: $secondary;
+            background-color: $card-background;
+            &:hover {
+              background-color: $selected;
+              color: $secondary;
+            }
+          }
+        }
+      }
+    }
+  }
   //heroes component
   app-heroes {
-    .heroes-list{
+    .heroes-list {
       background-color: $background;
     }
     .heroes {
@@ -99,10 +109,10 @@
     }
   }
   //Messages
-
   app-messages {
     h2 {
       color: $text;
+      background-color: $card-background;
     }
     button {
       background-color: $primary;
@@ -118,7 +128,6 @@
       }
     }
   }
-
   //Hero Form
   app-hero-form {
     .mat-card {
@@ -127,15 +136,12 @@
       label {
         color: $secondary;
       }
-
       mat-label {
         color: $secondary;
       }
-
       input {
         color: $secondary;
       }
-
       mat-select {
         div {
           div {
@@ -147,7 +153,6 @@
           }
         }
       }
-
       button {
         color: $secondary;
         background-color: $primary;
@@ -156,18 +161,15 @@
           background-color: rgba($primary, 0.7);
         }
       }
-
       .mat-chip.mat-standard-chip {
         color: $secondary;
         background-color: $primary;
       }
-
       textarea {
         color: $secondary;
       }
     }
   }
-
   //Hero details page
   app-hero-detail {
     .mat-card {
@@ -182,19 +184,27 @@
           background-color: $selected;
         }
       }
-
       h1 {
         color: $secondary;
       }
-
       h2 {
         color: $secondary;
       }
     }
   }
-
   //Dialog windows
-  .themed-dialog .mat-dialog-container {
-    background-color: $primary;
+  .themed-dialog {
+    .mat-dialog-container {
+      background-color: $primary;
+      h2 {
+        color: $secondary;
+      }
+      h4 {
+        color: $secondary;
+      }
+      p {
+        color: $secondary;
+      }
+    }
   }
 }

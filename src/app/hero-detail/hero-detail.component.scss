@@ -1,8 +1,18 @@
 .hero-details{
   display: block;
   margin: 0 auto;
-  width: 80%;
-  height: 60%;
+  width: 45%;
+  height: fit-content;
+  max-height: 60%;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 .mat-card {
