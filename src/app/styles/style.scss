@@ -5,6 +5,7 @@
 @include themify($themes-list) {
   //Setting color pallete variables for themes
   @import "./abstracts/variables";
+  @include set-material-style($primary, $secondary);
   //Components
   @import "./components/header";
   @import "./components/dashboard";

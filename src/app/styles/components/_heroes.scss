@@ -1,4 +1,7 @@
 app-heroes {
+  h2{
+    color: $secondary;
+  }
     .heroes-list {
       background-color: $background;
     }

@@ -4,7 +4,6 @@
   width: 45%;
   height: fit-content;
   max-height: 60%;
-
   @media (min-width: 768px) and (max-width: 1024px) {
     width: 80%;
     margin: 0 auto;
@@ -33,7 +32,6 @@
     padding: 1vh;
     border-radius: 4px;
     font-size: 2vh;
-
     &:disabled {
       background-color: #eee;
       color: #ccc;
@@ -47,11 +45,10 @@
   }
   .container {
     display: flex;
+    h5 {
+      padding-right: 2em;
+    }
   }
-  .container h5 {
-    padding-right: 2em;
-  }
-
   .mat-card-content{
     margin: 0;
   }
@@ -70,19 +67,18 @@
     max-height: 16vh;
     overflow-y: auto;
     scrollbar-gutter: stable;
-  }
-  .description::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #f5f5f5;
-  }
-  .description::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #f5f5f5;
-  }
-
-  .description::-webkit-scrollbar {
-    border: 5px solid transparent;
-    border-radius: 100px;
-    background-clip: content-box;
+    &::-webkit-scrollbar-thumb{
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #f5f5f5;
+    }
+    &::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #f5f5f5;
+    }
+    &::-webkit-scrollbar{
+      border: 5px solid transparent;
+      border-radius: 100px;
+      background-clip: content-box;
+    }
   }
 }

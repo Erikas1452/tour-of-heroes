@@ -1,9 +1,6 @@
 @use "@angular/material" as mat;
 @include mat.core();
 
-/*
-   * Implementation of themes
-*/
 @mixin themify($themes) {
   @each $theme, $map in $themes {
     .theme-#{$theme} {
@@ -17,17 +14,9 @@
           )
         ) !global;
       }
-      @include set-body-background(themed("background"));
-      @include set-material-style(themed("primary"), themed("secondary"));
       @content;
       $theme-map: null !global;
     }
-  }
-}
-
-@mixin set-body-background($color){
-  body{
-    background-color: $color;
   }
 }
 
@@ -63,7 +52,7 @@
       ),
     )
   );
-  @include mat.all-component-themes($custom-theme);
+  @include mat.all-component-colors($custom-theme);
 }
 
 @function themed($key) {
