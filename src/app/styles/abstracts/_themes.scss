@@ -1,0 +1,11 @@
+@import "../themes/light-theme";
+@import "../themes/dark-theme";
+
+$themes-list: (
+  light: (
+    $light-theme-palette
+  ),
+  dark: (
+    $dark-theme-palette
+  ),
+);

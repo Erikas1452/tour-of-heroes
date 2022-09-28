@@ -1,0 +1,19 @@
+app-hero-search {
+    .search-component {
+      .search-result {
+        li {
+          a {
+            border-bottom: 1px solid $secondary;
+            border-left: 1px solid $secondary;
+            border-right: 1px solid $secondary;
+            color: $secondary;
+            background-color: $card-background;
+            &:hover {
+              background-color: $selected;
+              color: $secondary;
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,41 @@
+app-hero-form {
+    .mat-card {
+      background-color: $card-background;
+      color: $text;
+      label {
+        color: $secondary;
+      }
+      mat-label {
+        color: $secondary;
+      }
+      input {
+        color: $secondary;
+      }
+      mat-select {
+        div {
+          div {
+            span {
+              span {
+                color: $secondary;
+              }
+            }
+          }
+        }
+      }
+      button {
+        color: $secondary;
+        background-color: $primary;
+        &:disabled {
+          color: rgba($secondary, 0.7);
+          background-color: rgba($primary, 0.7);
+        }
+      }
+      .mat-chip.mat-standard-chip {
+        color: $secondary;
+        background-color: $primary;
+      }
+      textarea {
+        color: $secondary;
+      }
+    }
+  }

@@ -1,0 +1,19 @@
+app-messages {
+    h2 {
+      color: $text;
+      background-color: $card-background;
+    }
+    button {
+      background-color: $primary;
+      color: $text;
+      &:hover {
+        background-color: $selected;
+      }
+    }
+    div {
+      background-color: $background;
+      .message-text {
+        color: $alternative-text;
+      }
+    }
+  }

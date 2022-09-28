@@ -1,0 +1,27 @@
+app-heroes {
+    .heroes-list {
+      background-color: $background;
+    }
+    .heroes {
+      a {
+        background-color: $card-background;
+        color: $secondary;
+        &:hover {
+          background-color: $selected;
+        }
+      }
+      .badge {
+        color: $alternative-text;
+        background-color: $secondary;
+      }
+    }
+    mat-icon {
+      color: $text;
+    }
+    button.delete {
+      background-color: $text;
+      &:hover {
+        background-color: $selected;
+      }
+    }
+  }

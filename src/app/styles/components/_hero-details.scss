@@ -1,0 +1,21 @@
+app-hero-detail {
+    .mat-card {
+      background-color: $card-background;
+      color: $text;
+      label {
+        color: $secondary;
+      }
+      button {
+        background-color: $secondary;
+        &:hover {
+          background-color: $selected;
+        }
+      }
+      h1 {
+        color: $secondary;
+      }
+      h2 {
+        color: $secondary;
+      }
+    }
+  }

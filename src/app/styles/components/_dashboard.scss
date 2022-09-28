@@ -1,0 +1,15 @@
+app-dashboard {
+    h2 {
+      color: $text;
+      background-color: $primary;
+    }
+    .heroes-menu {
+      a {
+        background-color: $primary;
+        color: $text;
+        &:hover {
+          background-color: $selected;
+        }
+      }
+    }
+  }

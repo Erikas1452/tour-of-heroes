@@ -1,0 +1,29 @@
+app-header {
+    .header,
+    .mobile-header {
+      mat-toolbar {
+        background-color: $primary;
+      }
+      h1 {
+        color: $secondary;
+        &:hover {
+          color: $selected;
+        }
+      }
+      button {
+        color: $secondary;
+        background-color: $primary;
+      }
+      .navigation-items {
+        li {
+          a {
+            color: $secondary;
+            &:hover,
+            &:active {
+              color: $selected;
+            }
+          }
+        }
+      }
+    }
+  }
