@@ -37,8 +37,8 @@ div.mat-chip-list-wrapper {
 
 .mat-card {
   .hero-form {
-    display: inline-grid;
     @include centered(0, 100%);
+    display: inline-grid;
     height: 100%;
     button{
       margin: 0;

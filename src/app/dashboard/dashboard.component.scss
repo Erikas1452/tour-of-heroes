@@ -1,14 +1,13 @@
 @import "../styles/abstracts/mixins";
-//Dashboard
 h2 {
   @include pageTitle(50%);
 }
 
 .heroes-menu {
+  @include setFlex(row);
   padding: 0;
   margin: auto;
   max-width: 1000px;
-  @include setFlex(row);
 
   /* flexbox */
   flex-wrap: wrap;
@@ -16,10 +15,10 @@ h2 {
   align-content: flex-start;
   align-items: flex-start;
   a {
+    @include centered(0.5rem, 18%);
     border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
-    @include centered(0.5rem, 18%);
     text-decoration: none;
     display: inline-block;
     text-align: center;
@@ -47,8 +46,8 @@ h2 {
   }
   @media (max-width: 768px) {
     .heroes-menu {
-      display: inline-grid;
       @include centered(1, 90%);
+      display: inline-grid;
     }
     a {
       @include centered(1, 90%);
