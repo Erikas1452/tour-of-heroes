@@ -20,6 +20,17 @@
   }
 }
 
+@mixin centered($topBottomMargin, $width){
+  width: $width;
+  margin: $topBottomMargin auto;
+}
+
+@mixin setPosition($position, $left, $top) {
+  position: $position;
+  left: $left;
+  top: $top;
+}
+
 @mixin set-material-style($primary, $secondary) {
 
   $custom-palette: (
@@ -53,8 +64,4 @@
     )
   );
   @include mat.all-component-colors($custom-theme);
-}
-
-@function themed($key) {
-  @return map-get($theme-map, $key);
 }

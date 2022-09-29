@@ -1,5 +1,6 @@
 @import "./abstracts/themes";
 @import "./abstracts/mixins";
+@import "./abstracts/functions";
 
 //Applying theme to components
 @include themify($themes-list) {

@@ -1,15 +1,15 @@
+@import "../styles/abstracts/mixins";
+
 .hero-page-container{
   display: flex;
   width: 100%;
   max-height: 515px;
   .hero-form{
-    width: 45%;
-    margin: 0 auto;
+    @include centered(0, 45%);
   }
   .heroes-list {
     display: grid;
-    margin: 0 auto;
-    width: 45%;
+    @extend .hero-form;
     overflow-y: auto;
     max-height: 100%;
   }
@@ -20,8 +20,7 @@
       width: 90%;
     }
     .hero-form{
-      width: 90%;
-      margin: 0 auto;
+      @include centered(0, 90%);
     }
   }
   @media (max-width: 768px) {
@@ -31,18 +30,15 @@
       width: 90%;
     }
     .hero-form{
-      width: 90%;
-      margin: 0 auto;
+      @include centered(0, 90%);
     }
   }
 }
 
 .heroes {
-  margin: 0;
   list-style-type: none;
   padding: 0;
-  width: 85%;
-  margin: 0 auto;
+  @include centered(0, 85%);
     li {
       position: relative;
       cursor: pointer;
@@ -70,9 +66,7 @@
     padding: 0.8em 0.7em 0 0.7em;
     border-bottom-right-radius: 20px;
     line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
+    @include setPosition(relative, -1px, -4px);
     height: 1.8em;
     min-width: 16px;
     text-align: right;
@@ -81,9 +75,7 @@
 }
 
 button.delete {
-  position: absolute;
-  left: 84%;
-  top: 5px;
+  @include setPosition(absolute, 84%, 5px);
   color: #525252;
   font-size: 1.1rem;
   margin: 0;
@@ -91,7 +83,5 @@ button.delete {
 }
 
 .dialog-button {
-  top: 6px;
-  left: 76%;
-  position: absolute;
+  @include setPosition(absolute, 76%, 6px);
 }

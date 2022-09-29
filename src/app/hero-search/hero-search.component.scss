@@ -1,3 +1,5 @@
+@import "../styles/abstracts/placeholders";
+
 .search-component {
   width: 40%;
   label {
@@ -7,11 +9,8 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   }
-  input {
-    padding: 0.5rem;
-    width: 100%;
-    max-width: 600px;
-    box-sizing: border-box;
+  input{
+    @extend %searchbox;
     display: block;
     &:focus {
       outline: #272727 auto 1px;
@@ -23,11 +22,8 @@
   .search-result {
     li {
       a {
+        @extend %searchbox;
         display: inline-block;
-        width: 100%;
-        max-width: 600px;
-        padding: 0.5rem;
-        box-sizing: border-box;
         text-decoration: none;
       }
     }

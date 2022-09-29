@@ -1,31 +1,8 @@
+@import "../styles/abstracts/placeholders";
+
 .mobile-header {
   display: none;
-  width: 100%;
-  h1 {
-    font-weight: bold;
-    font-size: 100%;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  .navigation-items {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
-    li {
-      margin-left: 3em;
-      a {
-        text-decoration: none;
-      }
-    }
-  }
-  .left-menu {
-    margin-left: auto;
-    button {
-      background-color: transparent;
-    }
-  }
+  @extend %header-defaults;
   @media (max-width: 768px) {
     display: block;
   }
@@ -33,32 +10,7 @@
 
 .header {
   display: block;
-  width: 100%;
-  h1 {
-    font-weight: bold;
-    font-size: 100%;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  .navigation-items {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
-    li {
-      margin-left: 3em;
-      a {
-        text-decoration: none;
-      }
-    }
-  }
-  .left-menu {
-    margin-left: auto;
-    button {
-      background-color: transparent;
-    }
-  }
+  @extend %header-defaults;
   @media (min-width: 1024px) {
     .heroes-menu {
       display: flex;
