@@ -1,6 +1,10 @@
+@import "../styles/abstracts/mixins";
+
 .messages{
+    margin-left: 1em;
     margin-top: 3em;
     h2{
-        width: fit-content;
+        @include pageTitle(fit-content);
+        margin: 0;
     }
 }

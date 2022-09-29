@@ -2,6 +2,7 @@
 
 .search-component {
   width: 40%;
+  margin-left: 1em;
   label {
     display: block;
     font-weight: bold;
@@ -31,5 +32,8 @@
   ul.search-result {
     margin-top: 0;
     padding-left: 0;
+  }
+  @media (max-width: 1024px){
+    width: 100%;
   }
 }

@@ -1,17 +1,14 @@
+@import "../styles/abstracts/mixins";
 //Dashboard
 h2 {
-  text-align: center;
-  width: 50%;
-  margin: 1em auto;
-  border-radius: 2em;
+  @include pageTitle(50%);
 }
 
 .heroes-menu {
   padding: 0;
   margin: auto;
   max-width: 1000px;
-  display: flex;
-  flex-direction: row;
+  @include setFlex(row);
 
   /* flexbox */
   flex-wrap: wrap;
@@ -22,14 +19,12 @@ h2 {
     border-radius: 2px;
     padding: 1rem;
     font-size: 1.2rem;
-    width: 18%;
+    @include centered(0.5rem, 18%);
     text-decoration: none;
     display: inline-block;
     text-align: center;
     min-width: 70px;
-    margin: 0.5rem auto;
     box-sizing: border-box;
-
     /* flexbox */
     order: 0;
     flex: 0 1 auto;
@@ -37,15 +32,13 @@ h2 {
   }
   @media (min-width: 1024px) {
     .heroes-menu {
-      display: flex;
-      flex-direction: rowa;
+      @include setFlex(row);
     }
   }
   @media (min-width: 768px) and (max-width: 1024px) {
     .heroes-menu {
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
+      @include setFlex(column);
+      @include centered(0, 90%);
     }
     a {
       width: 90%;
@@ -55,11 +48,10 @@ h2 {
   @media (max-width: 768px) {
     .heroes-menu {
       display: inline-grid;
-      width: 90%;
+      @include centered(1, 90%);
     }
     a {
-      width: 90%;
-      margin: 1 auto;
+      @include centered(1, 90%);
       box-sizing: content-box;
     }
   }

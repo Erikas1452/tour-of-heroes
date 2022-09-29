@@ -20,6 +20,18 @@
   }
 }
 
+@mixin setFlex($direction){
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin pageTitle($width){
+    text-align: center;
+    width: $width;
+    margin: 1em auto;
+    border-radius: 2em;
+}
+
 @mixin centered($topBottomMargin, $width){
   width: $width;
   margin: $topBottomMargin auto;
