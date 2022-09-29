@@ -1,11 +1,11 @@
 app-dashboard {
     h2 {
       color: $text;
-      background-color: $primary;
+      background-color: $card-background;
     }
     .heroes-menu {
       a {
-        background-color: $primary;
+        background-color: $card-background;
         color: $text;
         &:hover {
           background-color: $selected;

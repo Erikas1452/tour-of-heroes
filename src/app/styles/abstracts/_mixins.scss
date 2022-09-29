@@ -27,8 +27,7 @@
 
 @mixin pageTitle($width){
     text-align: center;
-    width: $width;
-    margin: 1em auto;
+    @include centered(1em, $width);
     border-radius: 2em;
 }
 

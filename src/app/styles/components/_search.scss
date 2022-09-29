@@ -1,5 +1,14 @@
 app-hero-search {
     .search-component {
+      label{
+        color: $secondary;
+        background-color: $card-background;
+      }
+      input{
+        background-color: $card-background;
+        color: $secondary;
+        border-color: $primary;
+      }
       .search-result {
         li {
           a {

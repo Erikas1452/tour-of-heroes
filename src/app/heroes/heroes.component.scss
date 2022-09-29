@@ -1,15 +1,15 @@
 @import "../styles/abstracts/mixins";
 @import "../styles/abstracts/placeholders";
 
-h2{
+h2 {
   @include pageTitle(40%);
 }
 
-.hero-page-container{
+.hero-page-container {
   display: flex;
   width: 100%;
   max-height: 515px;
-  .hero-form{
+  .hero-form {
     @include centered(0, 45%);
   }
   .heroes-list {
@@ -18,23 +18,13 @@ h2{
     @extend %scrollbar;
     max-height: 100%;
   }
-  @media (min-width: 768px) and (max-width: 1024px) {
+  @media (max-width: 1024px) {
     max-height: none;
     display: block;
-    .heroes-list{
+    .heroes-list {
       width: 90%;
     }
-    .hero-form{
-      @include centered(0, 90%);
-    }
-  }
-  @media (max-width: 768px) {
-    max-height: none;
-    display: block;
-    .heroes-list{
-      width: 90%;
-    }
-    .hero-form{
+    .hero-form {
       @include centered(0, 90%);
     }
   }
@@ -44,13 +34,13 @@ h2{
   list-style-type: none;
   padding: 0;
   @include centered(0, 85%);
-    li {
-      position: relative;
-      cursor: pointer;
-      &:hover {
-        left: 0.1em;
-      }
-    } 
+  li {
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      left: 0.1em;
+    }
+  }
   a {
     text-decoration: none;
     margin: 0.5em;

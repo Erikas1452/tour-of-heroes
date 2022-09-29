@@ -1,13 +1,13 @@
 @import "../styles/abstracts/mixins";
 
-.hero-edit-form{
-  mat-card{
+.hero-edit-form {
+  mat-card {
     @include centered(0, 80%);
   }
 }
 
-.hero-page-container{
-    mat-card {
+.hero-page-container {
+  mat-card {
     @include centered(0, 100%);
     max-height: 515px;
     padding-bottom: 0;
@@ -40,10 +40,10 @@ div.mat-chip-list-wrapper {
     @include centered(0, 100%);
     display: inline-grid;
     height: 100%;
-    button{
+    button {
       margin: 0;
     }
-    textarea{
+    textarea {
       max-height: 50px;
     }
   }

@@ -1,16 +1,17 @@
 @import "../styles/abstracts/placeholders";
+@import "../styles/abstracts/mixins";
 
 .search-component {
   width: 40%;
   margin-left: 1em;
+  margin-right: 1em;
   label {
+    @include pageTitle(30%);
     display: block;
     font-weight: bold;
     font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
   }
-  input{
+  input {
     @extend %searchbox;
     display: block;
     &:focus {
@@ -33,7 +34,8 @@
     margin-top: 0;
     padding-left: 0;
   }
-  @media (max-width: 1024px){
-    width: 100%;
+  @media (max-width: 1024px) {
+    @include centered(0, 90%);
+    width: 90%;
   }
 }

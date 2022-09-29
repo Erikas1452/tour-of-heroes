@@ -1,14 +1,19 @@
+@import "../abstracts/placeholders";
 .themed-dialog {
-    .mat-dialog-container {
-      background-color: $primary;
-      h2 {
-        color: $secondary;
-      }
-      h4 {
-        color: $secondary;
-      }
-      p {
-        color: $secondary;
-      }
+  .mat-dialog-container {
+    background-color: $primary;
+    h2 {
+      color: $secondary;
+    }
+    h4 {
+      color: $secondary;
+    }
+    p {
+      color: $secondary;
     }
   }
+  .hero-edit-form{
+    padding: 0;
+    @extend %scrollbar;
+  }
+}
