@@ -19,13 +19,11 @@ body {
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
 
 h2,
 h3 {
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
 
@@ -34,7 +32,6 @@ input[type="text"],
 button {
   color: #333;
   padding: 8px;
-  font-family: Cambria, Georgia, serif;
 }
 
 button {
@@ -47,27 +44,18 @@ button {
   margin-right: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
-}
-
-button:hover {
-  background-color: black;
-  color: white;
-}
-
-button:disabled {
-  background-color: #eee;
-  color: #aaa;
-  cursor: auto;
-}
-
-/* everywhere else */
-
-* {
-  font-family: Arial, Helvetica, sans-serif;
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+  &:disabled{
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+  }
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 0;
 }
