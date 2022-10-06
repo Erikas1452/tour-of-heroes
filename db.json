@@ -1,0 +1,86 @@
+{
+  "heroes": [
+    {
+      "id": 12,
+      "name": "Dr. Nice",
+      "level": 6,
+      "companyType": "Marvel",
+      "description": "A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero ",
+      "hashtags": [
+        "Nice",
+        "Hero",
+        "Marvel"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Dr. Strange",
+      "level": 6,
+      "companyType": "Marvel",
+      "description": "HELLO",
+      "hashtags": [
+        "Doctor",
+        "Strange",
+        "Marvel"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Batman",
+      "level": 9,
+      "companyType": "DC",
+      "description": "Dark knight",
+      "hashtags": [
+        "Good",
+        "Dark",
+        "DC",
+        "Dark"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Spiderman",
+      "level": 9,
+      "companyType": "Marvel",
+      "description": "A nice hero",
+      "hashtags": [
+        "Spidey",
+        "Spider",
+        "Marvel"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Little spooder",
+      "level": 4,
+      "companyType": "Marvel",
+      "description": "A nice spooder",
+      "hashtags": [
+        "Spidey",
+        "Marvel"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Dr. Nice",
+      "level": 6,
+      "companyType": "Marvel",
+      "description": "A nice hero",
+      "hashtags": [
+        "Nice",
+        "Hero",
+        "Marvel"
+      ]
+    },
+    {
+      "name": "dwd",
+      "level": 5,
+      "companyType": "Marvel",
+      "description": "dwa",
+      "hashtags": [
+        "daw"
+      ],
+      "id": 20
+    }
+  ]
+}

@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
   //State NGXS
@@ -36,9 +35,10 @@ import { DescriptionDialogComponent } from './pop-up-dialogs/description-dialog/
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { HeroEditFormDialogComponent } from './pop-up-dialogs/hero-edit-form-dialog/hero-edit-form-dialog.component';
 //Services
-import { InMemoryDataService } from './services/in-memory-database-api-service/in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,9 @@ import { HeaderComponent } from './header/header.component';
     DescriptionDialogComponent,
     HeroFormComponent,
     HeroEditFormDialogComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -78,9 +80,6 @@ import { HeaderComponent } from './header/header.component';
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot(),
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
   ],
   providers: [],
   bootstrap: [AppComponent]
