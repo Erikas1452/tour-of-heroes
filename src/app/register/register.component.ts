@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { matchValidator } from '../common/functions';
+import { UserService } from '../services/user-service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,10 @@ export class RegisterComponent implements OnInit {
   ]);
   public registerFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.registerFormGroup = this._formBuilder.group(
@@ -45,5 +49,14 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  register() {}
+  register() {
+    this.userService
+      .register(
+        this.registerFormGroup.value.username,
+        this.registerFormGroup.value.password
+      )
+      .subscribe(
+        (res) => console.log(res),
+      );
+  }
 }

@@ -1,4 +1,31 @@
 {
+  "users": [
+    {
+      "email": "user@gmail.com",
+      "password": "$2a$10$ap79cr2srgflLN8lXQWu7unXDQOpflCEpM/wBjn9dX6wqK.c2fWkW",
+      "id": 1
+    },
+    {
+      "email": "dadada@gmail.com",
+      "password": "$2a$10$0qO8ltg5EEzECTzfsL.lEeF.Nvia4j0qm/nfPDQ8HvwvisFANMt4.",
+      "id": 2
+    },
+    {
+      "email": "dadada@13.com",
+      "password": "$2a$10$D0hoQMDOxrc4tV0mPvxDS.Onm7te9LWkAjHaTcD29DKdGwivIxfIi",
+      "id": 3
+    },
+    {
+      "email": "d@gmail.ru",
+      "password": "$2a$10$fOGdc71mwFFWkR7HIeos6.gEOvqa23noE/N6yFBUb4Af/.dBK51HC",
+      "id": 4
+    },
+    {
+      "email": "ewa@gmail.com",
+      "password": "$2a$10$6vQlnKPnY.PrOtsVjspTMeC7riAAE3CrKre7ng7vMH0fkpL2fyhgC",
+      "id": 5
+    }
+  ],
   "heroes": [
     {
       "id": 12,
@@ -73,14 +100,14 @@
       ]
     },
     {
-      "name": "dwd",
-      "level": 5,
+      "name": "wa",
+      "level": 3,
       "companyType": "Marvel",
-      "description": "dwa",
+      "description": "ewqewq",
       "hashtags": [
-        "daw"
+        "ewqeqw"
       ],
-      "id": 20
+      "id": 18
     }
   ]
 }

@@ -16,9 +16,6 @@ export function matchValidator(source: string, target: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const sourceCtrl = control.get(source);
     const targetCtrl = control.get(target);
-    console.log("VALIDATING");
-    console.log(sourceCtrl);
-    console.log(targetCtrl);
     return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
       ? { mismatch: true }
       : null;

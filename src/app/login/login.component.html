@@ -1,6 +1,9 @@
 <mat-card>
+  <div class="title" >
+    <h1 class="title-text">TOUR OF HEROES</h1>
+  </div>
     <mat-card-subtitle>
-        <form (ngSubmit)="login()" [formGroup]="heroFormGroup" class="login-form" #heroForm="ngForm">
+        <form (ngSubmit)="login()" [formGroup]="loginFormGroup" class="login-form" #heroForm="ngForm">
           <!-- Username -->
           <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
@@ -25,8 +28,13 @@
           >
           Password is required.
           </div>
+
+          <div>
+            <p>Don't have an account <a routerLink="/register">Register</a></p>
+          </div>
+
           <!-- Button -->
-          <button type="submit" [disabled]="!heroFormGroup.valid">
+          <button type="submit" [disabled]="!loginFormGroup.valid">
             Login
           </button>
         </form>

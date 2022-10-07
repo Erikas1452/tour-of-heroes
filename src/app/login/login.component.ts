@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,13 @@ export class LoginComponent implements OnInit {
   public passwordControl: FormControl = new FormControl('', [
     Validators.required,
   ]);
-  public heroFormGroup!: FormGroup;
+  public loginFormGroup!: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {
-    this.heroFormGroup = this._formBuilder.group({
+  constructor(
+    private _formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
+    this.loginFormGroup = this._formBuilder.group({
       username: this.usernameControl,
       password: this.passwordControl,
     });
@@ -29,7 +33,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login(){
-    
+  login() {
+    this.authService
+      .userLogin(
+        this.loginFormGroup.value.username,
+        this.loginFormGroup.value.password
+      )
+      .subscribe(
+        (res) => console.log(res),
+      );
   }
 }

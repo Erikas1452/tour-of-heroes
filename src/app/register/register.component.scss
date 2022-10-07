@@ -1,10 +1,18 @@
 @import "../styles/abstracts/mixins";
 
 .mat-card {
-    @include centered(2rem, 30%);
-    @media (max-width: 768px) {
-        @include centered(2rem, 80%);
+  .title {
+    @include centered(1rem, 80%);
+    .title-text {
+      text-align: center;
+      padding: 1rem;
+      font-weight: 900;
     }
+  }
+  @include centered(2rem, 30%);
+  @media (max-width: 768px) {
+    @include centered(2rem, 80%);
+  }
   .register-form {
     @include centered(0, 100%);
     display: inline-grid;

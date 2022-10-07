@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { AuthService } from './services/auth-service/auth.service';
 import { GetHeroes } from './state/hero-page-state/hero.actions';
 
 @Component({
@@ -11,7 +12,7 @@ import { GetHeroes } from './state/hero-page-state/hero.actions';
 export class AppComponent {
   private bodyElement = document.body;
   private defaultStyle = this.bodyElement.className;
-  constructor(private store: Store) {}
+  constructor(private store: Store, public authService: AuthService) {}
 
   ngOnInit() {
     this.bodyElement.className=this.defaultStyle + ' ' + 'theme-light';

@@ -1,6 +1,6 @@
 <mat-card>
-  <div style="margin: 1rem auto; width: 80%" >
-    <h1 style="text-align: center; padding: 1rem; font-weight:900;">TOUR OF HEROES</h1>
+  <div class="title" >
+    <h1 class="title-text">TOUR OF HEROES</h1>
   </div>
   <mat-card-subtitle>
     <form
@@ -60,6 +60,11 @@
       <div class="error" *ngIf="passwordMatchError">
         Password does not match
       </div>
+
+      <div>
+        <p>Already have an account <a routerLink="/login">Login</a></p>
+      </div>
+
       <!-- Button -->
       <button type="submit" [disabled]="!registerFormGroup.valid">
         Register
