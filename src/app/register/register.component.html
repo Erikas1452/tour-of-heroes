@@ -1,1 +1,69 @@
-<p>register works!</p>
+<mat-card>
+  <div style="margin: 1rem auto; width: 80%" >
+    <h1 style="text-align: center; padding: 1rem; font-weight:900;">TOUR OF HEROES</h1>
+  </div>
+  <mat-card-subtitle>
+    <form
+      (ngSubmit)="register()"
+      [formGroup]="registerFormGroup"
+      class="register-form"
+      #heroForm="ngForm"
+    >
+      <!-- Username -->
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          color="accent"
+          [formControl]="usernameControl"
+          matInput
+          type="text"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="usernameControl.errors?.['required'] && usernameControl.touched"
+      >
+        Username is required.
+      </div>
+      <!-- Password -->
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          color="accent"
+          [formControl]="passwordControl"
+          matInput
+          type="password"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="passwordControl.errors?.['required'] && passwordControl.touched"
+      >
+        Password is required.
+      </div>
+      <!-- Repeat Passwrod -->
+      <mat-form-field appearance="fill">
+        <mat-label>Repeat Password</mat-label>
+        <input
+          color="accent"
+          [formControl]="confirmPasswordControl"
+          matInput
+          type="password"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="confirmPasswordControl.errors?.['required'] && confirmPasswordControl.touched"
+      >
+        Password Confirmation is required.
+      </div>
+      <div class="error" *ngIf="passwordMatchError">
+        Password does not match
+      </div>
+      <!-- Button -->
+      <button type="submit" [disabled]="!registerFormGroup.valid">
+        Register
+      </button>
+    </form>
+  </mat-card-subtitle>
+</mat-card>

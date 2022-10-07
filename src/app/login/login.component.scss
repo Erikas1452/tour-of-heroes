@@ -1,0 +1,16 @@
+@import "../styles/abstracts/mixins";
+
+.mat-card {
+    @include centered(2rem, 30%);
+    @media (max-width: 768px) {
+        @include centered(2rem, 80%);
+    }
+  .login-form {
+    @include centered(0, 100%);
+    display: inline-grid;
+    height: 100%;
+    button {
+      margin: 0;
+    }
+  }
+}

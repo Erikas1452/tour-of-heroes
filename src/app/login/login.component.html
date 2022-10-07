@@ -1,1 +1,34 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-subtitle>
+        <form (ngSubmit)="login()" [formGroup]="heroFormGroup" class="login-form" #heroForm="ngForm">
+          <!-- Username -->
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input color="accent" [formControl]="usernameControl" matInput type="text" />
+          </mat-form-field>
+          <div
+            class="error"
+            *ngIf="usernameControl.errors?.['required'] && usernameControl.touched"
+          >
+          Username is required.
+          </div>
+           <!-- 
+            Password
+            -->
+           <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input color="accent" [formControl]="passwordControl" matInput type="password" />
+          </mat-form-field>
+          <div
+            class="error"
+            *ngIf="passwordControl.errors?.['required'] && passwordControl.touched"
+          >
+          Password is required.
+          </div>
+          <!-- Button -->
+          <button type="submit" [disabled]="!heroFormGroup.valid">
+            Login
+          </button>
+        </form>
+      </mat-card-subtitle>
+</mat-card>
