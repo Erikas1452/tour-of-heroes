@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service/auth.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   public loginFormGroup!: FormGroup;
 
   constructor(
+    private router: Router,
     private _formBuilder: FormBuilder,
     private authService: AuthService
   ) {
@@ -40,7 +42,10 @@ export class LoginComponent implements OnInit {
         this.loginFormGroup.value.password
       )
       .subscribe(
-        (res) => console.log(res),
+        (res) => {
+          this.router.navigate(['dashboard']);
+        }
       );
+      
   }
 }
