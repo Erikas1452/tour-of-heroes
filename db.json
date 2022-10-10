@@ -29,8 +29,9 @@
   "heroes": [
     {
       "id": 12,
+      "userId": 1,
       "name": "Dr. Nice",
-      "level": 6,
+      "level": 2,
       "companyType": "Marvel",
       "description": "A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero A STRANGE HERO a strage hero ",
       "hashtags": [
@@ -41,6 +42,7 @@
     },
     {
       "id": 13,
+      "userId": 2,
       "name": "Dr. Strange",
       "level": 6,
       "companyType": "Marvel",
@@ -53,6 +55,7 @@
     },
     {
       "id": 14,
+      "userId": 2,
       "name": "Batman",
       "level": 9,
       "companyType": "DC",
@@ -66,6 +69,7 @@
     },
     {
       "id": 15,
+      "userId": 2,
       "name": "Spiderman",
       "level": 9,
       "companyType": "Marvel",
@@ -78,6 +82,7 @@
     },
     {
       "id": 16,
+      "userId": 2,
       "name": "Little spooder",
       "level": 4,
       "companyType": "Marvel",
@@ -89,6 +94,7 @@
     },
     {
       "id": 17,
+      "userId": 2,
       "name": "Dr. Nice",
       "level": 6,
       "companyType": "Marvel",
@@ -101,13 +107,14 @@
     },
     {
       "name": "wa",
-      "level": 3,
+      "level": 4,
       "companyType": "Marvel",
       "description": "ewqewq",
       "hashtags": [
         "ewqeqw"
       ],
-      "id": 18
+      "id": 18,
+      "userId": 2
     }
   ]
 }
