@@ -17,6 +17,10 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  getToken(){
+    return localStorage.getItem('access_token');
+  }
+
   logout(){
     localStorage.removeItem("access_token");
     this.router.navigate(['login']);

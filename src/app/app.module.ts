@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
   //State NGXS
   import { NgxsModule } from '@ngxs/store';
@@ -40,6 +40,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
     NgxsStoragePluginModule.forRoot(),
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
         JwtHelperService
   ],

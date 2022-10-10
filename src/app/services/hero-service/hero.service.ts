@@ -9,10 +9,11 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class HeroService {
-  private heroesUrl = 'http://localhost:3000/heroes';
+  private heroesUrl = 'http://localhost:3000/600/heroes';
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true,
   };
 
   constructor(
