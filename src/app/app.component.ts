@@ -12,11 +12,10 @@ import { GetHeroes } from './state/hero-page-state/hero.actions';
 export class AppComponent {
   private bodyElement = document.body;
   private defaultStyle = this.bodyElement.className;
-  constructor(private store: Store, public authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
     this.bodyElement.className=this.defaultStyle + ' ' + 'theme-light';
-    this.store.dispatch(new GetHeroes());
   }
 
   changeTheme(e: any){
