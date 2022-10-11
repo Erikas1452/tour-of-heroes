@@ -1,4 +1,4 @@
-import { Hero } from "src/app/hero";
+import { Hero } from "src/app/common/hero";
 
 export interface HeroStateModel{
     heroes: Hero[],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Hero } from 'src/app/hero';
+import { Hero } from 'src/app/common/hero';
 import { MatDialog } from '@angular/material/dialog';
 import { DescriptionDialogComponent } from 'src/app/components/pop-ups/description-dialog/description-dialog.component';
 import { Store } from '@ngxs/store';

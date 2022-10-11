@@ -1,4 +1,4 @@
-import { Hero } from "../../hero";
+import { Hero } from "../../common/hero";
 
 export class GetHeroes {
     static readonly type = '[Hero API] Get Heroes';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { Hero } from 'src/app/hero';
+import { Hero } from 'src/app/common/hero';
 import { GetHeroes } from 'src/app/state/hero-page-state/hero.actions';
 import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 

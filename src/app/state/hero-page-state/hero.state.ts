@@ -21,7 +21,7 @@ import {
   insertItem,
   updateItem,
 } from '@ngxs/store/operators';
-import { Hero } from 'src/app/hero';
+import { Hero } from 'src/app/common/hero';
 import { MessageService } from 'src/app/services/message-service/message.service';
 
 @State<HeroStateModel>({

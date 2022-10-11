@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { identicalHashValidator } from 'src/app/common/functions';
-import { Hero } from 'src/app/hero';
+import { Hero } from 'src/app/common/hero';
 
 @Component({
   selector: 'app-hero-form',

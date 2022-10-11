@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, debounceTime, Observable, tap} from 'rxjs';
-import { Hero } from 'src/app/hero';
+import { Hero } from 'src/app/common/hero';
 import { RemoveSearchResults, SearchHeroes} from 'src/app/state/hero-page-state/hero.actions';
 import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 
