@@ -28,7 +28,6 @@ export class AuthService {
   userLogin(username: string, password: string) {
     return this.userService.login(username, password).pipe(
       tap((response) => {
-        console.log(response);
         localStorage.setItem('access_token', response.accessToken);
       })
     )
