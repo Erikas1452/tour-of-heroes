@@ -19,7 +19,6 @@ export class UserService {
   ) {}
 
   login(username: string, password: string): Observable<any> {
-    console.log('HELLO from user');
     const url = `${this.apiUrl}/login`;
     const body = {
       email: username,
@@ -29,7 +28,6 @@ export class UserService {
       .post<any>(url, body, this.httpOptions)
       .pipe(
         tap((response) => {
-          console.log(response);
           this.log('fetched user');
         }),
         catchError(this.handleError<any>('getUser'))
@@ -42,7 +40,6 @@ export class UserService {
       email: username,
       password: password,
     };
-    console.log(body);
     return this.http
       .post<any>(url, body, this.httpOptions)
       .pipe(

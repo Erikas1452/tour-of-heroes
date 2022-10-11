@@ -5,8 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngxs/store';
 import { matchValidator } from 'src/app/common/functions';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { RegisterUser } from 'src/app/state/user-state/user.actions';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private userService: UserService
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -50,13 +52,12 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.userService
-      .register(
-        this.registerFormGroup.value.username,
-        this.registerFormGroup.value.password
-      )
-      .subscribe(
-        (res) => console.log(res),
+    this.store
+      .dispatch(
+        new RegisterUser(
+          this.registerFormGroup.value.username,
+          this.registerFormGroup.value.password
+        )
       );
   }
 }

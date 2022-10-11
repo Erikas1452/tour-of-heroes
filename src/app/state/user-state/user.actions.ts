@@ -1,6 +1,11 @@
 export class LoginUser {
-    static readonly type = '[User API] Get User';
-    constructor(public username: string, public password: string){}
+    static readonly type = '[User API] Login User';
+    constructor(public username: string, public password: string){};
+}
+
+export class RegisterUser {
+    static readonly type = '[User API] Register User';
+    constructor(public username: string, public password:string){};
 }
 
 export class LogoutUser{

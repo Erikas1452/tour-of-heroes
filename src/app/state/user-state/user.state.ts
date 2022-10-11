@@ -2,11 +2,12 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UserStateModel } from './userState.model';
 import { Injectable, NgZone} from '@angular/core';
 import { MessageService } from 'src/app/services/message-service/message.service';
-import { LoginUser, LogoutUser } from './user.actions';
-import { tap } from 'rxjs';
+import { LoginUser, LogoutUser, RegisterUser } from './user.actions';
+import { catchError, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/user';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @State<UserStateModel>({
   name: 'UserState',
@@ -17,7 +18,7 @@ import { User } from 'src/app/common/user';
 })
 @Injectable()
 export class UserState {
-  constructor(private authService: AuthService, private router: Router, private ngZone: NgZone) {}
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private ngZone: NgZone) {}
 
   @Selector()
   static selectUser(state: UserStateModel) {
@@ -42,6 +43,21 @@ export class UserState {
           email: response.user.email,
         });
         this.ngZone.run(()=>this.router.navigate(['dashboard']));
+      })
+    );
+  }
+
+  @Action(RegisterUser)
+  registerUser(ctx: StateContext<UserStateModel>, action: RegisterUser) {
+    const state = ctx.getState();
+    return this.userService.register(action.username, action.password).pipe(
+      tap((response: any) => {
+        ctx.setState({
+          ...state,
+        });
+        if(response){
+          this.ngZone.run(()=>this.router.navigate(['login']));
+        }
       })
     );
   }
