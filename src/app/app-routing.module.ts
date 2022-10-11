@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { HeroesComponent } from './components/heroes-page/heroes/heroes.component';
+import { DashboardComponent } from './components/heroes-page/dashboard/dashboard.component';
+import { HeroDetailComponent } from './components/heroes-page/hero-detail/hero-detail.component';
+import { RegisterComponent } from './components/auth-page/register/register.component';
+import { LoginComponent } from './components/auth-page/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [

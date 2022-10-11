@@ -1,10 +1,10 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import {Component,EventEmitter,OnInit,Output,Input,ViewChild} from '@angular/core';
-import {FormBuilder,FormControl,FormGroup, Validators} from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, Input, ViewChild} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { identicalHashValidator } from '../common/functions';
-import { Hero } from '../hero';
+import { identicalHashValidator } from 'src/app/common/functions';
+import { Hero } from 'src/app/hero';
 
 @Component({
   selector: 'app-hero-form',

@@ -26,21 +26,24 @@ import { AppRoutingModule } from './app-routing.module';
   import {MatListModule} from '@angular/material/list';
 //Components
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { DescriptionDialogComponent } from './pop-up-dialogs/description-dialog/description-dialog.component';
-import { HeroFormComponent } from './hero-form/hero-form.component';
-import { HeroEditFormDialogComponent } from './pop-up-dialogs/hero-edit-form-dialog/hero-edit-form-dialog.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { HeroesComponent } from './components/heroes-page/heroes/heroes.component';
+import { HeroDetailComponent } from './components/heroes-page/hero-detail/hero-detail.component';
+import { MessagesComponent } from './components/layout/messages/messages.component';
+import { DashboardComponent } from './components/heroes-page/dashboard/dashboard.component';
+import { HeroSearchComponent } from './components/heroes-page/hero-search/hero-search.component';
+import { HeroFormComponent } from './components/heroes-page/hero-form/hero-form.component';
+import { RegisterComponent } from './components/auth-page/register/register.component';
+import { LoginComponent } from './components/auth-page/login/login.component';
+  //Pop-Ups
+  import { DescriptionDialogComponent } from './components/pop-ups/description-dialog/description-dialog.component';
+  import { HeroEditFormDialogComponent } from './components/pop-ups/hero-edit-form-dialog/hero-edit-form-dialog.component';
 //Services
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+//Interceptors
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+//Extras
+import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [

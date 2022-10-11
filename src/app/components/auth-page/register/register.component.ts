@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { matchValidator } from '../common/functions';
-import { UserService } from '../services/user-service/user.service';
+import { matchValidator } from 'src/app/common/functions';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-register',

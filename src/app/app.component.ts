@@ -1,7 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngxs/store';
 import { AuthService } from './services/auth-service/auth.service';
-import { GetHeroes } from './state/hero-page-state/hero.actions';
 
 @Component({
   selector: 'app-root',

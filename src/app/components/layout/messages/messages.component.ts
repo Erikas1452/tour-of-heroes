@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { ClearMessages } from '../state/hero-page-state/hero.actions';
-import { HeroState } from '../state/hero-page-state/hero.state';
+import { ClearMessages } from 'src/app/state/hero-page-state/hero.actions';
+import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',

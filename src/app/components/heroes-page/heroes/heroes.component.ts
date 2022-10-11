@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Hero } from '../hero';
+import { Hero } from 'src/app/hero';
 import { MatDialog } from '@angular/material/dialog';
-import { DescriptionDialogComponent } from '../pop-up-dialogs/description-dialog/description-dialog.component';
-import { Select, Store } from '@ngxs/store';
-import { AddHero, DeleteHero } from '../state/hero-page-state/hero.actions';
-import { HeroState } from '../state/hero-page-state/hero.state';
+import { DescriptionDialogComponent } from 'src/app/components/pop-ups/description-dialog/description-dialog.component';
+import { Store } from '@ngxs/store';
+import { AddHero, DeleteHero } from 'src/app/state/hero-page-state/hero.actions';
+import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 
 @Component({
   selector: 'app-heroes',

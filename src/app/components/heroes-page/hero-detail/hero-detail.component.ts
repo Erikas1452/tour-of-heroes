@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
+import { Hero } from '../../../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
-import { EditHero, RemoveSelectedHero, SelectHero } from '../state/hero-page-state/hero.actions';
-import { HeroState } from '../state/hero-page-state/hero.state';
+import { Store } from '@ngxs/store';
+import { EditHero, RemoveSelectedHero, SelectHero } from '../../../state/hero-page-state/hero.actions';
+import { HeroState } from '../../../state/hero-page-state/hero.state';
 import { MatDialog } from '@angular/material/dialog';
-import { HeroEditFormDialogComponent } from '../pop-up-dialogs/hero-edit-form-dialog/hero-edit-form-dialog.component';
+import { HeroEditFormDialogComponent } from '../../pop-ups/hero-edit-form-dialog/hero-edit-form-dialog.component';
 
 export interface DialogData {
   id: number;

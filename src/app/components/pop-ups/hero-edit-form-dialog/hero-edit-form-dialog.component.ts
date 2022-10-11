@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData, HeroDetailComponent } from '../../hero-detail/hero-detail.component';
+import { DialogData, HeroDetailComponent } from '../../heroes-page/hero-detail/hero-detail.component';
 
 @Component({
   selector: 'app-hero-edit-form-dialog',
