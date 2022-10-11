@@ -2,11 +2,12 @@ import { Hero } from "../../common/hero";
 
 export class GetHeroes {
     static readonly type = '[Hero API] Get Heroes';
+    constructor(public userId: number){};
 }
 
 export class SelectHero {
     static readonly type = '[Hero API] Get Hero';
-    constructor(public heroId: number){}
+    constructor(public heroId: number){};
 }
 
 export class RemoveSelectedHero {
@@ -16,7 +17,7 @@ export class RemoveSelectedHero {
 export class SearchHeroes {
     static readonly type = '[Hero API] Get Hero by Term';
     constructor(public term: string){}
-}
+};
 
 
 export class ClearMessages {
@@ -29,15 +30,15 @@ export class RemoveSearchResults {
 
 export class EditHero {
     static readonly type = '[Hero API] Edit Hero';
-    constructor(public hero: Hero){}
+    constructor(public hero: Hero){};
 }
 
 export class AddHero {
     static readonly type = '[Hero API] Add Hero';
-    constructor(public hero: Hero){}
+    constructor(public hero: Hero){};
 }
 
 export class DeleteHero {
     static readonly type = '[Hero API] Delete Hero';
-    constructor(public heroId: number){}
+    constructor(public heroId: number){};
 }
