@@ -44,6 +44,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 //Extras
 import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import { UserState } from './state/user-state/user.state';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
     MatSnackBarModule,
     MatDialogModule,
     MatToolbarModule,
-    NgxsModule.forRoot([HeroState], {
+    NgxsModule.forRoot([HeroState, UserState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),

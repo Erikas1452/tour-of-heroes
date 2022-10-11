@@ -6,6 +6,9 @@ import { DescriptionDialogComponent } from 'src/app/components/pop-ups/descripti
 import { Store } from '@ngxs/store';
 import { AddHero, DeleteHero } from 'src/app/state/hero-page-state/hero.actions';
 import { HeroState } from 'src/app/state/hero-page-state/hero.state';
+import { UserState } from 'src/app/state/user-state/user.state';
+import { User } from 'src/app/common/user';
+
 
 @Component({
   selector: 'app-heroes',
@@ -14,13 +17,18 @@ import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 })
 export class HeroesComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectHeroes);
+  private user$: Observable<User> = this.store.select(UserState.selectUser);
+  private user!: User;
 
   constructor(public _dialog: MatDialog, private store: Store) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.user$.subscribe((res: any) => this.user = res);
+  }
   
   public addHero(event: Hero): void {
-    this.store.dispatch(new AddHero(event as Hero))
+    const newHero = {...event, userId: this.user.id}
+    this.store.dispatch(new AddHero(newHero as Hero))
   }
 
   public delete(hero: Hero): void {

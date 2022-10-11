@@ -16,9 +16,7 @@ import {
 import { HeroStateModel } from './heroState.model';
 import {
   patch,
-  append,
   removeItem,
-  insertItem,
   updateItem,
 } from '@ngxs/store/operators';
 import { Hero } from 'src/app/common/hero';
@@ -104,9 +102,9 @@ export class HeroState {
   }
 
   @Action(GetHeroes)
-  getAllHeroes(ctx: StateContext<HeroStateModel>) {
+  getAllHeroes(ctx: StateContext<HeroStateModel>, action: GetHeroes) {
     const state = ctx.getState();
-    return this.heroService.getHeroes().pipe(
+    return this.heroService.getHeroes(action.userId).pipe(
       tap((response: any) => {
         ctx.setState({
           ...state,

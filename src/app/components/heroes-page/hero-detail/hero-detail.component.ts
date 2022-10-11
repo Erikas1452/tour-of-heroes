@@ -61,7 +61,8 @@ export class HeroDetailComponent implements OnInit {
   }
 
   private editHero(event: any): void {
-    const hero = {...event, id: this.hero?.id};
+    const hero = {id: this.hero?.id, userId: this.hero?.userId, ...event};
+    console.log(hero);
     this.store.dispatch(new EditHero(hero));
     this.goBack();
   }

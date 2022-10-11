@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { Store } from '@ngxs/store';
+import { LoginUser } from 'src/app/state/user-state/user.actions';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +23,8 @@ export class LoginComponent implements OnInit {
   public loginFormGroup!: FormGroup;
 
   constructor(
-    private router: Router,
+    private store: Store,
     private _formBuilder: FormBuilder,
-    private authService: AuthService
   ) {
     this.loginFormGroup = this._formBuilder.group({
       username: this.usernameControl,
@@ -36,16 +35,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.authService
-      .userLogin(
-        this.loginFormGroup.value.username,
-        this.loginFormGroup.value.password
-      )
-      .subscribe(
-        (res) => {
-          this.router.navigate(['dashboard']);
-        }
+    this.store
+      .dispatch(
+        new LoginUser(
+          this.loginFormGroup.value.username,
+          this.loginFormGroup.value.password
+        )
       );
-      
   }
 }

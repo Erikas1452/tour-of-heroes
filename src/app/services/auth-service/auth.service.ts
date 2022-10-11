@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { UserService } from '../user-service/user.service';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { UserService } from '../user-service/user.service';
 })
 export class AuthService {
 
-  constructor(private userService: UserService, public jwtHelper: JwtHelperService, public router: Router) {}
+  constructor(private userService: UserService, public jwtHelper: JwtHelperService) {}
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');
@@ -23,7 +23,6 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("access_token");
-    this.router.navigate(['login']);
   }
 
   userLogin(username: string, password: string) {
