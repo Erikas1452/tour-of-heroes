@@ -1,13 +1,13 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UserStateModel } from './userState.model';
-import { Injectable, NgZone} from '@angular/core';
-import { MessageService } from 'src/app/services/message-service/message.service';
+import { Injectable, NgZone } from '@angular/core';
 import { LoginUser, LogoutUser, RegisterUser } from './user.actions';
-import { catchError, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
 
 @State<UserStateModel>({
   name: 'UserState',
@@ -18,18 +18,24 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 @Injectable()
 export class UserState {
-  constructor(private authService: AuthService, private userService: UserService, private router: Router, private ngZone: NgZone) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router,
+    private ngZone: NgZone,
+    private _snackBarHandler: SnackbarHandler
+  ) {}
 
   @Selector()
   static selectUser(state: UserStateModel) {
-    return {id: state.id, email: state.email} as User;
+    return { id: state.id, email: state.email } as User;
   }
 
   @Action(LogoutUser)
   logoutUser(ctx: StateContext<UserStateModel>, action: LogoutUser) {
     this.authService.logout();
-    this.ngZone.run(()=>this.router.navigate(['login']));
-    return ctx.setState({id: undefined, email: undefined });
+    this.ngZone.run(() => this.router.navigate(['login']));
+    return ctx.setState({ id: undefined, email: undefined });
   }
 
   @Action(LoginUser)
@@ -42,7 +48,7 @@ export class UserState {
           id: response.user.id,
           email: response.user.email,
         });
-        this.ngZone.run(()=>this.router.navigate(['dashboard']));
+        this.ngZone.run(() => this.router.navigate(['dashboard']));
       })
     );
   }
@@ -55,8 +61,11 @@ export class UserState {
         ctx.setState({
           ...state,
         });
-        if(response){
-          this.ngZone.run(()=>this.router.navigate(['login']));
+        if (response) {
+          this._snackBarHandler.openSnackBar("Registered new user")
+          this.ngZone.run(() =>
+            this.router.navigate(['login'])
+          );
         }
       })
     );
