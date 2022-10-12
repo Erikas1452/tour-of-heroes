@@ -14,20 +14,19 @@ import { LoginUser } from 'src/app/state/user-state/user.actions';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public usernameControl: FormControl = new FormControl('', [
+  public emailControl: FormControl = new FormControl('', [
     Validators.required,
+    Validators.email,
+    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
   ]);
   public passwordControl: FormControl = new FormControl('', [
     Validators.required,
   ]);
   public loginFormGroup!: FormGroup;
 
-  constructor(
-    private store: Store,
-    private _formBuilder: FormBuilder,
-  ) {
+  constructor(private store: Store, private _formBuilder: FormBuilder) {
     this.loginFormGroup = this._formBuilder.group({
-      username: this.usernameControl,
+      email: this.emailControl,
       password: this.passwordControl,
     });
   }
@@ -35,12 +34,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    this.store
-      .dispatch(
+    if (this.emailControl.valid)
+    {
+      this.store.dispatch(
         new LoginUser(
-          this.loginFormGroup.value.username,
+          this.loginFormGroup.value.email,
           this.loginFormGroup.value.password
         )
       );
+    } else
+    {
+      
+    }
   }
 }

@@ -16,8 +16,10 @@ import { RegisterUser } from 'src/app/state/user-state/user.actions';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  public usernameControl: FormControl = new FormControl('', [
+  public emailControl: FormControl = new FormControl('', [
     Validators.required,
+    Validators.email,
+    Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
   ]);
   public passwordControl: FormControl = new FormControl('', [
     Validators.required,
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerFormGroup = this._formBuilder.group(
       {
-        username: this.usernameControl,
+        email: this.emailControl,
         password: this.passwordControl,
         confirmPassword: this.confirmPasswordControl,
       },
@@ -52,12 +54,19 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.store
+    if(this.registerFormGroup.valid)
+    {
+      this.store
       .dispatch(
         new RegisterUser(
-          this.registerFormGroup.value.username,
+          this.registerFormGroup.value.email,
           this.registerFormGroup.value.password
         )
       );
+    }
+    else
+    {
+      console.log(2);
+    }
   }
 }

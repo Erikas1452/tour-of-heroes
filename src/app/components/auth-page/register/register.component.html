@@ -9,21 +9,27 @@
       class="register-form"
       #heroForm="ngForm"
     >
-      <!-- Username -->
+      <!-- Email -->
       <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
+        <mat-label>Email</mat-label>
         <input
           color="accent"
-          [formControl]="usernameControl"
+          [formControl]="emailControl"
           matInput
-          type="text"
+          email
         />
       </mat-form-field>
       <div
         class="error"
-        *ngIf="usernameControl.errors?.['required'] && usernameControl.touched"
+        *ngIf="emailControl.errors?.['required'] && emailControl.touched"
       >
-        Username is required.
+        Email is required.
+      </div>
+      <div
+        class="error"
+        *ngIf="emailControl.errors?.['pattern'] && emailControl.touched"
+      >
+        Wrong email format
       </div>
       <!-- Password -->
       <mat-form-field appearance="fill">
@@ -33,6 +39,7 @@
           [formControl]="passwordControl"
           matInput
           type="password"
+          autocomplete="on"
         />
       </mat-form-field>
       <div

@@ -1,42 +1,62 @@
 <mat-card>
-  <div class="title" >
+  <div class="title">
     <h1 class="title-text">TOUR OF HEROES</h1>
   </div>
-    <mat-card-subtitle>
-        <form (ngSubmit)="login()" [formGroup]="loginFormGroup" class="login-form" #heroForm="ngForm">
-          <!-- Username -->
-          <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input color="accent" [formControl]="usernameControl" matInput type="text" />
-          </mat-form-field>
-          <div
-            class="error"
-            *ngIf="usernameControl.errors?.['required'] && usernameControl.touched"
-          >
-          Username is required.
-          </div>
-           <!-- 
+  <mat-card-subtitle>
+    <form
+      (ngSubmit)="login()"
+      [formGroup]="loginFormGroup"
+      class="login-form"
+      #heroForm="ngForm"
+    >
+      <!-- Email -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          color="accent"
+          [formControl]="emailControl"
+          matInput
+          email = "true"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="emailControl.errors?.['required'] && emailControl.touched"
+      >
+        Email is required.
+      </div>
+      <div
+        class="error"
+        *ngIf="emailControl.errors?.['pattern'] && emailControl.touched"
+      >
+        Wrong email format
+      </div>
+      <!-- 
             Password
             -->
-           <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input color="accent" [formControl]="passwordControl" matInput type="password" />
-          </mat-form-field>
-          <div
-            class="error"
-            *ngIf="passwordControl.errors?.['required'] && passwordControl.touched"
-          >
-          Password is required.
-          </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          color="accent"
+          [formControl]="passwordControl"
+          matInput
+          type="password"
+          autocomplete="on"
+        />
+      </mat-form-field>
+      <div
+        class="error"
+        *ngIf="passwordControl.errors?.['required'] && passwordControl.touched"
+      >
+        Password is required.
+      </div>
 
-          <div>
-            <p>Don't have an account <a routerLink="/register">Register</a></p>
-          </div>
+      <div>
+        <p>Don't have an account <a routerLink="/register">Register</a></p>
+      </div>
 
-          <!-- Button -->
-          <button type="submit" [disabled]="!loginFormGroup.valid">
-            Login
-          </button>
-        </form>
-      </mat-card-subtitle>
+      <!-- Button -->
+      <button type="submit" [disabled]="!loginFormGroup.valid">Login</button>
+    </form>
+  </mat-card-subtitle>
 </mat-card>
