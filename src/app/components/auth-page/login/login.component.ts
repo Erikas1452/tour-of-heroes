@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { LoginUser } from 'src/app/state/user-state/user.actions';
 
@@ -24,7 +25,11 @@ export class LoginComponent implements OnInit {
   ]);
   public loginFormGroup!: FormGroup;
 
-  constructor(private store: Store, private _formBuilder: FormBuilder) {
+  constructor(
+    private store: Store,
+    private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
+  ) {
     this.loginFormGroup = this._formBuilder.group({
       email: this.emailControl,
       password: this.passwordControl,
@@ -33,18 +38,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  private openSnackBar(): void {
+    this._snackBar.open('Form is not valid', 'Close', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   login() {
-    if (this.emailControl.valid)
-    {
+    if (this.emailControl.valid) {
       this.store.dispatch(
         new LoginUser(
           this.loginFormGroup.value.email,
           this.loginFormGroup.value.password
         )
       );
-    } else
-    {
-      
+    } else {
+      this.openSnackBar();
     }
   }
 }

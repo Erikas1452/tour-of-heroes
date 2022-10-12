@@ -5,9 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { matchValidator } from 'src/app/common/functions';
-import { UserService } from 'src/app/services/user-service/user.service';
 import { RegisterUser } from 'src/app/state/user-state/user.actions';
 
 @Component({
@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private store: Store
+    private store: Store,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +54,13 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  private openSnackBar(): void {
+    this._snackBar.open('Form is not valid', 'Close', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
   register() {
     if(this.registerFormGroup.valid)
     {
@@ -66,7 +74,7 @@ export class RegisterComponent implements OnInit {
     }
     else
     {
-      console.log(2);
+      this.openSnackBar();
     }
   }
 }

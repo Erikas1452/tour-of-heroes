@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError, EMPTY, Observable, of, tap } from 'rxjs';
 import { MessageService } from '../message-service/message.service';
 
 @Injectable({
@@ -15,8 +16,16 @@ export class UserService {
 
   constructor(
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
   ) {}
+
+  private openSnackBar(message: string): void {
+    this._snackBar.open(message, 'Close', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
 
   login(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/login`;
@@ -52,10 +61,9 @@ export class UserService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
       this.log(`${operation} failed: ${error.message}`);
-      alert(error.error);
-      return of(result as T);
+      this.openSnackBar(error.error);
+      return EMPTY;
     };
   }
 
