@@ -12,6 +12,7 @@ import {
   SearchHeroes,
   RemoveSelectedHero,
   ClearMessages,
+  ClearState,
 } from './hero.actions';
 import { HeroStateModel } from './heroState.model';
 import {
@@ -76,6 +77,15 @@ export class HeroState {
       ...state,
       selectedHero: undefined,
     });
+  }
+
+  @Action(ClearState)
+  clearState(ctx: StateContext<HeroStateModel>){
+    const state = ctx.getState();
+    return ctx.setState({
+      ...state,
+      heroes: [],
+    })
   }
 
   @Action(SearchHeroes)

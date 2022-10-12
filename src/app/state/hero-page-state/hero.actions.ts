@@ -5,6 +5,10 @@ export class GetHeroes {
     constructor(public userId: number){};
 }
 
+export class ClearState {
+    static readonly type = '[Hero API] Clear Heroes State';
+}
+
 export class SelectHero {
     static readonly type = '[Hero API] Get Hero';
     constructor(public heroId: number){};

@@ -59,11 +59,11 @@ export class HeroService {
     );
   }
 
-  public searchHeroes(term: string): Observable<Hero[]> {
+  public searchHeroes(term: string, userId: number): Observable<Hero[]> {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}?name_like=${term}`).pipe(
+    return this.http.get<Hero[]>(`${this.heroesUrl}?name_like=${term}&userId=${userId}`).pipe(
       tap((x) =>
           x.length
           ? this._errorHandler.log(`found heroes matching "${term}"`)

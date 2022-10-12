@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { AuthService } from './services/auth-service/auth.service';
+import { ClearState } from './state/hero-page-state/hero.actions';
 import { LogoutUser } from './state/user-state/user.actions';
 
 @Component({
@@ -24,6 +25,7 @@ export class AppComponent {
   }
 
   logout(){
+    this.store.dispatch(new ClearState);
     this.store.dispatch(new LogoutUser);
   }
 }
