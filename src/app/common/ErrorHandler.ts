@@ -12,10 +12,13 @@ export class ErrorHandler {
     private _snackBarHandler: SnackbarHandler
   ) {}
 
-  public handleError<T>(operation = 'operation', result?: T) {
+  public handleError<T>(operation = 'operation', showError: boolean, result?: T) {
     return (error: any): Observable<T> => {
       this.log(`${operation} failed: ${error.message}`);
-      this._snackBarHandler.openSnackBar(error.error);
+      if(showError)
+      {
+        this._snackBarHandler.openSnackBar(error.error);
+      }
       return EMPTY;
     };
   }

@@ -29,7 +29,7 @@ export class UserService {
         tap((_) => {
           this._errorHandler.log('fetched user');
         }),
-        catchError(this._errorHandler.handleError<any>('getUser'))
+        catchError(this._errorHandler.handleError<any>('getUser', true))
       );
   }
 
@@ -45,7 +45,7 @@ export class UserService {
         tap((_) => {
           this._errorHandler.log('registered user');
         }),
-        catchError(this._errorHandler.handleError<any>('registerUser'))
+        catchError(this._errorHandler.handleError<any>('registerUser', true))
       );
   }
 
