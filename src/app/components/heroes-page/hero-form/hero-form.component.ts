@@ -2,9 +2,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, OnInit, Output, Input, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { identicalHashValidator } from 'src/app/common/functions';
 import { Hero } from 'src/app/common/hero';
+import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
 
 @Component({
   selector: 'app-hero-form',
@@ -33,7 +33,7 @@ export class HeroFormComponent implements OnInit {
   
   constructor(
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar,
+    private _snackBarHandler: SnackbarHandler,
   ) {}
 
   public ngOnInit(): void {
@@ -73,14 +73,7 @@ export class HeroFormComponent implements OnInit {
         this.hashtags = [];
         this.heroForm.resetForm();
       }
-    } else this.openSnackBar();
-  }
-
-  private openSnackBar(): void {
-    this._snackBar.open('Form is not valid', 'Close', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
+    } else this._snackBarHandler.openSnackBar("Form is not valid");
   }
 
   public addChip(event: MatChipInputEvent): void {

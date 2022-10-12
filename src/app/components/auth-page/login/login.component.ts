@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
+import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
 import { LoginUser } from 'src/app/state/user-state/user.actions';
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private store: Store,
     private _formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBarHandler: SnackbarHandler
   ) {
     this.loginFormGroup = this._formBuilder.group({
       email: this.emailControl,
@@ -37,13 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  private openSnackBar(): void {
-    this._snackBar.open('Form is not valid', 'Close', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
-  }
 
   login() {
     if (this.emailControl.valid) {
@@ -54,7 +47,7 @@ export class LoginComponent implements OnInit {
         )
       );
     } else {
-      this.openSnackBar();
+      this._snackBarHandler.openSnackBar("Form is not valid");
     }
   }
 }

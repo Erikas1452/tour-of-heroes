@@ -17,15 +17,15 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  getToken(){
+  public getToken(){
     return localStorage.getItem('access_token');
   }
 
-  logout(){
+  public logout(){
     localStorage.removeItem("access_token");
   }
 
-  userLogin(username: string, password: string) {
+  public userLogin(username: string, password: string) {
     return this.userService.login(username, password).pipe(
       tap((response) => {
         localStorage.setItem('access_token', response.accessToken);

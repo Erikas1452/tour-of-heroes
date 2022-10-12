@@ -1,33 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, EMPTY, Observable, of, tap } from 'rxjs';
-import { MessageService } from '../message-service/message.service';
+import { catchError, Observable, tap } from 'rxjs';
+import { ErrorHandler } from 'src/app/common/ErrorHandler';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private apiUrl = 'http://localhost:3000';
-
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
   constructor(
-    private messageService: MessageService,
     private http: HttpClient,
-    private _snackBar: MatSnackBar,
+    private _errorHandler: ErrorHandler,
   ) {}
 
-  private openSnackBar(message: string): void {
-    this._snackBar.open(message, 'Close', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
-  }
-
-  login(username: string, password: string): Observable<any> {
+  public login(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/login`;
     const body = {
       email: username,
@@ -36,14 +26,14 @@ export class UserService {
     return this.http
       .post<any>(url, body, this.httpOptions)
       .pipe(
-        tap((response) => {
-          this.log('fetched user');
+        tap((_) => {
+          this._errorHandler.log('fetched user');
         }),
-        catchError(this.handleError<any>('getUser'))
+        catchError(this._errorHandler.handleError<any>('getUser'))
       );
   }
 
-  register(username: string, password: string): Observable<any> {
+  public register(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/users`;
     const body = {
       email: username,
@@ -52,22 +42,12 @@ export class UserService {
     return this.http
       .post<any>(url, body, this.httpOptions)
       .pipe(
-        tap((response) => {
-          this.log('registered user');
+        tap((_) => {
+          this._errorHandler.log('registered user');
         }),
-        catchError(this.handleError<any>('registerUser'))
+        catchError(this._errorHandler.handleError<any>('registerUser'))
       );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      this.log(`${operation} failed: ${error.message}`);
-      this.openSnackBar(error.error);
-      return EMPTY;
-    };
-  }
-
-  private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
-  }
+  
 }
