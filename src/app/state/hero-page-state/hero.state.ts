@@ -91,7 +91,7 @@ export class HeroState {
   @Action(SearchHeroes)
   searchHeroes(ctx: StateContext<HeroStateModel>, action: SearchHeroes){
     const state = ctx.getState();
-    return this.heroService.searchHeroes(action.term).pipe(
+    return this.heroService.searchHeroes(action.term, action.userId).pipe(
       tap((results) => {
         ctx.setState({
           ...state,

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, debounceTime, Observable, tap} from 'rxjs';
 import { Hero } from 'src/app/common/hero';
+import { User } from 'src/app/common/user';
 import { RemoveSearchResults, SearchHeroes} from 'src/app/state/hero-page-state/hero.actions';
 import { HeroState } from 'src/app/state/hero-page-state/hero.state';
+import { UserState } from 'src/app/state/user-state/user.state';
 
 @Component({
   selector: 'app-hero-search',
@@ -12,16 +14,22 @@ import { HeroState } from 'src/app/state/hero-page-state/hero.state';
 })
 export class HeroSearchComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectSearchResults);
+
+  private user$: Observable<User> = this.store.select(UserState.selectUser);
+  private user!: User;
+  
   searchFilter$ = new BehaviorSubject<string>('');
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    this.user$.subscribe((res: any) => this.user = res);
+  }
 
   public ngOnInit(): void {
     this.searchFilter$
       .pipe(
         debounceTime(300),
         tap((term) => {
-          this.store.dispatch(new SearchHeroes(term));
+          this.store.dispatch(new SearchHeroes(term, this.user.id));
         })
       )
       .subscribe();

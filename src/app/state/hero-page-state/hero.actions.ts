@@ -20,7 +20,7 @@ export class RemoveSelectedHero {
 
 export class SearchHeroes {
     static readonly type = '[Hero API] Get Hero by Term';
-    constructor(public term: string){}
+    constructor(public term: string, public userId: number){}
 };
 
 
