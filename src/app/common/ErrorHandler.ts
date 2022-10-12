@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MessageService } from '../services/message-service/message.service';
 import { SnackbarHandler } from './SnackBarHandler';
 
@@ -19,7 +19,7 @@ export class ErrorHandler {
       {
         this._snackBarHandler.openSnackBar(error.error);
       }
-      return EMPTY;
+      return of(result as T);
     };
   }
 

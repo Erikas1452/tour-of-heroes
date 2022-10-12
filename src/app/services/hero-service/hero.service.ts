@@ -31,8 +31,9 @@ export class HeroService {
   public getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap((_) => this._errorHandler.log(`fetched hero id=${id}`)),
-      catchError(this._errorHandler.handleError<Hero>(`getHero id=${id}`, false))
+      tap((_) => {this._errorHandler.log(`fetched hero id=${id}`)}),
+      // catchError(this._errorHandler.handleError<Hero>(`getHero id=${id}`, true))
+      catchError(this._errorHandler.handleError<Hero>('addHero', true, undefined))
     );
   }
 
