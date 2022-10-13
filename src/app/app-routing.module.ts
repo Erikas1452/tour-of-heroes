@@ -38,6 +38,10 @@ const routes: Routes = [
     component: HeroDetailComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: '**',
+    redirectTo: '/login',
+  },
 ];
 
 @NgModule({
