@@ -32,8 +32,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap((_) => {this._errorHandler.log(`fetched hero id=${id}`)}),
-      // catchError(this._errorHandler.handleError<Hero>(`getHero id=${id}`, true))
-      catchError(this._errorHandler.handleError<Hero>('addHero', true, undefined))
+      catchError(this._errorHandler.handleError<Hero>('addHero', false, undefined))
     );
   }
 
@@ -70,7 +69,7 @@ export class HeroService {
           ? this._errorHandler.log(`found heroes matching "${term}"`)
           : this._errorHandler.log(`no heroes matching "${term}"`)
       ),
-      catchError(this._errorHandler.handleError<Hero[]>('searchHeroes', true, []))
+      catchError(this._errorHandler.handleError<Hero[]>('searchHeroes', false, []))
     );
   }
 }

@@ -27,7 +27,7 @@
       </div>
       <div
         class="error"
-        *ngIf="emailControl.errors?.['pattern'] && emailControl.touched"
+        *ngIf="(emailControl.errors?.['pattern'] || emailControl.errors?.['email']) && emailControl.touched"
       >
         Wrong email format
       </div>
