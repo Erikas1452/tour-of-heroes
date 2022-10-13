@@ -24,6 +24,66 @@
       "email": "ewa@gmail.com",
       "password": "$2a$10$6vQlnKPnY.PrOtsVjspTMeC7riAAE3CrKre7ng7vMH0fkpL2fyhgC",
       "id": 5
+    },
+    {
+      "email": "w3r@gmail.ru",
+      "password": "$2a$10$aA1KrVHbWLiOZxX7OwqHMOQN6fiVykbQ1TLgIFQG39vIj95u/a49G",
+      "id": 6
+    },
+    {
+      "email": "weq@4343.com",
+      "password": "$2a$10$rFgdfo0tJUFRVS.noRmpG.uAITcS5Oz71WsgPsYHJCKoAUFPQ2sgG",
+      "id": 7
+    },
+    {
+      "email": "32q3232@22.com",
+      "password": "$2a$10$EdUgmRFSrNwUUckkuT1weutAfJe528gancHU8jomgLpjHZX6XDxGS",
+      "id": 8
+    },
+    {
+      "email": "eee@222.com",
+      "password": "$2a$10$TE05e.lG9RUEf0LuCLOMeODTVL7ipKZvxNe9iYL4LSCTlQw8zHyxW",
+      "id": 9
+    },
+    {
+      "email": "dwadaw@gmaill.com",
+      "password": "$2a$10$sOqaE5/a26IEpg0SXJBi9u4rordMIEE0khoS93iirp.5dHqT3qZ3.",
+      "id": 10
+    },
+    {
+      "email": "eq22qeq2e@gmail.com",
+      "password": "$2a$10$Hb0qkxmMf8uUoW.D9Dk81OZESBCS6j7A7tzNEefAcFmIcYALHazHK",
+      "id": 11
+    },
+    {
+      "email": "user@e.com",
+      "password": "$2a$10$6pq2z0mb2VDM/04IVauhzO1TcxbxBQnlcuL4e83tjWcHKul/uqmHC",
+      "id": 12
+    },
+    {
+      "email": "mail@e.com",
+      "password": "$2a$10$Sg.i4DyoNohdJUD8B1Z2Iu75bjO71KnB/RberfIfpka3TP3Wpfc4G",
+      "id": 13
+    },
+    {
+      "email": "e@e.com",
+      "password": "$2a$10$Of4kBHMs/SSVkiN.NT6ofOINdHgg5790iT5ImiM9/d3B7px9dxFE6",
+      "id": 14
+    },
+    {
+      "email": "2@2.com",
+      "password": "$2a$10$e4XNdl/4B5tG.blwPfKU5OUS6QGzWJ5A7COZ1350crzMun0sW1oZi",
+      "id": 15
+    },
+    {
+      "email": "eee@e.com",
+      "password": "$2a$10$MzGfEbAiBSYIGcdcdjjggOtb4AwBZda7u4jhQRHJHV7jWzY3EKg26",
+      "id": 16
+    },
+    {
+      "email": "ee@e.com",
+      "password": "$2a$10$sPMrvijgie6wmn7xPIP0Lu1y7mkrOMmDCqfKpFYotPcKxm0yQ8W8.",
+      "id": 17
     }
   ],
   "heroes": [
@@ -42,7 +102,7 @@
     },
     {
       "id": 13,
-      "userId": 2,
+      "userId": 1,
       "name": "Dr. Strange",
       "level": 6,
       "companyType": "Marvel",
@@ -68,21 +128,8 @@
       ]
     },
     {
-      "id": 15,
-      "userId": 2,
-      "name": "Spiderman",
-      "level": 9,
-      "companyType": "Marvel",
-      "description": "A nice hero",
-      "hashtags": [
-        "Spidey",
-        "Spider",
-        "Marvel"
-      ]
-    },
-    {
       "id": 16,
-      "userId": 2,
+      "userId": 1,
       "name": "Little spooder",
       "level": 4,
       "companyType": "Marvel",
@@ -94,7 +141,7 @@
     },
     {
       "id": 17,
-      "userId": 2,
+      "userId": 3,
       "name": "Dr. Nice",
       "level": 6,
       "companyType": "Marvel",
@@ -106,15 +153,156 @@
       ]
     },
     {
-      "name": "wa",
+      "id": 18,
+      "userId": 2,
+      "name": "dadada@gmail.com",
+      "level": 3,
+      "companyType": "Marvel",
+      "description": "3232",
+      "hashtags": [
+        "3232",
+        "t4ete4",
+        "fesfes"
+      ]
+    },
+    {
+      "id": 19,
+      "userId": 2,
+      "name": "arwa",
+      "level": 5,
+      "companyType": "Marvel",
+      "description": "321312",
+      "hashtags": [
+        "321312312",
+        "3232",
+        "43434343",
+        "dwadaw"
+      ]
+    },
+    {
+      "name": "rwerw",
+      "level": 2,
+      "companyType": "Marvel",
+      "description": "rw3rw3r",
+      "hashtags": [
+        "r3wrw3r"
+      ],
+      "userId": 2,
+      "id": 20
+    },
+    {
+      "id": 21,
+      "userId": 6,
+      "name": "dwadaw",
+      "level": 2,
+      "companyType": "DC",
+      "description": "wad",
+      "hashtags": [
+        "232",
+        "65"
+      ]
+    },
+    {
+      "name": "dwadaw",
+      "level": 2,
+      "companyType": "Marvel",
+      "description": "dwadaw",
+      "hashtags": [
+        "dwadwa"
+      ],
+      "userId": 6,
+      "id": 22
+    },
+    {
+      "id": 23,
+      "userId": 6,
+      "name": "dwadwa",
       "level": 4,
       "companyType": "Marvel",
-      "description": "ewqewq",
+      "description": "dwaaw",
       "hashtags": [
-        "ewqeqw"
+        "dwadwa",
+        "321312"
+      ]
+    },
+    {
+      "name": "ewae",
+      "level": 3,
+      "companyType": "Marvel",
+      "description": "eawewa",
+      "hashtags": [
+        "232"
       ],
-      "id": 18,
-      "userId": 2
+      "userId": 9,
+      "id": 24
+    },
+    {
+      "name": "eeee",
+      "level": 6,
+      "companyType": "Marvel",
+      "description": "eeee",
+      "hashtags": [
+        "Marvel"
+      ],
+      "userId": 13,
+      "id": 25
+    },
+    {
+      "name": "wea",
+      "level": 3,
+      "companyType": "Marvel",
+      "description": "ewaea",
+      "hashtags": [
+        "ewaeaw"
+      ],
+      "userId": 16,
+      "id": 26
+    },
+    {
+      "id": 27,
+      "userId": 14,
+      "name": "daw",
+      "level": 2,
+      "companyType": "Marvel",
+      "description": "dwa",
+      "hashtags": [
+        "dwada",
+        "dwaeaw",
+        "ghgh"
+      ]
+    },
+    {
+      "name": "dwawa",
+      "level": 3,
+      "companyType": "Marvel",
+      "description": "dwadaw",
+      "hashtags": [
+        "dwadwa"
+      ],
+      "userId": 2,
+      "id": 28
+    },
+    {
+      "id": 29,
+      "userId": 17,
+      "name": "eee",
+      "level": 1,
+      "companyType": "DC",
+      "description": "e",
+      "hashtags": [
+        "e"
+      ]
+    },
+    {
+      "name": "e",
+      "level": 1,
+      "companyType": "Marvel",
+      "description": "e",
+      "hashtags": [
+        "e"
+      ],
+      "userId": 17,
+      "id": 30
     }
   ]
 }
