@@ -1,5 +1,5 @@
 <!-- Hero Form -->
-<div class="hero-details" *ngIf="hero">
+<div *ngIf="hero" class="hero-details">
   <mat-card class="example-card">
     <mat-card-title>{{ hero.name }}</mat-card-title>
     <mat-card-content>
@@ -23,8 +23,4 @@
       <button mat-button (click)="openDialog()">Edit</button>
     </mat-card-actions>
   </mat-card>
-</div>
-
-<div *ngIf="!hero" style="display: flex; place-content: center; width: 100%; align-items: center; height: 10rem;">
-  YOU CANNOT ACCESS THIS HERO INFORMATION OR IT DOESNT EXIST
 </div>

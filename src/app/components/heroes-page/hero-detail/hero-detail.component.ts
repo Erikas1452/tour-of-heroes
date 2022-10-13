@@ -21,7 +21,7 @@ export interface DialogData {
 })
 
 export class HeroDetailComponent implements OnInit {
-  public hero$: Observable<Hero | undefined> = this.store.select(HeroState.selectHero);
+  public hero$!: Observable<Hero | undefined>;
   public hero!: Hero | undefined;
   private heroSubscriber: Subscription;
 
@@ -30,7 +30,11 @@ export class HeroDetailComponent implements OnInit {
     private location: Location,
     private store: Store,
     public dialog: MatDialog,
-  ) {
+  ) { 
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.store.dispatch(new SelectHero(id));
+
+    this.hero$ = this.store.select(HeroState.selectHero);
     this.heroSubscriber = this.hero$.subscribe((hero: Hero | undefined) => {
       this.hero = hero;
     });
@@ -55,10 +59,7 @@ export class HeroDetailComponent implements OnInit {
     this.heroSubscriber.unsubscribe();
   }
 
-  public ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.store.dispatch(new SelectHero(id));
-  }
+  public ngOnInit(): void {}
 
   private editHero(event: any): void {
     const hero = {id: this.hero?.id, userId: this.hero?.userId, ...event};

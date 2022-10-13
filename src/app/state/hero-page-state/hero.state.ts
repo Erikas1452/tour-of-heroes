@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs';
 import { HeroService } from 'src/app/services/hero-service/hero.service';
@@ -18,7 +18,7 @@ import { HeroStateModel } from './heroState.model';
 import { patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { Hero } from 'src/app/common/hero';
 import { MessageService } from 'src/app/services/message-service/message.service';
-
+import { Router } from '@angular/router';
 @State<HeroStateModel>({
   name: 'HeroesPageState',
   defaults: {
@@ -31,7 +31,9 @@ import { MessageService } from 'src/app/services/message-service/message.service
 export class HeroState {
   constructor(
     private heroService: HeroService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private ngZone: NgZone,
+    private _router: Router,
   ) {}
 
   @Selector()
@@ -59,11 +61,16 @@ export class HeroState {
     const state = ctx.getState();
     return this.heroService.getHero(action.heroId).pipe(
       tap((response: any) => {
-        ctx.setState({
-          ...state,
-          selectedHero: response,
-          messages: this.messageService.messages,
-        });
+        if(response === undefined){
+          this.ngZone.run(() => this._router.navigate(['dashboard']));
+        }
+        else {
+          ctx.setState({
+            ...state,
+            selectedHero: response,
+            messages: this.messageService.messages,
+          });
+        }
       })
     );
   }
