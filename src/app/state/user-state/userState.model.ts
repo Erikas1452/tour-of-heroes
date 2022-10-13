@@ -1,4 +1,5 @@
+import { User } from "src/app/common/user";
+
 export interface UserStateModel{
-    id?: number,
-    email?: String,
+    user?: User;
 }

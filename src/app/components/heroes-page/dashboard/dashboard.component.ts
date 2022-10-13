@@ -15,7 +15,7 @@ import { UserState } from 'src/app/state/user-state/user.state';
 })
 export class DashboardComponent implements OnInit {
 
-  private user$: Observable<User> = this.store.select(UserState.selectUser);
+  private user$: Observable<User | undefined> = this.store.select(UserState.selectUser);
   private user!: User;
   
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectHeroes);

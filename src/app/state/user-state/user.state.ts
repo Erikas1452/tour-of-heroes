@@ -12,8 +12,7 @@ import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
 @State<UserStateModel>({
   name: 'UserState',
   defaults: {
-    id: undefined,
-    email: undefined,
+    user: undefined
   },
 })
 @Injectable()
@@ -28,14 +27,14 @@ export class UserState {
 
   @Selector()
   static selectUser(state: UserStateModel) {
-    return { id: state.id, email: state.email } as User;
+    return state.user;
   }
 
   @Action(LogoutUser)
   logoutUser(ctx: StateContext<UserStateModel>, action: LogoutUser) {
     this.authService.logout();
     this.ngZone.run(() => this.router.navigate(['login']));
-    return ctx.setState({ id: undefined, email: undefined });
+    return ctx.setState({ user: undefined });
   }
 
   @Action(LoginUser)
@@ -43,10 +42,10 @@ export class UserState {
     const state = ctx.getState();
     return this.authService.userLogin(action.username, action.password).pipe(
       tap((response: any) => {
+        const user: User = {id: response.user.id, email: response.user.email}
         ctx.setState({
           ...state,
-          id: response.user.id,
-          email: response.user.email,
+          user: user
         });
         this.ngZone.run(() => this.router.navigate(['dashboard']));
       })

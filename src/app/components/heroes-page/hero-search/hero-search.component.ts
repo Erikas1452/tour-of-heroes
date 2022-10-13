@@ -15,7 +15,7 @@ import { UserState } from 'src/app/state/user-state/user.state';
 export class HeroSearchComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectSearchResults);
 
-  private user$: Observable<User> = this.store.select(UserState.selectUser);
+  private user$: Observable<User | undefined> = this.store.select(UserState.selectUser);
   private user!: User;
   
   private searchFilter$ = new BehaviorSubject<string>('');
