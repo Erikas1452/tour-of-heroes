@@ -36,9 +36,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
-  login() {
+  public login() {
     if (this.emailControl.valid) {
       this.store.dispatch(
         new LoginUser(

@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     private _snackBarHandler: SnackbarHandler,
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.registerFormGroup = this._formBuilder.group(
       {
         email: this.emailControl,
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  register() {
+  public register() {
     if(this.registerFormGroup.valid)
     {
       this.store

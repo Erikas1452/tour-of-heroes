@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   constructor(private store: Store) {
     this.user$.subscribe((res: any) => this.user = res);
     this.store.dispatch(new GetHeroes(this.user.id));
+    
     this.heroSubscriber = this.heroes$.subscribe((heroes: Hero[]) => {
       this.topHeroes = heroes.slice(1,5);
     });

@@ -16,15 +16,15 @@ export class AppComponent {
 
   constructor(public authService: AuthService, private store: Store) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.bodyElement.className=this.defaultStyle + ' ' + 'theme-light';
   }
 
-  changeTheme(e: any){
+  public changeTheme(e: any){
     this.bodyElement.className=this.defaultStyle + ' ' + e;
   }
 
-  logout(){
+  public logout(){
     this.store.dispatch(new ClearState);
     this.store.dispatch(new LogoutUser);
   }

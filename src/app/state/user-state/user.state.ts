@@ -62,7 +62,7 @@ export class UserState {
           ...state,
         });
         if (response) {
-          this._snackBarHandler.openSnackBar("Registered new user")
+          this._snackBarHandler.openSnackBar("Registered new user");
           this.ngZone.run(() =>
             this.router.navigate(['login'])
           );

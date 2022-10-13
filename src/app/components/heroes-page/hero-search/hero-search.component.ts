@@ -18,7 +18,7 @@ export class HeroSearchComponent implements OnInit {
   private user$: Observable<User> = this.store.select(UserState.selectUser);
   private user!: User;
   
-  searchFilter$ = new BehaviorSubject<string>('');
+  private searchFilter$ = new BehaviorSubject<string>('');
 
   constructor(private store: Store) {
     this.user$.subscribe((res: any) => this.user = res);
@@ -35,7 +35,7 @@ export class HeroSearchComponent implements OnInit {
       .subscribe();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.store.dispatch(new RemoveSearchResults());
   }
 
