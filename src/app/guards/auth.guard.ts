@@ -11,30 +11,28 @@ import { AuthService } from '../services/auth-service/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private routeURL!: string;
-
   constructor(public _auth: AuthService, public _router: Router) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
-
+  ) : boolean {
+    const routeUrl: string = state.url;
+    const authenticated: boolean = this._auth.isAuthenticated();
 
     //User is not authenticated and trying to use login and register routes
-    if (!this._auth.isAuthenticated() && (state.url === '/login' || state.url === '/register')) {
+    if (!authenticated && (routeUrl === '/login' || routeUrl === '/register')) {
       return true;
     }
 
     //User is not authenticated and trying to acess any other route
-    if(!this._auth.isAuthenticated()){
+    if (!authenticated) {
       this._router.navigate(['login']);
       return false;
     }
-    
+
     //User is authenticated and trying to use login and register routes
-    if (this._auth.isAuthenticated() && (state.url === '/login' || state.url === '/register'))
-    {
+    if (authenticated && (routeUrl === '/login' || routeUrl === '/register')) {
       this._router.navigate(['dashboard']);
     }
     return true;
