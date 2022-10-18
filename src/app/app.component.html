@@ -2,6 +2,6 @@
 <div class="app-wrapper">
   <app-header *ngIf="authService.isAuthenticated()" (onThemeEmit)="changeTheme($event)"></app-header>
   <router-outlet></router-outlet>
-  <app-messages></app-messages>
+  <app-messages *ngIf="authService.isAuthenticated()"></app-messages>
   <button *ngIf="authService.isAuthenticated()" (click)="logout()">LOGOUT!!!</button>
 </div>
