@@ -2,7 +2,7 @@ import { Hero } from "src/app/common/hero";
 
 export interface HeroStateModel{
     heroes: Hero[],
-    messages: String[],
+    messages: string[],
     searchResults: Hero[],
     selectedHero?: Hero,
 }
