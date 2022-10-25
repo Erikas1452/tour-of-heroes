@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   defaults: {
     heroes: [],
     messages: [],
-    searchResults: [],
+    searchResults: []
   },
 })
 @Injectable()
