@@ -36,6 +36,10 @@ export class HeroesComponent implements OnInit {
     this.store.dispatch(new DeleteHero(hero.id))
   }
 
+  public trackHeroesByID(index: number, hero: Hero) {
+    return hero.id;
+  }
+
   public openDialog(description: string): void {
     const dialogRef = this._dialog.open(DescriptionDialogComponent, {
       width: '450px',

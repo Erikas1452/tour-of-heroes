@@ -87,6 +87,10 @@ export class HeroFormComponent implements OnInit {
     event.chipInput!.clear();
   }
 
+  public trackHashtagByIndex(index: number, hashtag: string) {
+    return index;
+  }
+
   public removeChip(value: string): void {
     const index = this.hashtags.indexOf(value);
     if (index >= 0) {

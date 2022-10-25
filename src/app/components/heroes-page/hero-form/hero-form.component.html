@@ -80,7 +80,7 @@
           aria-label="Hashtags selection"
         >
           <mat-chip
-            *ngFor="let hashtag of hashtags"
+            *ngFor="let hashtag of hashtags; trackBy: trackHashtagByIndex"
             (removed)="removeChip(hashtag)"
           >
             {{ hashtag }}

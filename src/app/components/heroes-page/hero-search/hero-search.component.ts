@@ -40,6 +40,10 @@ export class HeroSearchComponent implements OnInit {
     this.store.dispatch(new RemoveSearchResults());
   }
 
+  public trackHeroesByID(index: number, hero: Hero) {
+    return hero.id;
+  }
+
   public search(term: string): void {
     this.searchFilter$.next(term);
   }

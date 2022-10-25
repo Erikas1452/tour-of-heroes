@@ -15,7 +15,7 @@
       </div>
       <h1>Hashtags:</h1>
       <div class="container">
-        <h5 *ngFor="let tag of hero.hashtags">#{{ tag }}</h5>
+        <h5 *ngFor="let tag of hero.hashtags; trackBy: trackHashtagByIndex">#{{ tag }}</h5>
       </div>
     </mat-card-content>
     <mat-card-actions>

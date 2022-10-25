@@ -37,4 +37,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public ngOnInit(): void {}
+
+  public trackHeroesByID(index: number, hero: Hero) {
+    return hero.id;
+  }
 }

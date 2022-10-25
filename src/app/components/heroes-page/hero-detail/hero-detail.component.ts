@@ -59,6 +59,10 @@ export class HeroDetailComponent implements OnInit {
     });
   }
 
+  public trackHashtagByIndex(index: number, hashtag: string) {
+    return index;
+  }
+
   public ngOnDestroy(){
     this.store.dispatch(new RemoveSelectedHero());
     this.heroSubscriber.unsubscribe();
