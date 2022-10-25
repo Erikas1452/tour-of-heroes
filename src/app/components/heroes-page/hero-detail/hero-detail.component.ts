@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Hero } from '../../../common/hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -18,25 +18,30 @@ export interface DialogData {
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HeroDetailComponent implements OnInit {
   public hero$!: Observable<Hero | undefined>;
   public hero!: Hero | undefined;
-  private heroSubscriber: Subscription;
+  private heroSubscriber!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private store: Store,
     public dialog: MatDialog,
+    private readonly cdRef: ChangeDetectorRef
   ) { 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.store.dispatch(new SelectHero(id));
-
     this.hero$ = this.store.select(HeroState.selectHero);
+  }
+  
+  public ngOnInit(): void {
     this.heroSubscriber = this.hero$.subscribe((hero: Hero | undefined) => {
       this.hero = hero;
+      this.cdRef.detectChanges();
     });
   }
 
@@ -58,8 +63,6 @@ export class HeroDetailComponent implements OnInit {
     this.store.dispatch(new RemoveSelectedHero());
     this.heroSubscriber.unsubscribe();
   }
-
-  public ngOnInit(): void {}
 
   private editHero(event: any): void {
     const hero = {id: this.hero?.id, userId: this.hero?.userId, ...event};
