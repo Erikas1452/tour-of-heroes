@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, EventEmitter, OnInit, Output, Input, ViewChild} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, ViewChild, ChangeDetectionStrategy} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { identicalHashValidator } from 'src/app/common/functions';
@@ -10,6 +10,7 @@ import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
   selector: 'app-hero-form',
   templateUrl: './hero-form.component.html',
   styleUrls: ['./hero-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroFormComponent implements OnInit {
   @Output() private onFormSubmit = new EventEmitter();
