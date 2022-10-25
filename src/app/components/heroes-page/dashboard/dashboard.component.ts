@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
@@ -12,6 +12,7 @@ import { UserState } from 'src/app/state/user-state/user.state';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
 
