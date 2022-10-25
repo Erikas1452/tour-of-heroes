@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ClearMessages } from 'src/app/state/hero-page-state/hero.actions';
@@ -7,6 +7,7 @@ import { HeroState } from 'src/app/state/hero-page-state/hero.state';
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesComponent implements OnInit {
   public messages$: Observable<String[]> = this.store.select(HeroState.selectMessages);
