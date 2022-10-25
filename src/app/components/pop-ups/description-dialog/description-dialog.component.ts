@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-description-dialog',
   templateUrl: './description-dialog.component.html',
-  styleUrls: ['./description-dialog.component.scss']
+  styleUrls: ['./description-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DescriptionDialogComponent implements OnInit {
 
