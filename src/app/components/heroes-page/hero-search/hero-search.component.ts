@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { BehaviorSubject, debounceTime, Observable, tap} from 'rxjs';
 import { Hero } from 'src/app/common/hero';
@@ -11,6 +11,7 @@ import { UserState } from 'src/app/state/user-state/user.state';
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroSearchComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectSearchResults);
