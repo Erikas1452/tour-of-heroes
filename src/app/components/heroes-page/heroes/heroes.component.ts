@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Hero } from 'src/app/common/hero';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,7 @@ import { User } from 'src/app/common/user';
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroesComponent implements OnInit {
   public heroes$: Observable<Hero[]> = this.store.select(HeroState.selectHeroes);
