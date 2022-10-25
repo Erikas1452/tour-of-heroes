@@ -10,11 +10,15 @@ import { HeroState } from 'src/app/state/hero-page-state/hero.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesComponent implements OnInit {
-  public messages$: Observable<String[]> = this.store.select(HeroState.selectMessages);
+  public messages$: Observable<string[]> = this.store.select(HeroState.selectMessages);
 
   constructor(private store: Store) {}
 
   public ngOnInit(): void {}
+
+  public trackMessagesByIndex(index: number, message: string) {
+    return index;
+  }
 
   public clear(){
     this.store.dispatch(new ClearMessages());
