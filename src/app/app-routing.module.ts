@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/auth-page/register/register.comp
 import { AuthGuard } from './guards/auth.guard';
 import { AdminLoginComponent } from './components/admin-page/admin-login/admin-login.component';
 import { UserLoginComponent } from './components/auth-page/user-login/user-login/user-login.component';
+import { AdminDashboardComponent } from './components/admin-page/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminLoginComponent,
+    component: AdminLoginComponent
+  },
+  {
+    path: 'admin/dashboard',
+    component: AdminDashboardComponent
   },
   {
     path: 'heroes',
