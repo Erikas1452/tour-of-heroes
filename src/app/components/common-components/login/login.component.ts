@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -16,6 +16,10 @@ import { LoginUser } from 'src/app/state/user-state/user.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
+
+  @Input() public adminMode: boolean = false;
+  @Output() private onLogin = new EventEmitter();
+
   public emailControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -40,13 +44,9 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {}
 
   public login() {
-    if (this.emailControl.valid) {
-      this.store.dispatch(
-        new LoginUser(
-          this.loginFormGroup.value.email,
-          this.loginFormGroup.value.password
-        )
-      );
+    if (this.loginFormGroup.valid) {
+      console.log("EMITING");
+      this.onLogin.emit(this.loginFormGroup.value);
     } else {
       this._snackBarHandler.openSnackBar("Form is not valid");
     }

@@ -1,10 +1,12 @@
 <mat-card>
-  <div class="title">
+  <div *ngIf="!adminMode" class="title">
     <h1 class="title-text">TOUR OF HEROES</h1>
+  </div>
+  <div *ngIf="adminMode" class="title">
+    <h1 class="title-text">TOUR OF HEROES ADMIN PANNEL</h1>
   </div>
   <mat-card-subtitle>
     <form
-      (ngSubmit)="login()"
       [formGroup]="loginFormGroup"
       class="login-form"
       #heroForm="ngForm"
@@ -51,12 +53,12 @@
         Password is required.
       </div>
 
-      <div>
+      <div *ngIf="!adminMode">
         <p>Don't have an account <a routerLink="/register">Register</a></p>
       </div>
 
       <!-- Button -->
-      <button type="submit" [disabled]="!loginFormGroup.valid">Login</button>
+      <button (click)="login()" type="submit" [disabled]="!loginFormGroup.valid">Login</button>
     </form>
   </mat-card-subtitle>
 </mat-card>
