@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { ErrorHandler } from 'src/app/common/ErrorHandler';
+import { Role } from 'src/app/common/role';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +39,7 @@ export class UserService {
     const body = {
       email: username,
       password: password,
+      role: Role.Visitor
     };
     return this.http
       .post<any>(url, body, this.httpOptions)
