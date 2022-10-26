@@ -13,8 +13,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
-import { StateClass } from '@ngxs/store/internals';
-
 @State<UserStateModel>({
   name: 'UserState',
   defaults: {
@@ -72,7 +70,7 @@ export class UserState {
     return this.authService.adminLogin(action.username, action.password).pipe(
       tap((response: any) => {
         this.setUserToState(response.user, ctx, state);
-        // this.ngZone.run(() => this.router.navigate(['dashboard']));
+        this.ngZone.run(() => this.router.navigate(['admin/dashboard']));
       })
     );
   }
