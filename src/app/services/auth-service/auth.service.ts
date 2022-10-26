@@ -30,16 +30,16 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');
-    if(token === null) return false;
+    if (token === null) return false;
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  public getToken(){
+  public getToken() {
     return localStorage.getItem('access_token');
   }
 
-  public logout(){
-    localStorage.removeItem("access_token");
+  public logout() {
+    localStorage.removeItem('access_token');
   }
 
   public userLogin(username: string, password: string) {
