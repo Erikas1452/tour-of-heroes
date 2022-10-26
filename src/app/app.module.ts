@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
   import {MatMenuModule} from '@angular/material/menu';
   import {MatSidenavModule} from '@angular/material/sidenav';
   import {MatListModule} from '@angular/material/list';
+  import {MatTableModule} from '@angular/material/table';
 //Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -47,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 //Extras
 import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
+import { AdminDashboardComponent } from './components/admin-page/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
     LoginComponent,
     RegisterComponent,
     AdminLoginComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,7 @@ import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
     MatSnackBarModule,
     MatDialogModule,
     MatToolbarModule,
-    NgxsModule.forRoot([HeroState, UserState], {
+    MatTableModule,
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
