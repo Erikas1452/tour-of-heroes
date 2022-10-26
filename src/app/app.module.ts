@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
   //State NGXS
   import { NgxsModule } from '@ngxs/store';
   import { HeroState } from './state/hero-page-state/hero.state';
+  import { UserState } from './state/user-state/user.state';
   import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
   import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
   //Material
@@ -34,7 +35,9 @@ import { DashboardComponent } from './components/heroes-page/dashboard/dashboard
 import { HeroSearchComponent } from './components/heroes-page/hero-search/hero-search.component';
 import { HeroFormComponent } from './components/heroes-page/hero-form/hero-form.component';
 import { RegisterComponent } from './components/auth-page/register/register.component';
-import { LoginComponent } from './components/auth-page/login/login.component';
+import { LoginComponent } from './components/common-components/login/login.component';
+import { AdminLoginComponent } from './components/admin-page/admin-login/admin-login.component';
+import { UserLoginComponent } from './components/auth-page/user-login/user-login/user-login.component';
   //Pop-Ups
   import { DescriptionDialogComponent } from './components/pop-ups/description-dialog/description-dialog.component';
   import { HeroEditFormDialogComponent } from './components/pop-ups/hero-edit-form-dialog/hero-edit-form-dialog.component';
@@ -44,7 +47,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 //Extras
 import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
-import { UserState } from './state/user-state/user.state';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { UserState } from './state/user-state/user.state';
     HeroEditFormDialogComponent,
     HeaderComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminLoginComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
