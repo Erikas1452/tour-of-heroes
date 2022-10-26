@@ -49,6 +49,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 //Extras
 import { JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 import { AdminDashboardComponent } from './components/admin-page/admin-dashboard/admin-dashboard.component';
+import { AdminViewState } from './state/admin-view-state/adminView.state';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { AdminDashboardComponent } from './components/admin-page/admin-dashboard
     MatDialogModule,
     MatToolbarModule,
     MatTableModule,
+    NgxsModule.forRoot([HeroState, UserState, AdminViewState], {
       developmentMode: !environment.production,
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
