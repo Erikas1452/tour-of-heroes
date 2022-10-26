@@ -18,6 +18,17 @@ export class UserService {
     private _errorHandler: ErrorHandler,
   ) {}
 
+  public getUsers() {
+    const url = `${this.apiUrl}/users`;
+    return this.http.get(url,this.httpOptions).pipe(
+      tap((response) => {
+        console.log(response);
+        this._errorHandler.log('fetched users');
+      }),
+      catchError(this._errorHandler.handleError<any>('getUsers', true, []))
+    )
+  }
+
   public login(username: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/login`;
     const body = {
