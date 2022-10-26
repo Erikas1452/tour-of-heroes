@@ -1,18 +1,24 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { UserStateModel } from './userState.model';
 import { Injectable, NgZone } from '@angular/core';
-import { LoginUser, LogoutUser, RegisterUser } from './user.actions';
+import {
+  LoginAdmin,
+  LoginUser,
+  LogoutUser,
+  RegisterUser,
+} from './user.actions';
 import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
+import { StateClass } from '@ngxs/store/internals';
 
 @State<UserStateModel>({
   name: 'UserState',
   defaults: {
-    user: undefined
+    user: undefined,
   },
 })
 @Injectable()
@@ -24,6 +30,18 @@ export class UserState {
     private ngZone: NgZone,
     private _snackBarHandler: SnackbarHandler
   ) {}
+
+  private setUserToState(user: User, ctx: StateContext<UserStateModel>, state: UserStateModel){
+    const newUser: User = {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+    };
+    ctx.setState({
+      ...state,
+      user: newUser,
+    });
+  }
 
   @Selector()
   static selectUser(state: UserStateModel) {
@@ -42,12 +60,19 @@ export class UserState {
     const state = ctx.getState();
     return this.authService.userLogin(action.username, action.password).pipe(
       tap((response: any) => {
-        const user: User = {id: response.user.id, email: response.user.email}
-        ctx.setState({
-          ...state,
-          user: user
-        });
+        this.setUserToState(response.user, ctx, state);
         this.ngZone.run(() => this.router.navigate(['dashboard']));
+      })
+    );
+  }
+
+  @Action(LoginAdmin)
+  loginAdmin(ctx: StateContext<UserStateModel>, action: LoginAdmin) {
+    const state = ctx.getState();
+    return this.authService.adminLogin(action.username, action.password).pipe(
+      tap((response: any) => {
+        this.setUserToState(response.user, ctx, state);
+        // this.ngZone.run(() => this.router.navigate(['dashboard']));
       })
     );
   }
@@ -61,10 +86,8 @@ export class UserState {
           ...state,
         });
         if (response) {
-          this._snackBarHandler.openSnackBar("Registered new user");
-          this.ngZone.run(() =>
-            this.router.navigate(['login'])
-          );
+          this._snackBarHandler.openSnackBar('Registered new user');
+          this.ngZone.run(() => this.router.navigate(['login']));
         }
       })
     );
