@@ -4,19 +4,24 @@ import { HeroesComponent } from './components/heroes-page/heroes/heroes.componen
 import { DashboardComponent } from './components/heroes-page/dashboard/dashboard.component';
 import { HeroDetailComponent } from './components/heroes-page/hero-detail/hero-detail.component';
 import { RegisterComponent } from './components/auth-page/register/register.component';
-import { LoginComponent } from './components/auth-page/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminLoginComponent } from './components/admin-page/admin-login/admin-login.component';
+import { UserLoginComponent } from './components/auth-page/user-login/user-login/user-login.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    component: UserLoginComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    component: AdminLoginComponent,
   },
   {
     path: 'heroes',
