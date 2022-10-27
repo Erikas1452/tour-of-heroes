@@ -26,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
   import {MatSidenavModule} from '@angular/material/sidenav';
   import {MatListModule} from '@angular/material/list';
   import {MatTableModule} from '@angular/material/table';
+  import {MatPaginatorModule} from '@angular/material/paginator';
 //Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -90,6 +91,7 @@ import { AdminViewState } from './state/admin-view-state/adminView.state';
     MatDialogModule,
     MatToolbarModule,
     MatTableModule,
+    MatPaginatorModule,
     NgxsModule.forRoot([HeroState, UserState, AdminViewState], {
       developmentMode: !environment.production,
     }),
