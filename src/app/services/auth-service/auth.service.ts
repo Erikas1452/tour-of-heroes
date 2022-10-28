@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from '@ngxs/store';
 import { catchError, tap } from 'rxjs';
 import { ErrorHandler } from 'src/app/common/ErrorHandler';
 import { Role } from 'src/app/common/role';
 import { SnackbarHandler } from 'src/app/common/SnackBarHandler';
+import { User } from 'src/app/common/user';
+import { UserState } from 'src/app/state/user-state/user.state';
 import { UserService } from '../user-service/user.service';
 
 @Injectable({
@@ -25,12 +28,25 @@ export class AuthService {
   constructor(
     private _snackbarHandler: SnackbarHandler, 
     private userService: UserService,
-    public jwtHelper: JwtHelperService
+    public jwtHelper: JwtHelperService,
+    private store: Store
   ) {}
+
+  public getUserRole(): Role | undefined {
+    const user$ = this.store.select(UserState.selectUser);
+    let userRole!: Role | undefined;
+
+    user$.subscribe((user) =>{
+        userRole = user?.role;
+    });
+
+    return userRole;
+  }
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');
     if (token === null) return false;
+    console.log(token);
     return !this.jwtHelper.isTokenExpired(token);
   }
 
