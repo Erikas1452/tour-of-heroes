@@ -8,35 +8,47 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminLoginComponent } from './components/admin-page/admin-login/admin-login.component';
 import { UserLoginComponent } from './components/auth-page/user-login/user-login/user-login.component';
 import { AdminDashboardComponent } from './components/admin-page/admin-dashboard/admin-dashboard.component';
+import { Role } from './common/role';
 
 const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin',
-    component: AdminLoginComponent
+    component: AdminLoginComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin/dashboard',
-    component: AdminDashboardComponent
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: [Role.Admin]
+    }
   },
   {
     path: 'heroes',
     component: HeroesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      role: [Role.User, Role.Visitor]
+    }
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      role: [Role.User, Role.Visitor]
+    }
   },
   {
     path: '',
@@ -46,7 +58,10 @@ const routes: Routes = [
   {
     path: 'detail/:id',
     component: HeroDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {
+      role: [Role.User, Role.Visitor]
+    }
   },
   {
     path: '**',
