@@ -21,15 +21,18 @@ export class AuthGuard implements CanActivate {
     const authenticated: boolean = this._auth.isAuthenticated();
     let userRole: Role | undefined = this._auth.getUserRole();
     
+    //if not going to login/register routes
     if(!loginRoutes.includes(url))
     {
       return this.userRoleMatcherRouteRole(route, userRole);
     }
   
+    //login/register routes when authenticated
     if (!authenticated) {
       return true;
     }
 
+    //if user goes to login/register route when authenticated
     userRole === Role.Admin
       ? this._router.navigate(['/admin/dashboard'])
       : this._router.navigate(['/dashboard']);
@@ -44,7 +47,11 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     
-    this._router.navigate(['/login']);
+    //if role doesn't match redirect to login page of role
+    userRole === Role.Admin
+    ? this._router.navigate(['/admin'])
+    : this._router.navigate(['/login']);
+
     return false;
 
   }
